@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>2026 韓國親子五日遊隨身攻略</title>
+<style>
+:root{
+  --navy:#1C2B4A;
+  --navy-light:#2E4370;
+  --paper:#FBF7EF;
+  --paper-dim:#F1EADA;
+  --persimmon:#D2531E;
+  --persimmon-dim:#F1D9C8;
+  --jade:#3F6B5C;
+  --jade-dim:#DCE8E2;
+  --ink:#2A241C;
+  --line:#DCD2BE;
+  --green-go:#3F6B5C;
+  --amber-maybe:#B8862E;
+  --red-no:#B0442E;
+  font-size:17px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"PingFang TC","Noto Sans TC",-apple-system,BlinkMacSystemFont,sans-serif;
+  line-height:1.55;
+  padding-bottom:78px;
+  -webkit-tap-highlight-color:transparent;
+}
+h1,h2,h3{
+  font-family:"Noto Serif TC","PingFang TC",serif;
+  font-weight:700;
+  margin:0 0 6px;
+  color:var(--navy);
+}
+a{color:inherit;}
+.wrap{max-width:520px;margin:0 auto;padding:0 16px;}
+
+/* ---------- Top bar ---------- */
+header.top{
+  background:var(--navy);
+  color:var(--paper);
+  padding:14px 16px 12px;
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;gap:10px;
+}
+header.top .back{
+  font-size:22px;line-height:1;cursor:pointer;padding:4px 8px;margin-left:-8px;
+  visibility:hidden;
+}
+header.top .back.show{visibility:visible;}
+header.top h1{color:var(--paper);font-size:19px;margin:0;flex:1;}
+header.top .flag{font-size:15px;opacity:.8;}
+
+/* ---------- Home ---------- */
+.hero{
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-light) 100%);
+  color:var(--paper);
+  padding:28px 16px 34px;
+  text-align:left;
+  border-radius:0 0 22px 22px;
+}
+.hero .eyebrow{font-size:14px;opacity:.75;margin-bottom:4px;}
+.hero h1{color:var(--paper);font-size:26px;margin-bottom:2px;}
+.hero .dates{font-size:15px;opacity:.9;margin-top:4px;}
+.hero .countdown{
+  margin-top:16px;background:rgba(255,255,255,.1);
+  border-radius:14px;padding:12px 14px;font-size:15px;
+}
+.hero .countdown b{font-size:22px;color:#F4C77A;}
+
+.day-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  margin-top:-20px;padding:0 16px 4px;
+}
+.day-card{
+  grid-column:span 2;
+  background:#fff;border:1px solid var(--line);border-radius:16px;
+  padding:16px;display:flex;align-items:center;gap:14px;
+  text-decoration:none;color:var(--ink);
+}
+.day-card .num{
+  width:46px;height:46px;border-radius:12px;background:var(--persimmon);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-family:"Noto Serif TC",serif;font-weight:700;font-size:17px;flex-shrink:0;
+}
+.day-card .info{flex:1;}
+.day-card .info .d{font-size:13px;color:#8a8272;}
+.day-card .info .t{font-size:16px;font-weight:700;color:var(--navy);}
+.day-card .chev{color:var(--line);font-size:20px;}
+
+.home-tools{padding:18px 16px 8px;display:grid;gap:12px;}
+.tool-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.tool-card{
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:14px;text-align:left;
+}
+.tool-card .ti{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+
+/* ---------- Sections generic ---------- */
+.section{padding:18px 0 4px;}
+.section-title{
+  font-size:16px;font-weight:700;color:var(--navy);
+  margin:0 0 10px;display:flex;align-items:center;gap:6px;
+}
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:14px 14px;margin-bottom:10px;
+}
+.muted{color:#8a8272;font-size:13.5px;}
+.badge{
+  display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;
+  font-weight:700;margin-right:4px;
+}
+.badge.go{background:var(--jade-dim);color:var(--green-go);}
+.badge.maybe{background:#F3E6C9;color:var(--amber-maybe);}
+.badge.no{background:#F3DAD1;color:var(--red-no);}
+.badge.tag{background:var(--paper-dim);color:#77705f;font-weight:500;}
+
+/* itinerary timeline */
+.tl{border-left:2px solid var(--line);margin-left:6px;padding-left:16px;}
+.tl-item{position:relative;padding-bottom:16px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{
+  content:"";position:absolute;left:-21px;top:4px;width:10px;height:10px;
+  border-radius:50%;background:var(--persimmon);
+}
+.tl-item .tt{font-weight:700;color:var(--navy);font-size:15px;}
+.tl-item .tx{font-size:14px;color:#5c5646;margin-top:2px;}
+
+/* collapsible */
+details{
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  margin-bottom:10px;overflow:hidden;
+}
+details summary{
+  padding:13px 14px;font-weight:700;color:var(--navy);cursor:pointer;
+  list-style:none;display:flex;justify-content:space-between;align-items:center;
+}
+details summary::-webkit-details-marker{display:none;}
+details summary::after{content:"▾";color:var(--persimmon);font-size:14px;transition:transform .2s;}
+details[open] summary::after{transform:rotate(180deg);}
+details .body{padding:0 14px 14px;}
+
+/* spot card */
+.spot{border-bottom:1px solid var(--line);padding:12px 0;}
+.spot:last-child{border-bottom:none;}
+.spot .row1{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+.spot .name{font-weight:700;font-size:15px;color:var(--ink);}
+.spot .kr{font-size:12.5px;color:#a49b86;}
+.spot .desc{font-size:13.5px;margin-top:4px;color:#5c5646;}
+.spot .meta{font-size:12.5px;color:#8a8272;margin-top:4px;}
+.favbtn{
+  border:1px solid var(--line);background:#fff;border-radius:10px;
+  width:34px;height:34px;font-size:16px;flex-shrink:0;color:var(--persimmon);
+}
+.favbtn.active{background:var(--persimmon);color:#fff;border-color:var(--persimmon);}
+
+/* food card + kid filter */
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+.filter-chip{
+  border:1px solid var(--line);background:#fff;border-radius:999px;
+  padding:7px 12px;font-size:13px;color:#5c5646;
+}
+.filter-chip.on{background:var(--jade);color:#fff;border-color:var(--jade);}
+.food-card{display:none;}
+.food-card.show{display:block;}
+.food-tags{margin-top:6px;}
+.food-tags span{
+  font-size:11.5px;background:var(--paper-dim);color:#77705f;
+  padding:2px 7px;border-radius:8px;margin-right:5px;
+}
+.food-tags span.ok{background:var(--jade-dim);color:var(--green-go);}
+
+/* price-tier comparison */
+.tier-tabs{display:flex;gap:8px;margin-bottom:12px;}
+.tier-tab{
+  flex:1;text-align:center;border:1px solid var(--line);background:#fff;
+  border-radius:10px;padding:9px 4px;font-size:13px;font-weight:700;color:#5c5646;
+}
+.tier-tab.on.must{background:var(--persimmon);color:#fff;border-color:var(--persimmon);}
+.tier-tab.on.maybe{background:var(--amber-maybe);color:#fff;border-color:var(--amber-maybe);}
+.tier-tab.on.skip{background:#8a8272;color:#fff;border-color:#8a8272;}
+.tier-box{display:none;}
+.tier-box.show{display:block;}
+.price-item{border-bottom:1px solid var(--paper-dim);padding:10px 0;}
+.price-item:last-child{border-bottom:none;}
+.price-item .pname{font-weight:700;font-size:14.5px;color:var(--ink);margin-bottom:4px;}
+.price-item .prow{display:flex;justify-content:space-between;gap:8px;font-size:13px;margin-bottom:2px;}
+.price-item .prow .lbl2{color:#8a8272;flex-shrink:0;}
+.price-item .prow .val{text-align:right;color:var(--navy);font-weight:600;}
+.price-item .prow.kr .val{color:var(--persimmon);}
+.price-item .pnote{font-size:12.5px;color:#77705f;margin-top:5px;}
+
+/* backup plans */
+.plan-tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+.plan-tab{
+  flex:1;min-width:70px;text-align:center;border:1px solid var(--line);
+  background:#fff;border-radius:10px;padding:9px 4px;font-size:13px;font-weight:700;color:#5c5646;
+}
+.plan-tab.on{background:var(--navy);color:#fff;border-color:var(--navy);}
+.plan-box{display:none;}
+.plan-box.show{display:block;}
+.plan-step{font-size:14px;padding:6px 0;border-bottom:1px dashed var(--line);}
+.plan-step:last-child{border-bottom:none;}
+
+/* free-time input */
+.freetime-box{
+  background:var(--jade-dim);border-radius:14px;padding:14px;margin-bottom:14px;
+}
+.freetime-box .lbl{font-size:13.5px;color:var(--jade);font-weight:700;margin-bottom:8px;}
+.freetime-box input{
+  width:70px;padding:8px;border:1px solid var(--line);border-radius:8px;font-size:15px;text-align:center;
+}
+.freetime-box .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.freetime-box .hint{font-size:12.5px;color:#4c6157;margin-top:8px;}
+
+/* shopping checklist */
+.shop-store{margin-bottom:6px;}
+.shop-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--paper-dim);}
+.shop-item:last-child{border-bottom:none;}
+.shop-item input[type=checkbox]{width:20px;height:20px;flex-shrink:0;accent-color:var(--persimmon);}
+.shop-item label{flex:1;font-size:14.5px;}
+.shop-item label.checked{text-decoration:line-through;color:#a49b86;}
+.shop-item input[type=number]{width:56px;padding:5px;border:1px solid var(--line);border-radius:7px;font-size:13px;}
+
+/* nav links row */
+.navlinks{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
+.navlinks a{
+  font-size:12.5px;border:1px solid var(--line);border-radius:8px;padding:5px 9px;
+  text-decoration:none;color:var(--navy);background:var(--paper-dim);
+}
+
+/* currency */
+.conv-row{display:flex;align-items:center;gap:8px;}
+.conv-row input{flex:1;padding:10px;border:1px solid var(--line);border-radius:10px;font-size:16px;}
+.conv-result{font-size:20px;font-weight:700;color:var(--persimmon);margin-top:10px;}
+.rate-edit{font-size:12.5px;color:#8a8272;margin-top:10px;display:flex;align-items:center;gap:6px;}
+.rate-edit input{width:80px;padding:4px 6px;border:1px solid var(--line);border-radius:6px;}
+
+/* bottom nav */
+nav.bottom{
+  position:fixed;bottom:0;left:0;right:0;background:#fff;
+  border-top:1px solid var(--line);display:flex;z-index:50;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+nav.bottom button{
+  flex:1;background:none;border:none;padding:10px 0 8px;font-size:11px;
+  color:#a49b86;display:flex;flex-direction:column;align-items:center;gap:3px;
+}
+nav.bottom button .ic{font-size:19px;}
+nav.bottom button.active{color:var(--persimmon);font-weight:700;}
+
+.page{display:none;}
+.page.show{display:block;}
+
+.emg-num{font-size:17px;font-weight:700;color:var(--persimmon);}
+.tip-box{background:var(--persimmon-dim);border-radius:12px;padding:12px 14px;font-size:13.5px;color:#7a3417;margin-bottom:12px;}
+.checklist li{margin-bottom:8px;}
+ul.plain{padding-left:20px;margin:0;}
+table.simple{width:100%;border-collapse:collapse;font-size:13.5px;}
+table.simple th,table.simple td{border-bottom:1px solid var(--line);padding:7px 4px;text-align:left;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="back" id="backBtn" onclick="goHome()">‹</div>
+  <h1 id="topTitle">2026 韓國親子五日遊</h1>
+  <div class="flag">🇰🇷</div>
+</header>
+
+<!-- ============ HOME ============ -->
+<div class="page show" id="page-home">
+  <div class="hero">
+    <div class="eyebrow">TAICHUNG → INCHEON</div>
+    <h1>韓國親子五日遊</h1>
+    <div class="dates">2026/09/05 － 09/09　｜　2大2小</div>
+    <div class="countdown" id="countdownBox">計算中…</div>
+  </div>
+
+  <div class="day-grid">
+    <a class="day-card" href="#" onclick="goDay(1);return false;">
+      <div class="num">1</div>
+      <div class="info"><div class="d">9/5（五）</div><div class="t">抵達仁川・月尾島</div></div>
+      <div class="chev">›</div>
+    </a>
+    <a class="day-card" href="#" onclick="goDay(2);return false;">
+      <div class="num">2</div>
+      <div class="info"><div class="d">9/6（六）</div><div class="t">水原 Starfield・愛寶樂園</div></div>
+      <div class="chev">›</div>
+    </a>
+    <a class="day-card" href="#" onclick="goDay(3);return false;">
+      <div class="num">3</div>
+      <div class="info"><div class="d">9/7（日）</div><div class="t">南山塔・廣藏市場・COEX</div></div>
+      <div class="chev">›</div>
+    </a>
+    <a class="day-card" href="#" onclick="goDay(4);return false;">
+      <div class="num">4</div>
+      <div class="info"><div class="d">9/8（一）</div><div class="t">恩平韓屋・益善洞・明洞</div></div>
+      <div class="chev">›</div>
+    </a>
+    <a class="day-card" href="#" onclick="goDay(5);return false;">
+      <div class="num">5</div>
+      <div class="info"><div class="d">9/9（二）</div><div class="t">INSPIRE・返程</div></div>
+      <div class="chev">›</div>
+    </a>
+  </div>
+
+  <div class="home-tools">
+    <div class="tool-row">
+      <div class="tool-card"><div class="ti">💰 韓元換算</div><div class="muted" style="font-size:12.5px">快速估算金額</div>
+        <div style="margin-top:8px"><input type="number" id="homeKrw" placeholder="輸入 KRW" oninput="quickConv()" style="width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;">
+        <div class="conv-result" id="homeResult" style="font-size:16px;margin-top:6px">≈ NT$ 0</div></div>
+      </div>
+      <div class="tool-card"><div class="ti">✈️ 航班資訊</div>
+        <div style="font-size:13px;margin-top:6px">
+          去程 TW670<br>台中17:00→仁川20:45<br><br>
+          回程 TW669<br>仁川13:55→台中16:00
+        </div>
+      </div>
+    </div>
+    <div class="tool-card">
+      <div class="ti">🏨 住宿一覽</div>
+      <table class="simple" style="margin-top:6px">
+        <tr><td>9/5-9/6</td><td>仁川 Diamond Hotel</td></tr>
+        <tr><td>9/7-9/8</td><td>仁川 Benikea The BLISS</td></tr>
+      </table>
+      <div class="muted" style="margin-top:6px">兩間飯店都在月尾島觀光區，直線距離約200-400公尺，晚上活動範圍幾乎相同。</div>
+    </div>
+    <div class="tool-card">
+      <div class="ti">🚨 緊急資訊</div>
+      <div style="font-size:13.5px;margin-top:4px">
+        駐韓國台北代表部：<span class="emg-num">+82-2-399-2780</span><br>
+        海外緊急急難救助：<span class="emg-num">+82-10-9080-0313</span><br>
+        韓國報案／急救：<span class="emg-num">112 / 119</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DAY PAGES (rendered by JS) ============ -->
+<div class="page" id="page-day"><div class="wrap" id="dayContent"></div></div>
+
+<!-- ============ FAVORITES ============ -->
+<div class="page" id="page-fav">
+  <div class="wrap">
+    <div class="section">
+      <div class="section-title">⭐ 我的最愛</div>
+      <div id="favList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SHOPPING LIST ============ -->
+<div class="page" id="page-shop">
+  <div class="wrap">
+    <div class="section">
+      <div class="section-title">🛍 購物清單</div>
+      <div class="muted" style="margin-bottom:12px">勾選、記數量、記價格，關閉網頁後資料仍保留在這支手機上。</div>
+      <div id="shopList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MORE (checklist/checklist/converter) ============ -->
+<div class="page" id="page-more">
+  <div class="wrap">
+    <div class="section">
+      <div class="section-title">💰 韓元／台幣 換算機</div>
+      <div class="card">
+        <div class="conv-row">
+          <input type="number" id="convKrw" placeholder="輸入韓元 KRW" oninput="doConv()">
+        </div>
+        <div class="conv-result" id="convResult">≈ NT$ 0</div>
+        <div class="rate-edit">
+          目前匯率 1 KRW = <input type="number" step="0.0001" id="rateInput" value="0.023" oninput="doConv()"> TWD
+          <span class="muted">（約2026/8下旬水準，出發前請自行更新）</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📋 行前檢查清單</div>
+      <div class="card">
+        <ul class="checklist" id="preCheck" style="list-style:none;padding:0;margin:0"></ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🧒 兒童飲食限制備忘</div>
+      <div class="card">
+        <div class="tip-box" style="margin-bottom:0">
+          兩位小孩：<b>不吃辣、不吃生食、不吃牛肉</b>。<br>
+          全站的「今日美食」都可以用<b>兒童菜單快篩</b>只顯示適合小孩的選項，記得在每天頁面裡打開篩選按鈕。
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">💡 關於本站的價格資訊</div>
+      <div class="card">
+        <div class="desc">所有商品／餐飲價格皆為市場常見區間（標示「約」），會隨匯率、促銷、分店而變動，僅供抓預算參考，實際請以商場、店家現場標示為準。樓層與品牌進駐狀況也可能調整，建議出發前一週用 NAVER Map／Kakao Map／官網再次確認。</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🛒 超市攻略（Starfield／飯店周邊）</div>
+      <div class="card">
+        <div class="muted" style="margin-bottom:10px">兩間飯店都在仁川月尾島，附近沒有大型超市，走路範圍內以超商為主。以下是全程比較合適的「正式超市」選項：</div>
+        <details class="shop-store" open><summary>Traders Wholesale Club（Starfield 水原 B2）</summary><div class="body">
+          <div class="meta">📍 Starfield水原 B2　🚶 Day2行程內，不需額外交通</div>
+          <div class="desc">量販店型態，適合一次補齊多天零食、水果、海苔，詳細品項與價格見 Day2 頁面。</div>
+          <div class="navlinks"><a href="https://www.starfield.co.kr" target="_blank">Starfield 官網</a></div>
+        </div></details>
+        <details class="shop-store"><summary>No Brand 超市（Starfield 水原 B2）</summary><div class="body">
+          <div class="meta">📍 Starfield水原 B2　🚶 與Traders同層</div>
+          <div class="desc">平價自有品牌超市，單包裝多，適合買剛好的份量。</div>
+          <div class="navlinks"><a href="https://www.starfield.co.kr" target="_blank">Starfield 官網</a></div>
+        </div></details>
+        <details class="shop-store"><summary>이마트 E-mart 東仁川店（飯店周邊唯一正式大型超市）</summary><div class="body">
+          <div class="meta">📍 인천 중구（仁川中區，인천여자상업고등학교對面）　🚶 距月尾島飯店約2-3公里，建議搭計程車約10分鐘</div>
+          <div class="desc">若想在住宿的晚上另外安排一趟正式超市採買（例如Day1、Day3、Day4晚上），這是離飯店最近的大型超市，2樓還有Daiso可以順便逛。地鐵可搭水仁盆唐線至新浦站6號出口步行約6分鐘，或直接搭計程車前往較省時間。</div>
+          <div class="navlinks">
+            <a href="https://eapp.emart.com/branch/view.do?id=1023" target="_blank">E-mart 東仁川店 門市頁</a>
+            <a href="https://store.emart.com/branch/list.do" target="_blank">E-mart 全國門市查詢</a>
+          </div>
+          <div class="desc" style="margin-top:6px;color:#8a8272">⚠️ 這趟需要額外交通時間（來回計程車約20-30分鐘＋採買時間），建議只在確定當晚有充裕自由時間時才安排，不要犧牲睡眠時間。</div>
+        </details>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🗺 常用地圖 App</div>
+      <div class="card">
+        <div class="navlinks">
+          <a href="https://map.naver.com" target="_blank">NAVER Map</a>
+          <a href="https://map.kakao.com" target="_blank">Kakao Map</a>
+          <a href="https://maps.google.com" target="_blank">Google Maps</a>
+        </div>
+        <div class="muted" style="margin-top:8px">韓國實地導航建議優先用 NAVER 或 Kakao，Google Maps 在地鐵／小路常常不準。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="bottom">
+  <button id="nav-home" onclick="showTab('home')"><span class="ic">🏠</span>首頁</button>
+  <button id="nav-fav" onclick="showTab('fav')"><span class="ic">⭐</span>最愛</button>
+  <button id="nav-shop" onclick="showTab('shop')"><span class="ic">🛍</span>購物</button>
+  <button id="nav-more" onclick="showTab('more')"><span class="ic">⚙️</span>更多</button>
+</nav>
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+const DAYS = {
+1:{
+  date:"9/5（五）", title:"抵達仁川・月尾島",
+  itinerary:[
+    {t:"17:00", x:"台中國際機場起飛（TW670）"},
+    {t:"20:45", x:"抵達仁川國際機場，入關領行李"},
+    {t:"約22:00起", x:"遊覽車前往仁川鑽石飯店，check-in 休息"}
+  ],
+  freetimeNote:"今天幾乎沒有自由時間，落地已晚，以休息為主。若通關順利、意外多出時間，只建議飯店步行5分鐘內的超商級活動。",
+  spots:[
+    {lv:"no", name:"仁川中華街", kr:"인천 차이나타운", desc:"知名景點但距飯店約2公里，晚上抵達後不建議專程前往。", meta:"需搭車 10-15 分鐘"},
+    {lv:"go", name:"月尾文化街超商／小吃攤", kr:"월미문화의거리", desc:"飯店步行3-5分鐘，簡單消夜、買水非常方便。", meta:"步行 3-5 分鐘・建議停留 15-20 分鐘"}
+  ],
+  shopping:[],
+  food:[
+    {name:"月尾文化街屋台小吃", tags:["不辣可選"], ok:true, desc:"魚板、飯捲、烤肉串等，點餐時指給店家看即可避開辣醬。"}
+  ],
+  plans:null,
+  souvenirTip:"今天不建議採買，行李剛抵達還很滿，把預算留到 Day2 Starfield 和 Day3 COEX。"
+},
+2:{
+  date:"9/6（六）", title:"水原 Starfield・水原華城・愛寶樂園",
+  itinerary:[
+    {t:"上午", x:"水原 Starfield 星空圖書館 2.0"},
+    {t:"中午前後", x:"水原華城"},
+    {t:"下午", x:"愛寶樂園"},
+    {t:"晚上", x:"返回仁川鑽石飯店"}
+  ],
+  freetimeNote:"今天景點都排得很滿，順遊空間有限。最實際的作法是把購物集中在 Starfield 館內完成，不用另外找地方。",
+  spots:[
+    {lv:"go", name:"Starfield 水原 B2／5F", kr:"스타필드 수원", desc:"館內含大型超市、藥妝、運動品牌、生活雜貨，一次逛完最有效率。", meta:"在原行程停留時間內即可完成，不需額外交通"},
+    {lv:"maybe", name:"水原華城行宮周邊小吃攤", kr:"수원화성행궁", desc:"若停留時間短，不建議繞去傳統市場，容易來不及集合。", meta:"需視旅行社實際停留時間"},
+    {lv:"no", name:"水原華城城牆全走一圈", kr:"수원화성", desc:"全長約5.7公里，團體旅遊時間內不可能走完，勿脫隊嘗試。", meta:""}
+  ],
+  shopping:[
+    {store:"트레이더스 홀세일 클럽 Traders Wholesale Club", floor:"B2", addr:"경기 수원시 장안구 수성로 175（Starfield水原本館）", dist:"從商場任一入口皆可直達，不需外出",
+     items:[
+       {name:"零食大包裝（洋芋片/餅乾）", price:"3,000～8,000₩"},
+       {name:"調味海苔（多入組）", price:"5,000～9,000₩"},
+       {name:"當季水果（可即食）", price:"6,000～15,000₩／盒"}
+     ], note:"類似好市多的量販店，適合一次補齊多天份零食，但部分商品為大包裝，人數少不一定划算。"},
+    {store:"노브랜드 No Brand 超市", floor:"B2", addr:"Starfield水原 B2", dist:"與Daiso同層，步行1分鐘內",
+     items:[
+       {name:"單包零食／餅乾", price:"1,500～3,000₩"},
+       {name:"泡麵（單包／箱購）", price:"1,000～1,500₩／包"},
+       {name:"調味海苔（單包）", price:"2,000～4,000₩"}
+     ], note:"平價自有品牌，單包裝多，適合買剛好的份量不用扛太重。"},
+    {store:"다이소 Daiso", floor:"B2", addr:"Starfield水原 B2", dist:"No Brand超市旁",
+     items:[
+       {name:"文具（筆記本/筆袋）", price:"1,000～5,000₩"},
+       {name:"小孩玩具小物", price:"1,000～5,000₩"},
+       {name:"收納／生活雜貨", price:"2,000～8,000₩"}
+     ], note:"韓國Daiso商品比台灣款式更多，適合親子挖寶，結帳排隊時間視人潮可能較長。"},
+    {store:"ABC Mart", floor:"5F", addr:"Starfield水原 5F", dist:"需從B2搭手扶梯上樓，約3-5分鐘",
+     items:[
+       {name:"童鞋（Nike/Adidas/Puma）", price:"39,000～69,000₩"},
+       {name:"大人運動鞋", price:"59,000～129,000₩"}
+     ], note:"款式常與台灣不同，可挑韓國限定配色，付款前記得確認尺碼（韓國尺碼與台灣略有差異）。"},
+    {store:"일렉트로마트 Electro Mart", floor:"5F", addr:"Starfield水原 5F", dist:"ABC Mart附近", hours:"10:00～22:00",
+     items:[
+       {name:"小孩玩具／扭蛋機周邊", price:"5,000～30,000₩"},
+       {name:"小家電伴手禮", price:"15,000起"}
+     ], note:"適合親子逛，賣場設計有很多可互動的展示區，小孩通常會想多待一會兒，要抓時間。"},
+    {store:"유니클로 UNIQLO", floor:"約4-5F（大型旗艦店）", addr:"Starfield水原本館內", dist:"與ABC Mart同區域樓層",
+     items:[
+       {name:"童裝／家庭裝", price:"12,900～39,900₩"},
+       {name:"HEATTECH／機能服飾", price:"9,900～29,900₩"}
+     ], note:"為事後免稅（사후면세）配合店，外國旅客購買達門檻可於機場退稅，適合買全家一起穿的旅遊紀念款。"},
+    {store:"Starfield 水原美食街／餐廳區", floor:"1F／B1", addr:"Starfield水原本館", dist:"各樓層皆有分散美食區",
+     items:[
+       {name:"韓式炸豬排定食", price:"12,000～16,000₩"},
+       {name:"日式拉麵（非辣湯底）", price:"10,000～14,000₩"},
+       {name:"手搖飲／咖啡", price:"3,500～6,500₩"}
+     ], note:"若逛累了想坐下休息，美食街座位多、選擇廣，適合親子中途補給。"}
+  ],
+  toiletConv:"Starfield 水原館內每層都有免費公共廁所（含親子廁所），賣場內即有便利商店（CU/GS25進駐）與美食街，不需另外外出尋找。B1／B2 停車場層與各樓層電扶梯旁皆設有廁所指標。",
+  priceCompare:{
+    must:[
+      {name:"No Brand／Traders 韓國零食、調味海苔", tw:"約 NT$80～250／件（代購或進口零食店價）", kr:"約 ₩1,000～5,000（約 NT$23～115）", note:"進口零食在台灣常被代購或進口食品行加價1倍以上，這裡是CP值最高的類別，直接掃貨最划算。"},
+      {name:"Daiso 護手霜／指甲油／美妝小物", tw:"台灣大創均一價 NT$49起", kr:"約 ₩1,000～3,000（約 NT$23～69）", note:"韓國大創商品起價比台灣大創的NT$49均一價還低，而且很多是台灣沒有的韓版限定款。"}
+    ],
+    maybe:[
+      {name:"ABC Mart 童鞋（Nike/Adidas/Puma）", tw:"約 NT$1,200～1,900", kr:"約 ₩39,000～69,000（約 NT$900～1,600）", note:"價差不算誇張，但常有韓國限定配色，若剛好有喜歡的款式再入手。"},
+      {name:"UNIQLO 童裝／HEATTECH", tw:"約 NT$390～990", kr:"約 ₩12,900～39,900（約 NT$300～920）", note:"全球定價策略接近，台灣也常有促銷檔期，除非剛好比台灣便宜或有當季限定聯名才建議買。"}
+    ],
+    skip:[
+      {name:"ABC Mart 成人基本款球鞋", tw:"約 NT$2,690～3,290", kr:"約 ₩89,000～129,000（約 NT$2,050～2,970）", note:"差距不大，扣掉扛重量和行李空間，除非是台灣沒有的配色，否則不特別建議在這裡買。"}
+    ]
+  },
+  food:[
+    {name:"愛寶樂園園內餐廳（非辣品項）", tags:["有兒童餐","不辣可選"], ok:true, desc:"園內速食、炸物類選擇多，約 10,000～16,000₩／份，點餐前跟店員確認辣度。"},
+    {name:"Starfield 水原美食街 - 韓式拌飯（非拌辣醬）", tags:["不辣可選","非生食"], ok:true, desc:"可請店家醬料分開放，小孩自己決定要不要加，約 9,000～13,000₩／份。"},
+    {name:"Starfield 水原美食街 - 日式拉麵（醬油／鹽味）", tags:["不辣","非生食"], ok:true, desc:"避開辛辣味噌或激辛系列，選醬油／鹽味湯底最保險，約 10,000～14,000₩／份。"},
+    {name:"Starfield 水原美食街 - 韓式炸豬排定食", tags:["不辣","非生食","豬肉"], ok:true, desc:"附白飯、味噌湯、生菜沙拉，是小孩接受度很高的選擇，約 12,000～16,000₩／份。"},
+    {name:"水原華城周邊烤肉店", tags:["含牛肉需避開","部分辣"], ok:false, desc:"傳統烤肉常見牛五花，需特別跟店家確認改點豬肉／雞肉。"}
+  ],
+  plans:null,
+  everlandRoute:{
+    note:"愛寶樂園設施眾多，時間有限時容易亂逛。以下動線邏輯：熱門長排隊設施優先、需App預約的判達熊貓館盡早登記、體能消耗大的放中段、溫和設施留給8歲小孩收尾。實際可用時間請依旅行社當天宣布為準，若時間較短可只做前3-4項。",
+    steps:[
+      {t:"入園後", name:"T Express（T익스프레스）", kr:"티익스프레스", desc:"招牌木造雲霄飛車，排隊時間最長，建議入園立刻前往，避開後段人潮。", height:"約130cm以上（目前無法確認2026最新標準，請以現場公告為準）", link:"https://www.youtube.com/results?search_query=에버랜드+티익스프레스"},
+      {t:"+約45分後", name:"롤링 엑스 트레인 Rolling X Train", kr:"롤링 엑스 트레인", desc:"連續兩次360度翻轉的迴旋雲霄飛車，強度略低於T Express，可作為銜接。", height:"約120～130cm（請現場確認）", link:"https://www.youtube.com/results?search_query=에버랜드+롤링엑스트레인"},
+      {t:"+約20分後", name:"더블락스핀 Double Rock Spin", kr:"더블락스핀", desc:"旋轉+搖擺型設施，刺激感中等，適合當作稍微喘口氣的選項。", height:"約120cm以上（請現場確認）", link:"https://www.youtube.com/results?search_query=에버랜드+더블락스핀"},
+      {t:"午餐時段", name:"美食街午餐（非辣品項）", kr:"", desc:"參考上方「今日美食」，建議選韓式炸豬排定食或拌飯，讓小孩補充體力。", height:"", link:""},
+      {t:"入園滿2小時後", name:"판다월드 Panda World（貓熊館）", kr:"판다월드", desc:"必須在入園滿2小時後才能透過官方App「레니찬스」線上登記預約時段，建議一到午餐時間就先打開App登記，登記後再去玩其他設施，時間到了再回來看貓熊愛寶（아이바오）與樂寶（러바오）。", height:"無身高限制（純觀賞）", link:"https://www.youtube.com/results?search_query=에버랜드+판다월드+아이바오+러바오"},
+      {t:"貓熊館後", name:"사파리월드 Safari World（獅虎猛獸區・搭乘園區巴士）", kr:"사파리월드", desc:"搭乘專用巴士近距離看獅子、老虎，全程約20-30分鐘，車程固定不用排太久隊，適合闔家。", height:"無身高限制，需隨車", link:"https://www.youtube.com/results?search_query=에버랜드+사파리월드"},
+      {t:"傍晚", name:"매직랜드 Magic Land 兒童向設施（旋轉木馬／咖啡杯等）", kr:"매직랜드", desc:"強度低、排隊也較短，留給8歲(135cm)小孩收尾最剛好，大人可陪同或在旁休息。", height:"無身高限制或約100cm以上（親子共乘）", link:"https://www.youtube.com/results?search_query=에버랜드+매직랜드"},
+      {t:"離園前", name:"MD紀念品店＋拍照", kr:"", desc:"貓熊周邊商品在紀念品店最齊全，且愛寶樂園限定商品台灣買不到，離園前可順道採買。", height:"", link:""}
+    ],
+    tip:"入園請先下載「에버랜드」官方App，可即時查詢各設施等候時間，並使用免費的「스마트 줄서기（智慧排隊）」線上登記熱門設施，不用現場罰站排隊。官方地圖／導覽：https://www.everland.com/everland/map"
+  },
+  souvenirTip:"愛寶樂園設施身高限制：11歲、8歲（150cm/135cm）多數設施可玩，但少數刺激設施仍有身高門檻，目前無法確認2026年最新標準，建議入園時在園區App或看板現場確認。上述所有價格為市場常見區間，實際售價以商場現場標示為準。"
+},
+3:{
+  date:"9/7（日）", title:"南山塔・廣藏市場・COEX",
+  itinerary:[
+    {t:"上午", x:"南山塔纜車 → N首爾塔／愛情鎖牆"},
+    {t:"中午", x:"廣藏市場"},
+    {t:"下午", x:"COEX 水族館 → COEX Mall"},
+    {t:"晚上", x:"入住仁川 Benikea The BLISS"}
+  ],
+  freetimeNote:"今天旅行社尚未公布自由活動時間。廣藏市場、COEX 兩處本身就含吃跟買，建議不特地脫隊去明洞／南山周邊，除非現場明確宣布有60分鐘以上。",
+  spots:[
+    {lv:"no", name:"明洞（從南山步行）", kr:"명동", desc:"從南山腳下走到明洞來回約40-50分鐘，若旅行社未明講有這麼多自由時間，不建議自行嘗試。", meta:"需要至少 60 分鐘以上自由時間才夠"},
+    {lv:"go", name:"廣藏市場美食巷", kr:"광장시장 먹자골목", desc:"邊走邊吃＋採買乾貨海苔一次滿足，適合親子。", meta:"就在行程內，不需額外交通"},
+    {lv:"go", name:"COEX Mall 地下商場", kr:"코엑스몰", desc:"星空圖書館、水族館、大量品牌都在同一棟，是本行程第二個一站購足點。", meta:"就在行程內"}
+  ],
+  shopping:[
+    {store:"올리브영 Olive Young COEX店", floor:"B1", addr:"COEX Mall B1（近星空圖書館側）", dist:"從水族館出口步行約3-5分鐘",
+     items:[
+       {name:"防曬乳／噴霧", price:"15,000～25,000₩"},
+       {name:"面膜（10片組）", price:"12,000～18,000₩"},
+       {name:"護膚小樣組合", price:"10,000起"}
+     ], note:"滿15,000₩可現場即時退稅，需出示護照正本。"},
+    {store:"교보문고 教保文庫（書店）", floor:"B1", addr:"COEX Mall B1", dist:"星空圖書館旁，步行1分鐘",
+     items:[
+       {name:"文具／明信片", price:"1,000～6,000₩"},
+       {name:"韓文繪本／童書", price:"9,000～16,000₩"}
+     ], note:"韓國最大書店之一，文具設計感強，適合買給小孩的紀念品。"},
+    {store:"SPAO／韓系平價服飾店", floor:"B1", addr:"COEX Mall B1", dist:"星空圖書館周邊",
+     items:[
+       {name:"親子T恤／童裝", price:"15,000～29,000₩"}
+     ], note:"K-POP聯名款式偶有限定，庫存視當週上架情況而定。"},
+    {store:"광장시장 廣藏市場 - 乾貨海苔攤", floor:"地面市場攤位", addr:"廣藏市場美食巷內", dist:"就在行程動線上",
+     items:[
+       {name:"調味海苔（全形裝）", price:"2,000～5,000₩"},
+       {name:"魷魚絲／魚乾類", price:"5,000～10,000₩"},
+       {name:"堅果伴手禮組", price:"8,000～15,000₩"}
+     ], note:"市場攤位價格可略議價，建議直接看標價，多攤比較。"},
+    {store:"카카오프렌즈 Kakao Friends 旗艦店", floor:"B1", addr:"COEX Mall B1", dist:"星空圖書館周邊，步行3分鐘內",
+     items:[
+       {name:"Ryan／Apeach 玩偶", price:"15,000～45,000₩"},
+       {name:"文具／手機殼", price:"8,000～25,000₩"}
+     ], note:"角色周邊商品最齊全的分店之一，小孩通常會很喜歡，但也容易失心瘋，建議先講好預算。"},
+    {store:"무인양품 MUJI／ZARA 等快時尚", floor:"B1", addr:"COEX Mall B1", dist:"星空圖書館周邊",
+     items:[
+       {name:"生活雜貨／文具", price:"3,000～15,000₩"},
+       {name:"親子服飾", price:"19,000～49,000₩"}
+     ], note:"款式與台灣門市略有不同，可挑韓國限定花色。"}
+  ],
+  toiletConv:"COEX Mall 內廁所多且乾淨（星空圖書館周邊、美食街附近、各出入口皆有），可放心使用；館內便利商店（CU）在B1美食街附近。廣藏市場內廁所較老舊且數量少，建議進市場前先在集合地或就近超商（GS25／CU，市場周邊主要道路上皆有）解決，或利用COEX的廁所後再前往市場。",
+  priceCompare:{
+    must:[
+      {name:"Kakao Friends／Line Friends 玩偶周邊", tw:"約 NT$700～2,500（代購或台灣授權店）", kr:"約 ₩15,000～45,000（約 NT$345～1,035）", note:"台灣代購或授權店常常翻倍以上，這裡款式也最齊全，是全程CP值最高的紀念品類別之一。"},
+      {name:"廣藏市場 調味海苔／魷魚絲", tw:"約 NT$80～250／件（進口食品行或代購）", kr:"約 ₩2,000～10,000（約 NT$46～230）", note:"跟Starfield超市同理，韓國本地買比台灣代購划算非常多。"}
+    ],
+    maybe:[
+      {name:"Olive Young 防曬乳", tw:"約 NT$450～650", kr:"約 ₩15,000～25,000（約 NT$345～575）", note:"中等價差，若剛好是常用款可以買，不是非買不可。"},
+      {name:"教保文庫 韓系文具／明信片", tw:"約 NT$100～250（代購）", kr:"約 ₩1,000～6,000（約 NT$23～138）", note:"價差存在但金額小，看喜好順手買即可，不用特別排時間去。"}
+    ],
+    skip:[
+      {name:"MUJI／ZARA 等快時尚成衣", tw:"約 NT$490～1,590", kr:"約 ₩19,000～49,000（約 NT$440～1,130）", note:"國際品牌全球定價接近，台灣本身就有分店，不值得為了它花自由時間排隊試穿。"}
+    ]
+  },
+  food:[
+    {name:"廣藏市場 - 마약김밥 麻藥飯捲", tags:["不辣","非生食"], ok:true, desc:"小巧飯捲沾芥末醬油，芥末可先請店家不加，小孩接受度高，約 3,000～5,000₩／份。"},
+    {name:"廣藏市場 - 빈대떡 綠豆煎餅", tags:["不辣","非生食"], ok:true, desc:"外酥內軟，口味清爽，適合小孩，約 5,000～8,000₩／份。"},
+    {name:"廣藏市場 - 칼국수 手切刀削麵", tags:["不辣","非生食"], ok:true, desc:"溫熱湯麵，口味清爽不辣，是市場內另一個踩雷率低的選擇，約 7,000～9,000₩／份。"},
+    {name:"廣藏市場 - 순대 韓式糯米腸", tags:["部分店家附辣椒鹽"], ok:true, desc:"原味蒸糯米腸不辣，沾鹽即可，但部分攤位會附辣椒鹽沾醬，記得請店家separate分開放，約 5,000～8,000₩／份。"},
+    {name:"廣藏市場 - 육회 生牛肉料理", tags:["生食","牛肉"], ok:false, desc:"市場知名招牌之一，但小孩不吃生食、不吃牛肉，建議大人淺嚐即可，勿讓小孩吃，約 15,000～20,000₩。"},
+    {name:"COEX Mall 美食街 - 炸雞（非辣口味）", tags:["不辣可選","含雞肉"], ok:true, desc:"點餐時選原味／醬油口味，避開楊念醬（辣），約 12,000～18,000₩／份。"},
+    {name:"COEX Mall 美食街 - 兒童友善義大利麵", tags:["不辣","非生食"], ok:true, desc:"番茄或奶油口味義大利麵，是全家共通接受度最高的選項之一，約 13,000～17,000₩／份。"}
+  ],
+  plans:{
+    note:"COEX Mall 自由時間備選（若旅行社宣布有這段時間）",
+    30:["Olive Young 快速補貨（面膜/防曬）","便利商店買飲料","返回集合點"],
+    60:["Olive Young","COEX 星空圖書館拍照","選購1-2件伴手禮","返回集合點"],
+    90:["Olive Young","星空圖書館","潮牌店逛一圈","文具店","返回集合點"],
+    120:["完整地下商場路線：Olive Young→星空圖書館→水族館外觀→潮牌區→文具店→美食街小吃→返回集合點"]
+  },
+  souvenirTip:"廣藏市場的生鮮／生肉類製品、部分香腸火腿伴手禮，可能受台灣動植物檢疫限制，購買前建議只選乾貨、真空調味海苔類最保險。"
+},
+4:{
+  date:"9/8（一）", title:"恩平韓屋村・益善洞・明洞",
+  itinerary:[
+    {t:"上午", x:"恩平韓屋村"},
+    {t:"上午～中午", x:"韓流時尚彩妝店 → 水果大福 DIY"},
+    {t:"下午", x:"益善洞"},
+    {t:"下午～傍晚", x:"明洞商圈自由逛街（晚餐自理）"},
+    {t:"晚上", x:"返回仁川 Benikea The BLISS"}
+  ],
+  freetimeNote:"今天是全程唯一「明確有自由逛街時段＋晚餐自理」的一天，也是最重要的購物日。目前旅行社尚未公布明洞自由活動的實際起訖時間，建議到現場聽到集合時間後，立刻換算成分鐘數，對照下方備選方案表決定路線。",
+  spots:[
+    {lv:"go", name:"益善洞韓屋街文青小店", kr:"익선동", desc:"適合拍照、買設計小物，但小孩耐性有限，建議快閃15-20分鐘即可，不宜久留排隊名店咖啡廳。", meta:"就在行程內"},
+    {lv:"go", name:"明洞商圈", kr:"명동", desc:"Olive Young、Daiso、ABC Mart、藥妝、街邊小吃全部集中，是本次最主要的自由採買時段。", meta:"就在行程內"},
+    {lv:"maybe", name:"明洞地下街", kr:"명동 지하상가", desc:"若時間充裕（90分鐘以上）可以順道逛，價格較地面店家親民。", meta:"需90分鐘以上自由時間"}
+  ],
+  shopping:[
+    {store:"올리브영 명동타운 Olive Young 明洞Town（旗艦店）", floor:"1～2樓", addr:"서울 중구 명동길 53（明洞街53號）", dist:"明洞商圈中心，步行可達所有明洞店家",
+     items:[
+       {name:"防曬乳／噴霧", price:"15,000～25,000₩"},
+       {name:"面膜（10片組）", price:"12,000～18,000₩"},
+       {name:"彩妝／護膚組合", price:"10,000起"}
+     ], note:"明洞規模最大分店，滿15,000₩可即時退稅（需護照正本，衛生用品/購物袋/乾果不列入免稅）；⚠️ 店內沒有廁所，需使用附近地鐵站廁所。"},
+    {store:"올리브영 명동대로점 Olive Young 明洞大路店", floor:"1樓", addr:"서울 중구 퇴계로 120", dist:"明洞站4號出口步行約1分鐘", hours:"10:00～22:30",
+     items:[{name:"美妝保養品", price:"與旗艦店同，人潮較少較好逛"}], note:"若旗艦店排隊人潮多，這間是不錯的替代選擇。"},
+    {store:"다이소 명동역점 Daiso 明洞驛店", floor:"依店面樓層", addr:"明洞站周邊", dist:"明洞商圈內，步行可達",
+     items:[
+       {name:"文具／筆記本", price:"1,000～5,000₩"},
+       {name:"小孩玩具小物", price:"1,000～5,000₩"},
+       {name:"收納／生活雜貨", price:"2,000～8,000₩"}
+     ], note:"款式比台灣Daiso多，適合親子挖寶採買伴手禮。"},
+    {store:"ABC Mart 明洞店", floor:"1樓", addr:"明洞商圈內（多家分店）", dist:"明洞主街上",
+     items:[
+       {name:"童鞋（Nike/Adidas/Puma）", price:"39,000～69,000₩"},
+       {name:"大人運動鞋", price:"59,000～129,000₩"}
+     ], note:"明洞有多家分店款式略有不同，若沒看到想要的可換一間找找。"},
+    {store:"눈스퀘어 Nunsquare", floor:"1-6樓（複合商場）", addr:"明洞中央路，롯데영플라자對面", dist:"明洞主街中段",
+     items:[
+       {name:"快時尚服飾（多品牌）", price:"9,900～39,000₩"},
+       {name:"Blue Bottle Coffee 明洞店飲品", price:"6,000～8,000₩"}
+     ], note:"樓上有 CGV 明洞影城，若天氣不佳需要室內躲雨、讓小孩休息，這裡是不錯的去處。"},
+    {store:"롯데영플라자 Lotte Young Plaza", floor:"1-8樓", addr:"明洞商圈內，Nunsquare對面", dist:"明洞主街中段",
+     items:[
+       {name:"年輕品牌服飾／配件", price:"19,000～89,000₩"}
+     ], note:"樓層較多、逛起來較費時，建議只在時間充裕（90分鐘以上）方案時安排。"},
+    {store:"라인프렌즈 Line Friends 明洞店", floor:"1樓", addr:"明洞主街", dist:"明洞夜市周邊",
+     items:[
+       {name:"Brown／Cony 玩偶", price:"15,000～45,000₩"},
+       {name:"文具／小物", price:"5,000～20,000₩"}
+     ], note:"角色周邊很受小孩歡迎，同樣建議先講好預算再進場。"},
+    {store:"명동밀리오레／디아이몰 Migliore／D-Mall", floor:"B1-8F", addr:"明洞站正前方", dist:"明洞站出站即達",
+     items:[
+       {name:"平價流行服飾", price:"9,000～35,000₩"},
+       {name:"配件／飾品", price:"3,000～15,000₩"}
+     ], note:"韓國本土年輕人愛逛的平價商場，款式更新快，但需留意部分商品退換貨規定較嚴格。"},
+    {store:"明洞街邊小吃／零食攤", floor:"街邊", addr:"明洞主街沿路", dist:"沿路皆是",
+     items:[
+       {name:"계란빵 雞蛋糕", price:"2,000～3,000₩／個"},
+       {name:"딸기모찌 草莓大福", price:"3,000～4,000₩／個"},
+       {name:"호떡 糖餅", price:"2,000～3,000₩／個"},
+       {name:"회오리감자 螺旋薯條", price:"4,000～6,000₩／支"},
+       {name:"炸物拼盤", price:"5,000～8,000₩"}
+     ], note:"雞蛋糕、草莓大福、糖餅、螺旋薯條都是不辣的甜／鹹點心，小孩接受度高；辣炒年糕類多為辣味，建議跳過或請店家不加辣醬。"},
+    {store:"便利商店（GS25／CU／7-Eleven）", floor:"街邊", addr:"明洞主街密度極高，幾乎每50公尺一間", dist:"隨處可見",
+     items:[
+       {name:"瓶裝水／飲料", price:"1,500～3,000₩"},
+       {name:"伴手禮零食／泡麵", price:"1,000～3,000₩"}
+     ], note:"買水、上廁所（部分分店開放）、行動支付都很方便，是最保險的備案。"}
+  ],
+  toiletConv:"明洞主街便利商店密集，幾乎每50公尺一間，但多數藥妝旗艦店（含Olive Young明洞Town）本身沒有廁所，需使用明洞站（4號線）、樂天百貨明洞店、或Nunsquare／Migliore商場內的公共廁所。建議自由活動一開始就先確認離集合點最近的地鐵站廁所位置。",
+  priceCompare:{
+    must:[
+      {name:"innisfree／韓系開架保養品（面膜、精華）", tw:"約 NT$380～750（台灣門市或代購價）", kr:"約 ₩9,000～18,000（約 NT$207～415）", note:"韓國本土品牌在台灣門市或代購常有進口與代購成本墊高售價，現場買常常便宜3～5成，是明洞最值得掃貨的類別。"},
+      {name:"Line Friends 玩偶／文具", tw:"約 NT$700～2,000（代購或台灣授權店）", kr:"約 ₩15,000～45,000（約 NT$345～1,035）", note:"跟COEX同理，台灣代購價偏高，這裡款式選擇也更多。"},
+      {name:"便利商店韓國零食／泡麵", tw:"約 NT$60～180／件（代購或韓貨零食店）", kr:"約 ₩1,000～3,000（約 NT$23～69）", note:"隨手買的韓國限定口味零食，台灣要透過代購買通常貴上2-3倍。"}
+    ],
+    maybe:[
+      {name:"Daiso 文具／生活雜貨", tw:"台灣大創均一價 NT$49起", kr:"約 ₩1,000～5,000（約 NT$23～115）", note:"多數品項比台灣大創便宜，但差距不算巨大，適合順手買，不用特地繞路。"},
+      {name:"ABC Mart 大人運動鞋", tw:"約 NT$2,690～3,290", kr:"約 ₩59,000～129,000（約 NT$1,360～2,970）", note:"若剛好碰到韓國限定配色或折扣季，價差會拉大，否則差異不明顯。"}
+    ],
+    skip:[
+      {name:"Nunsquare／Lotte Young Plaza 一般國際品牌服飾", tw:"約 NT$990～2,900", kr:"約 ₩19,000～89,000（約 NT$440～2,050）", note:"多為全球連鎖品牌，定價策略與台灣接近甚至更貴，逛街拍照可以，購物CP值不高。"},
+      {name:"Migliore／D-Mall 平價流行服飾", tw:"台灣類似款式（快時尚）約 NT$300～900", kr:"約 ₩9,000～35,000（約 NT$207～805）", note:"價格帶接近甚至偏高，除非款式真的很喜歡，否則優先度可以放低。"}
+    ]
+  },
+  food:[
+    {name:"명동교자 明洞餃子（老字號刀削麵／餃子）", tags:["不辣","非生食"], ok:true, desc:"明洞地標級老店，招牌刀削湯麵與蒸餃口味清爽不辣，約 11,000～14,000₩／份，是全團最保險的踩雷率低選擇之一。"},
+    {name:"明洞烤雞店（非辣醃製）", tags:["不辣可選","含雞肉"], ok:true, desc:"原味烤雞或醬油口味，適合全家分食，約 18,000～25,000₩／隻。"},
+    {name:"部隊鍋（不辣鍋底）", tags:["可調不辣","非生食"], ok:true, desc:"部分店家可選白湯不辣鍋底，點餐時務必特別交代，約 12,000～16,000₩／人。"},
+    {name:"韓式炸醬麵", tags:["不辣","非生食"], ok:true, desc:"甜鹹口味，小孩接受度高，是踩雷率最低的選擇之一，約 8,000～11,000₩／份。"},
+    {name:"明洞豬肉湯飯（순대국）", tags:["不辣可選","豬肉","非生食"], ok:true, desc:"傳統暖胃湯飯，可請店家清湯不加辣椒粉，約 9,000～12,000₩／份。"},
+    {name:"明洞辣炒年糕攤", tags:["辣"], ok:false, desc:"標準做法偏辣，小孩不吃辣建議跳過，除非店家願意做原味。"}
+  ],
+  plans:{
+    note:"明洞自由逛街備選方案（依現場宣布的實際分鐘數選擇）",
+    30:["Olive Young 快速補貨","便利商店","買一份伴手禮零食","返回集合地"],
+    60:["Olive Young","超商","伴手禮","返回集合地"],
+    90:["Olive Young","Daiso","ABC Mart","明洞地下街","返回集合地"],
+    120:["完整購物路線：Olive Young→Daiso→ABC Mart→明洞地下街→街邊小吃(烤雞/雞蛋糕)→伴手禮採買→返回集合地"]
+  },
+  souvenirTip:"明洞退稅：連鎖藥妝／品牌店多可現場退稅（達最低消費門檻），需出示護照正本；路邊攤販則多半無法退稅。部分泡菜、生鮮類伴手禮可能受台灣動植物檢疫限制，建議挑選真空包裝零食、調味海苔、乾燥類產品最保險。"
+},
+5:{
+  date:"9/9（二）", title:"Mohegan INSPIRE・返程",
+  itinerary:[
+    {t:"上午", x:"Mohegan INSPIRE Entertainment Resort 參觀"},
+    {t:"上午～中午", x:"前往仁川國際機場"},
+    {t:"13:55", x:"回程班機起飛（TW669）"},
+    {t:"16:00", x:"抵達台中國際機場"}
+  ],
+  freetimeNote:"時間非常壓縮，不建議另做規劃，跟緊團體即可。INSPIRE 的室內水上樂園 Splash Bay 目前（2026/3/3起至公告為止）僅開放11:00-20:00，且僅限住宿旅客使用，一般白天參觀團體大概率無法使用，不用特別安排。",
+  spots:[
+    {lv:"go", name:"極光道 Aurora（公共區域）", kr:"오로라", desc:"150公尺長LED藝術走廊，適合拍照，開放給一般參觀旅客，旅行社行程應已包含。", meta:"就在行程內"},
+    {lv:"no", name:"Splash Bay 室內水上樂園", kr:"스플래시베이", desc:"僅限住宿旅客使用，且營運時間為11:00起，白天離境團體無法使用，勿花時間尋找入口。", meta:"住客限定"},
+    {lv:"no", name:"外國人專用賭場", kr:"카지노", desc:"限定成人（19歲以上）持護照入場，不適合帶小孩前往，也非本行程重點。", meta:"不適用親子行程"}
+  ],
+  shopping:[
+    {store:"INSPIRE 零售美食區", items:["度假村限定紀念品（時間允許才逛）"]}
+  ],
+  food:[
+    {name:"INSPIRE 內美食街（依現場選項）", tags:["需現場確認辣度"], ok:true, desc:"度假村內餐廳選擇多元，離境前用餐建議選簡單好入口的品項。"}
+  ],
+  plans:null,
+  souvenirTip:"起飛前建議把行李中易超重的伴手禮（海苔、零食）提早整理，機場最後時段常因排隊、安檢耗時比預期久。"
+}
+};
+
+const HOME_LIST = [
+{store:"Starfield 水原 - Traders／No Brand", items:["零食伴手禮","泡麵","調味海苔","水果"]},
+{store:"Starfield 水原 - Daiso", items:["文具","生活雜貨","小孩玩具"]},
+{store:"Starfield 水原 - ABC Mart／Electro Mart", items:["童鞋","大人鞋","玩具"]},
+{store:"COEX Mall - Olive Young", items:["面膜","防曬","護膚品"]},
+{store:"COEX Mall - 教保文庫／SPAO", items:["文具明信片","童書","親子T恤"]},
+{store:"廣藏市場 - 乾貨海苔攤", items:["調味海苔","魷魚絲","堅果組"]},
+{store:"明洞 - Olive Young 明洞Town", items:["面膜","防曬","彩妝"]},
+{store:"明洞 - Daiso", items:["文具","生活雜貨"]},
+{store:"明洞 - ABC Mart", items:["童鞋","大人鞋"]},
+];
+
+const PRECHECK = [
+"護照正本＋影本（另存雲端一份）","飯店韓文地址截圖（給計程車司機看）",
+"兒童不吃辣／生食／牛肉，提醒隨行家人與導遊","常備藥（暈車藥、退燒藥、腸胃藥）",
+"轉接頭／行動電源","雨具（9月韓國偶有雷陣雨）","退稅用護照隨身攜帶",
+"下載 NAVER Map / Kakao Map 並可離線使用","購物預算抓概略上限，避免現場超支"
+];
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+let currentDay = 1;
+const LV_LABEL = {go:"🟢 建議順遊", maybe:"🟡 需視自由時間", no:"🔴 不建議脫隊前往"};
+
+function renderDay(n){
+  const d = DAYS[n];
+  let html = `<div class="section">
+    <div class="freetime-box">
+      <div class="lbl">⏱ 今日自由活動時間登記</div>
+      <div class="row">
+        現場宣布可自由活動：
+        <input type="number" id="ft-${n}" placeholder="分鐘" oninput="saveFreeTime(${n})">
+        分鐘
+      </div>
+      <div class="hint">${d.freetimeNote}</div>
+    </div>
+  </div>`;
+
+  html += `<div class="section"><div class="section-title">📍 今日旅行社行程</div><div class="card"><div class="tl">`;
+  d.itinerary.forEach(it=>{
+    html += `<div class="tl-item"><div class="tt">${it.t}</div><div class="tx">${it.x}</div></div>`;
+  });
+  html += `</div></div></div>`;
+
+  html += `<div class="section"><div class="section-title">🌤 今日天氣／地圖</div>
+    <div class="card"><div class="navlinks">
+      <a href="https://weather.naver.com" target="_blank">NAVER 天氣查詢</a>
+      <a href="https://map.naver.com" target="_blank">NAVER Map</a>
+      <a href="https://map.kakao.com" target="_blank">Kakao Map</a>
+      <a href="https://maps.google.com" target="_blank">Google Maps</a>
+    </div></div></div>`;
+
+  html += `<div class="section"><div class="section-title">🧭 附近景點順遊建議</div>`;
+  d.spots.forEach((s,i)=>{
+    const fid = `d${n}-spot-${i}`;
+    html += `<div class="card">
+      <div class="row1">
+        <div>
+          <span class="badge ${s.lv}">${LV_LABEL[s.lv]}</span><br>
+          <div class="name" style="margin-top:6px">${s.name}</div>
+          <div class="kr">${s.kr}</div>
+        </div>
+        <button class="favbtn" id="fav-${fid}" onclick="toggleFav('${fid}','${s.name.replace(/'/g,"")}')">☆</button>
+      </div>
+      <div class="desc">${s.desc}</div>
+      ${s.meta?`<div class="meta">⏱ ${s.meta}</div>`:""}
+    </div>`;
+  });
+  html += `</div>`;
+
+  if(d.shopping.length){
+    html += `<div class="section"><div class="section-title">🛒 今日購物清單（含樓層／距離／參考價）</div>`;
+    d.shopping.forEach(s=>{
+      const itemsHtml = s.items.map(it=>{
+        if(typeof it === "string") return `<div class="spot" style="padding:6px 0"><div class="desc">${it}</div></div>`;
+        return `<div class="spot" style="padding:6px 0">
+          <div class="row1"><div class="desc" style="font-weight:600;color:var(--ink)">${it.name}</div>
+          <div class="meta" style="white-space:nowrap">約 ${it.price}</div></div>
+        </div>`;
+      }).join("");
+      html += `<details class="shop-store"><summary>${s.store}</summary><div class="body">
+        <div class="meta" style="margin-bottom:6px">
+          ${s.floor?`📍 ${s.floor}　`:""}${s.addr?`${s.addr}　`:""}${s.dist?`🚶 ${s.dist}`:""}
+        </div>
+        ${s.hours?`<div class="meta" style="margin-bottom:6px">🕐 ${s.hours}</div>`:""}
+        ${itemsHtml}
+        ${s.note?`<div class="desc" style="margin-top:6px;color:#8a8272">💡 ${s.note}</div>`:""}
+      </div></details>`;
+    });
+    html += `</div>`;
+  }
+
+  if(d.toiletConv){
+    html += `<div class="section"><div class="section-title">🚻 附近廁所／便利商店</div>
+      <div class="card"><div class="desc">${d.toiletConv}</div></div></div>`;
+  }
+
+  if(d.priceCompare){
+    const pc = d.priceCompare;
+    html += `<div class="section"><div class="section-title">🎯 必買分級＋台韓比價</div>
+      <div class="card">
+      <div class="muted" style="margin-bottom:10px">看到現場價格時，直接對照下方台灣參考價，判斷值不值得買。</div>
+      <div class="tier-tabs">
+        <div class="tier-tab on must" onclick="switchTier(${n},'must',this)">🔴 必買</div>
+        <div class="tier-tab maybe" onclick="switchTier(${n},'maybe',this)">🟡 有時間再買</div>
+        <div class="tier-tab skip" onclick="switchTier(${n},'skip',this)">⚪ 可以跳過</div>
+      </div>`;
+    ["must","maybe","skip"].forEach(tier=>{
+      html += `<div class="tier-box ${tier==='must'?'show':''}" id="tier-${n}-${tier}">`;
+      pc[tier].forEach(item=>{
+        html += `<div class="price-item">
+          <div class="pname">${item.name}</div>
+          <div class="prow tw"><span class="lbl2">🇹🇼 台灣參考價</span><span class="val">${item.tw}</span></div>
+          <div class="prow kr"><span class="lbl2">🇰🇷 韓國現場價</span><span class="val">${item.kr}</span></div>
+          <div class="pnote">💡 ${item.note}</div>
+        </div>`;
+      });
+      html += `</div>`;
+    });
+    html += `</div></div>`;
+  }
+
+  html += `<div class="section"><div class="section-title">🍜 今日美食（兒童菜單快篩）</div>
+    <div class="filter-bar">
+      <div class="filter-chip" id="filt-${n}" onclick="toggleKidFilter(${n})">👶 只顯示適合小孩（不辣／不生食／不牛肉）</div>
+    </div>
+    <div id="foodlist-${n}">`;
+  d.food.forEach((f,i)=>{
+    html += `<div class="card food-card show" data-ok="${f.ok}">
+      <div class="name">${f.name}</div>
+      <div class="desc">${f.desc}</div>
+      <div class="food-tags">${f.tags.map(t=>`<span class="${f.ok?'ok':''}">${t}</span>`).join("")}</div>
+    </div>`;
+  });
+  html += `</div></div>`;
+
+  if(d.plans){
+    html += `<div class="section"><div class="section-title">🔀 備選方案</div><div class="card">
+      <div class="muted" style="margin-bottom:10px">${d.plans.note}</div>
+      <div class="plan-tabs">
+        <div class="plan-tab on" onclick="switchPlan(${n},30,this)">30分</div>
+        <div class="plan-tab" onclick="switchPlan(${n},60,this)">60分</div>
+        <div class="plan-tab" onclick="switchPlan(${n},90,this)">90分</div>
+        <div class="plan-tab" onclick="switchPlan(${n},120,this)">120分+</div>
+      </div>`;
+    [30,60,90,120].forEach(m=>{
+      html += `<div class="plan-box ${m==30?'show':''}" id="plan-${n}-${m}">`;
+      d.plans[m].forEach(step=>{ html += `<div class="plan-step">→ ${step}</div>`; });
+      html += `</div>`;
+    });
+    html += `</div></div>`;
+  }
+
+  if(d.everlandRoute){
+    const er = d.everlandRoute;
+    html += `<div class="section"><div class="section-title">🎢 愛寶樂園設施動線規劃</div>
+      <div class="card">
+        <div class="muted" style="margin-bottom:12px">${er.note}</div>
+        <div class="tl">`;
+    er.steps.forEach(s=>{
+      html += `<div class="tl-item">
+        <div class="tt">${s.t}　${s.name}</div>
+        <div class="tx">${s.desc}</div>
+        ${s.height?`<div class="meta">📏 身高參考：${s.height}</div>`:""}
+        ${s.link?`<div class="navlinks" style="margin-top:6px"><a href="${s.link}" target="_blank">▶ 給小孩看設施影片</a></div>`:""}
+      </div>`;
+    });
+    html += `</div>
+        <div class="tip-box" style="margin-top:14px;margin-bottom:0">${er.tip}</div>
+      </div></div>`;
+  }
+
+  html += `<div class="section"><div class="section-title">🎁 伴手禮＆踩雷提醒</div>
+    <div class="card"><div class="desc">${d.souvenirTip}</div></div></div>`;
+
+  html += `<div class="section"><div class="section-title">⏰ 回集合提醒</div>
+    <div class="tip-box">請務必比旅行社宣布的集合時間提早 5-10 分鐘抵達，韓國市區交通常有變數，購物結帳、退稅排隊都比預期花時間。</div></div>`;
+
+  document.getElementById("dayContent").innerHTML =
+    `<div class="section" style="padding-top:14px">
+       <div class="muted" style="margin-bottom:2px">${d.date}</div>
+       <h2 style="font-size:22px">${d.title}</h2>
+     </div>` + html;
+
+  loadFreeTime(n);
+  loadFavStates();
+}
+
+function switchPlan(n,m,el){
+  document.querySelectorAll(`#page-day .plan-tab`).forEach(t=>t.classList.remove("on"));
+  el.classList.add("on");
+  document.querySelectorAll(`[id^="plan-${n}-"]`).forEach(b=>b.classList.remove("show"));
+  document.getElementById(`plan-${n}-${m}`).classList.add("show");
+}
+
+function switchTier(n,tier,el){
+  document.querySelectorAll(`#page-day .tier-tab`).forEach(t=>t.classList.remove("on"));
+  el.classList.add("on");
+  document.querySelectorAll(`[id^="tier-${n}-"]`).forEach(b=>b.classList.remove("show"));
+  document.getElementById(`tier-${n}-${tier}`).classList.add("show");
+}
+
+function toggleKidFilter(n){
+  const chip = document.getElementById(`filt-${n}`);
+  chip.classList.toggle("on");
+  const on = chip.classList.contains("on");
+  document.querySelectorAll(`#foodlist-${n} .food-card`).forEach(c=>{
+    if(on){
+      c.classList.toggle("show", c.dataset.ok === "true");
+    } else {
+      c.classList.add("show");
+    }
+  });
+}
+
+function saveFreeTime(n){
+  const v = document.getElementById(`ft-${n}`).value;
+  localStorage.setItem(`freetime-day${n}`, v);
+}
+function loadFreeTime(n){
+  const v = localStorage.getItem(`freetime-day${n}`);
+  if(v) document.getElementById(`ft-${n}`).value = v;
+}
+
+/* ---- favorites ---- */
+function getFavs(){ return JSON.parse(localStorage.getItem("favs")||"{}"); }
+function toggleFav(id,name){
+  const favs = getFavs();
+  if(favs[id]){ delete favs[id]; } else { favs[id]=name; }
+  localStorage.setItem("favs", JSON.stringify(favs));
+  loadFavStates();
+  renderFavPage();
+}
+function loadFavStates(){
+  const favs = getFavs();
+  document.querySelectorAll('[id^="fav-"]').forEach(btn=>{
+    const id = btn.id.replace("fav-","");
+    if(favs[id]){ btn.textContent="★"; btn.classList.add("active"); }
+    else { btn.textContent="☆"; btn.classList.remove("active"); }
+  });
+}
+function renderFavPage(){
+  const favs = getFavs();
+  const keys = Object.keys(favs);
+  const el = document.getElementById("favList");
+  if(!keys.length){ el.innerHTML = `<div class="card muted">還沒有收藏，逛景點時點右上角的星星即可加入。</div>`; return; }
+  el.innerHTML = keys.map(k=>`<div class="card">${favs[k]}</div>`).join("");
+}
+
+/* ---- shopping list ---- */
+function getShop(){ return JSON.parse(localStorage.getItem("shopcheck")||"{}"); }
+function saveShop(data){ localStorage.setItem("shopcheck", JSON.stringify(data)); }
+function renderShopPage(){
+  const data = getShop();
+  let html = "";
+  HOME_LIST.forEach((s,si)=>{
+    html += `<details class="shop-store" ${si<2?"open":""}><summary>${s.store}</summary><div class="body">`;
+    s.items.forEach((it,ii)=>{
+      const key = `s${si}-i${ii}`;
+      const rec = data[key] || {checked:false, qty:"", price:""};
+      html += `<div class="shop-item">
+        <input type="checkbox" id="chk-${key}" ${rec.checked?"checked":""} onchange="updateShop('${key}','checked',this.checked)">
+        <label for="chk-${key}" class="${rec.checked?'checked':''}">${it}</label>
+        <input type="number" placeholder="數量" value="${rec.qty}" oninput="updateShop('${key}','qty',this.value)">
+        <input type="number" placeholder="韓元" value="${rec.price}" oninput="updateShop('${key}','price',this.value)">
+      </div>`;
+    });
+    html += `</div></details>`;
+  });
+  document.getElementById("shopList").innerHTML = html;
+}
+function updateShop(key,field,val){
+  const data = getShop();
+  if(!data[key]) data[key] = {checked:false, qty:"", price:""};
+  data[key][field] = val;
+  saveShop(data);
+  if(field==="checked"){ renderShopPage(); }
+}
+
+/* ---- precheck list ---- */
+function getPre(){ return JSON.parse(localStorage.getItem("precheck")||"{}"); }
+function renderPreCheck(){
+  const data = getPre();
+  document.getElementById("preCheck").innerHTML = PRECHECK.map((t,i)=>{
+    const on = data[i];
+    return `<li style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--paper-dim)">
+      <input type="checkbox" style="width:20px;height:20px;accent-color:var(--persimmon)" ${on?"checked":""} onchange="togglePre(${i},this.checked)">
+      <span style="${on?'text-decoration:line-through;color:#a49b86':''}">${t}</span>
+    </li>`;
+  }).join("");
+}
+function togglePre(i,v){
+  const data = getPre(); data[i]=v; localStorage.setItem("precheck", JSON.stringify(data)); renderPreCheck();
+}
+
+/* ---- currency ---- */
+function doConv(){
+  const krw = parseFloat(document.getElementById("convKrw").value)||0;
+  const rate = parseFloat(document.getElementById("rateInput").value)||0.023;
+  document.getElementById("convResult").textContent = `≈ NT$ ${Math.round(krw*rate).toLocaleString()}`;
+  localStorage.setItem("krwRate", rate);
+}
+function quickConv(){
+  const krw = parseFloat(document.getElementById("homeKrw").value)||0;
+  const rate = parseFloat(localStorage.getItem("krwRate"))||0.023;
+  document.getElementById("homeResult").textContent = `≈ NT$ ${Math.round(krw*rate).toLocaleString()}`;
+}
+
+/* ---- countdown ---- */
+function updateCountdown(){
+  const target = new Date("2026-09-05T17:00:00+08:00");
+  const now = new Date();
+  const diff = target - now;
+  const box = document.getElementById("countdownBox");
+  if(diff <= 0){ box.innerHTML = "祝旅途順利！🎉"; return; }
+  const days = Math.floor(diff/(1000*60*60*24));
+  box.innerHTML = `距離出發還有 <b>${days}</b> 天`;
+}
+
+/* ---- navigation ---- */
+function showTab(tab){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("show"));
+  document.querySelectorAll("nav.bottom button").forEach(b=>b.classList.remove("active"));
+  document.getElementById(`page-${tab}`).classList.add("show");
+  document.getElementById(`nav-${tab}`).classList.add("active");
+  document.getElementById("backBtn").classList.remove("show");
+  const titles = {home:"2026 韓國親子五日遊", fav:"我的最愛", shop:"購物清單", more:"更多功能"};
+  document.getElementById("topTitle").textContent = titles[tab] || "2026 韓國親子五日遊";
+  if(tab==="fav") renderFavPage();
+  if(tab==="shop") renderShopPage();
+  if(tab==="more") { renderPreCheck(); doConv(); }
+  window.scrollTo(0,0);
+}
+function goDay(n){
+  currentDay = n;
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("show"));
+  document.getElementById("page-day").classList.add("show");
+  document.getElementById("backBtn").classList.add("show");
+  document.getElementById("topTitle").textContent = `DAY ${n}`;
+  renderDay(n);
+  window.scrollTo(0,0);
+}
+function goHome(){ showTab("home"); }
+
+/* ---- init ---- */
+updateCountdown();
+setInterval(updateCountdown, 3600000);
+quickConv();
+</script>
+</body>
+</html>
