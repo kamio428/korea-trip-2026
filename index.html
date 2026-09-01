@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="韓國親子旅遊">
+<meta name="mobile-web-app-capable" content="yes">
+<title>2026 韓國親子旅遊隨身攻略</title>
+<style>
+:root{
+  --bg:#f5f7fb;--card:#fff;--ink:#111827;--muted:#667085;--line:#e5e7eb;
+  --accent:#111827;--soft:#eef2f7;--ok:#0f766e;--warn:#b45309;--bad:#b91c1c;--blue:#1d4ed8;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC",sans-serif;
+  background:var(--bg);color:var(--ink);font-size:17px;line-height:1.55;
+}
+button,input,select{font:inherit}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:840px;margin:auto;padding:16px 14px 110px}
+.hero{
+  background:linear-gradient(135deg,#111827,#374151);color:#fff;border-radius:22px;padding:22px;
+  box-shadow:0 10px 30px rgba(17,24,39,.16);margin-bottom:16px
+}
+.hero h1{font-size:27px;line-height:1.25;margin:0 0 8px}
+.hero .sub{opacity:.92}.hero .stamp{font-size:12px;opacity:.72;margin-top:8px}
+.notice{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:16px;padding:14px;margin:14px 0}
+.info{background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a;border-radius:16px;padding:14px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.daybtn,.bigbtn{
+  border:0;border-radius:16px;padding:17px 12px;background:var(--card);box-shadow:0 3px 14px rgba(0,0,0,.06);
+  text-align:left;font-weight:750;cursor:pointer
+}
+.daybtn span{display:block;color:var(--muted);font-size:13px;font-weight:500;margin-top:4px}
+.daybtn.active{background:#111827;color:#fff}.daybtn.active span{color:#d1d5db}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0;
+  box-shadow:0 2px 10px rgba(17,24,39,.04)
+}
+.card h2,.card h3{margin:0 0 10px}.card h2{font-size:21px}.card h3{font-size:18px}
+.small{font-size:14px;color:var(--muted)} .tiny{font-size:12px;color:#6b7280}
+.badge{display:inline-block;padding:4px 9px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:750;margin:2px 4px 2px 0}
+.ok{background:#ecfdf5;color:#065f46}.warn{background:#fff7ed;color:#9a3412}.bad{background:#fef2f2;color:#991b1b}.blue{background:#eff6ff;color:#1d4ed8}
+.timebar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.timebar button{border:0;border-radius:13px;padding:12px 4px;background:#eef2f7;font-weight:750}
+.timebar button.sel{background:#111827;color:#fff}
+.poi{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}.poi:first-of-type{border-top:0;padding-top:0}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.meta div{background:#f9fafb;border-radius:12px;padding:10px}
+.navs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.navs a{background:#111827;color:#fff;text-align:center;padding:11px 8px;border-radius:12px;font-size:14px;font-weight:750}
+.star{letter-spacing:1px}
+details{background:#f9fafb;border-radius:14px;padding:12px;margin:10px 0}
+summary{font-weight:750;cursor:pointer}
+.bottomnav{
+  position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);
+  border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);z-index:10;
+  padding-bottom:env(safe-area-inset-bottom)
+}
+.bottomnav button{border:0;background:transparent;padding:10px 2px;font-size:12px;color:#4b5563}.bottomnav .ico{display:block;font-size:20px}
+.section{display:none}.section.active{display:block}
+.listrow{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}.listrow:last-child{border-bottom:0}
+.listrow input[type=checkbox]{transform:scale(1.3);margin-top:5px}
+.qty,.price{width:88px;padding:8px;border:1px solid var(--line);border-radius:10px}
+input[type=text],input[type=number],input[type=time]{
+  width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff
+}
+label{font-weight:750;font-size:14px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.total{font-size:24px;font-weight:850}.korean{font-size:20px;font-weight:850}.timer{font-size:34px;font-weight:900;letter-spacing:1px}
+.tabbar{display:flex;gap:8px;overflow:auto;padding-bottom:4px;margin:8px 0 12px;scrollbar-width:none}.tabbar::-webkit-scrollbar{display:none}
+.tabbar button{white-space:nowrap;border:0;background:#eef2f7;padding:10px 14px;border-radius:999px;font-weight:750}
+.tabbar button.sel{background:#111827;color:white}
+.zone{display:none}.zone.show{display:block}
+.shopcard{border:1px solid var(--line);border-radius:16px;padding:14px;margin:10px 0;background:#fff}
+.shophead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.shophead b{font-size:17px}.floor{font-size:13px;font-weight:800;background:#111827;color:#fff;border-radius:10px;padding:5px 8px;white-space:nowrap}
+.pricebox{background:#f9fafb;border-radius:12px;padding:10px;margin-top:10px}
+.priceitem{display:grid;grid-template-columns:1fr auto;gap:12px;padding:7px 0;border-bottom:1px dashed #e5e7eb}.priceitem:last-child{border-bottom:0}
+.sourcebtn{display:inline-block;margin-top:8px;padding:8px 10px;border-radius:10px;background:#eff6ff;color:#1d4ed8;font-size:13px;font-weight:750}
+.warnline{border-left:4px solid #f59e0b;padding-left:10px;margin:9px 0}
+.redline{border-left:4px solid #ef4444;padding-left:10px;margin:9px 0}
+.checkline{display:flex;align-items:flex-start;gap:8px;margin:6px 0}
+.footer-note{font-size:12px;color:#6b7280;margin-top:18px}
+@media (max-width:480px){
+  body{font-size:16px}.hero h1{font-size:24px}.grid{grid-template-columns:1fr 1fr}
+  .timebar{grid-template-columns:repeat(2,1fr)}.meta{grid-template-columns:1fr}.row{grid-template-columns:1fr}
+  .shophead{align-items:center}.priceitem{grid-template-columns:1fr}.priceitem span:last-child{font-weight:800}
+}
+
+.tierwrap{display:grid;gap:10px;margin:12px 0}
+.tierbox{border-radius:16px;padding:14px;border:1px solid var(--line)}
+.tier-must{background:#ecfdf5;border-color:#a7f3d0}
+.tier-time{background:#fff7ed;border-color:#fed7aa}
+.tier-skip{background:#fef2f2;border-color:#fecaca}
+.tierbox h3{margin:0 0 8px;font-size:18px}
+.tieritem{padding:9px 0;border-bottom:1px dashed rgba(17,24,39,.12)}
+.tieritem:last-child{border-bottom:0}
+.comparegrid{display:grid;grid-template-columns:1fr;gap:12px}
+.comparecard{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fff}
+.comparecard h4{margin:0 0 6px;font-size:17px}
+.compareinputs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.compareinputs label{font-size:12px;color:var(--muted)}
+.compareinputs input{padding:10px}
+.verdict{margin-top:10px;border-radius:12px;padding:11px;font-weight:800}
+.verdict-must{background:#ecfdf5;color:#065f46}
+.verdict-good{background:#fff7ed;color:#9a3412}
+.verdict-skip{background:#fef2f2;color:#991b1b}
+.thresholds{font-size:13px;color:var(--muted);margin-top:8px}
+.compare-note{font-size:12px;color:#6b7280;margin-top:7px}
+.source-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.source-links a{font-size:12px;background:#eff6ff;color:#1d4ed8;padding:7px 9px;border-radius:10px;font-weight:700}
+.manualbox{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:16px;padding:14px;margin-top:12px}
+.rulebox{background:#111827;color:#fff;border-radius:16px;padding:14px;margin:12px 0}
+.rulebox b{font-size:18px}
+@media(max-width:480px){.compareinputs{grid-template-columns:1fr 1fr}.compareinputs>div:last-child{grid-column:1/-1}}
+
+
+.day2planner{background:linear-gradient(180deg,#fff,#f8fafc);border:2px solid #dbeafe}
+.plan-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.plan-controls select{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.routeflow{display:grid;gap:8px;margin:12px 0}
+.route-step{display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:15px;padding:12px}
+.stepno{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#111827;color:#fff;font-weight:900}
+.route-step h4{margin:0 0 4px;font-size:17px}
+.ridegrid{display:grid;grid-template-columns:1fr;gap:10px}
+.ridecard{border:1px solid var(--line);border-radius:16px;background:#fff;padding:14px}
+.ridehead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.ridehead h4{margin:0;font-size:18px}
+.intensity{white-space:nowrap;font-weight:900}
+.kidrow{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0}
+.linkrow{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}
+.linkrow a{padding:10px 6px;text-align:center;border-radius:11px;font-size:13px;font-weight:800;background:#111827;color:#fff}
+.linkrow a.watch{background:#b91c1c}.linkrow a.official{background:#1d4ed8}
+.skiprule{font-size:13px;background:#fff7ed;color:#9a3412;border-radius:10px;padding:8px;margin-top:8px}
+.strategybox{border-left:5px solid #2563eb;background:#eff6ff;padding:12px;border-radius:12px;margin:10px 0}
+.suwonflow{display:grid;gap:8px}
+.suwonstep{background:#f9fafb;border-radius:13px;padding:11px;border:1px solid var(--line)}
+.quicklinks{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.quicklinks a{font-size:13px;padding:8px 10px;background:#eef2f7;border-radius:10px;font-weight:750}
+@media(max-width:480px){
+ .plan-controls{grid-template-columns:1fr}
+ .linkrow{grid-template-columns:1fr 1fr}
+ .linkrow a:last-child{grid-column:1/-1}
+}
+
+
+.marketcard{border:1px solid var(--line);border-radius:17px;padding:15px;background:#fff;margin:11px 0}
+.markethead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.markethead h3{margin:0;font-size:19px}
+.marketpriority{font-size:13px;font-weight:900;padding:5px 9px;border-radius:999px;white-space:nowrap}
+.p1{background:#ecfdf5;color:#065f46}.p2{background:#fff7ed;color:#9a3412}.p3{background:#fef2f2;color:#991b1b}
+.marketroute{display:grid;gap:8px;margin-top:10px}
+.marketstep{border-left:4px solid #10b981;background:#f0fdf4;padding:10px 11px;border-radius:11px}
+.marketlinks{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}
+.marketlinks a{padding:10px 6px;text-align:center;border-radius:10px;background:#111827;color:#fff;font-size:13px;font-weight:800}
+.marketlinks a.site{background:#047857}
+.parallel{background:#eff6ff;border:1px solid #bfdbfe;border-radius:14px;padding:12px;margin:10px 0}
+.marketbadge{display:inline-block;background:#f3f4f6;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:700;margin:2px}
+@media(max-width:480px){.marketlinks{grid-template-columns:1fr 1fr}.marketlinks a:last-child{grid-column:1/-1}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section id="home" class="section active">
+  <div class="hero">
+    <h1>🇰🇷 2026 韓國親子五日遊</h1>
+    <div class="sub">9/5－9/9｜2大2小｜11歲 150cm、8歲 135cm</div>
+    <div class="stamp">韓國親子旅遊隨身攻略｜行程・購物・愛寶樂園・超市・比價・導航</div>
+  </div>
+
+  <div class="notice"><b>飯店暫定 A：</b>月尾島 Diamond Hotel（월미도 다이아몬드호텔）｜229 Wolmi-ro, Incheon｜032-777-9909。旅行社文件的飯店名稱／電話與地址存在矛盾，入住前仍需向旅行社確認。</div>
+
+  <div class="info"><b>使用原則：</b>這是跟團行程，不脫隊。商場內「步行時間」是保守估計，會因入口、電扶梯、人潮不同而變動；明洞因旅行社尚未提供集合點，距離先以「明洞站／商圈核心」作參考，到現場應以領隊集合點重新判斷。</div>
+
+
+
+
+  <div class="grid">
+    <button class="daybtn" onclick="openDay(1)">DAY 1<span>仁川抵達・月尾島</span></button>
+    <button class="daybtn" onclick="openDay(2)">DAY 2<span>水原＋愛寶樂園作戰</span></button>
+    <button class="daybtn" onclick="openDay(3)">DAY 3<span>南山・廣藏・COEX</span></button>
+    <button class="daybtn" onclick="openDay(4)">DAY 4<span>恩平・益善洞・明洞</span></button>
+    <button class="daybtn" onclick="openDay(5)">DAY 5<span>INSPIRE・仁川機場</span></button>
+  </div>
+
+  <div class="card">
+    <h2>⏰ 集合倒數</h2>
+    <div class="row">
+      <div><label>今天集合時間</label><input id="meetTime" type="time" onchange="saveMeet()"></div>
+      <div><label>今天集合點</label><input id="meetPlace" type="text" placeholder="例如：明洞站6號出口" onchange="saveMeet()"></div>
+    </div>
+    <div id="countdown" class="timer" style="margin-top:12px">--:--:--</div>
+    <div id="timerMsg" class="small">輸入集合時間後開始倒數。</div>
+  </div>
+
+  <div class="card">
+    <h2>💰 韓元換算</h2>
+    <div class="row">
+      <div><label>KRW</label><input id="krw" type="number" value="10000" oninput="convert()"></div>
+      <div><label>1 KRW = TWD</label><input id="rate" type="number" step="0.0001" value="0.023" oninput="convert();saveRate()"></div>
+    </div>
+    <div class="total" id="twdResult">約 NT$230</div>
+    <div class="small">預設只是旅行用概算。可在出發前或刷卡時自行改匯率。</div>
+  </div>
+
+  <div class="card">
+    <h2>🛒 老婆超市快速入口</h2>
+    <button class="bigbtn" style="width:100%;margin:5px 0" onclick="showSection('supermarket')">打開超市攻略｜Starfield／COEX／明洞</button>
+    <div class="small">第一順位：Starfield 水原 B2 Traders；第二順位：明洞商圈超市；COEX 則用連通的百貨 B1 Food Market。</div>
+  </div>
+
+  <div class="card">
+    <h2>🔥 三區快速入口</h2>
+    <button class="bigbtn" style="width:100%;margin:5px 0" onclick="openDayZone(2,'suwon')">Starfield 水原｜樓層＋親子購物</button>
+    <button class="bigbtn" style="width:100%;margin:5px 0" onclick="openDayZone(3,'coex')">COEX｜B1/B2 快速購物＋用餐</button>
+    <button class="bigbtn" style="width:100%;margin:5px 0" onclick="openDayZone(4,'myeongdong')">明洞｜Olive Young＋Daiso＋MUSINSA</button>
+  </div>
+</section>
+
+<section id="trip" class="section">
+  <div class="card">
+    <h2 id="dayTitle">DAY 1</h2>
+    <div id="dayBase" class="small"></div>
+  </div>
+  <div class="card">
+    <h2>我現在有多少自由時間？</h2>
+    <div class="timebar">
+      <button onclick="setTime(30)">30分鐘</button>
+      <button onclick="setTime(60)">60分鐘</button>
+      <button onclick="setTime(90)">90分鐘</button>
+      <button onclick="setTime(120)">120分鐘+</button>
+    </div>
+    <div id="routeText" style="margin-top:12px"></div>
+  </div>
+  <div id="dayContent"></div>
+</section>
+
+
+<section id="supermarket" class="section">
+  <div class="hero">
+    <h1>🛒 老婆超市模式</h1>
+    <div class="sub">跟團不脫隊｜只排原行程內或可直接連通的超市／食品館</div>
+  </div>
+
+  <div class="info"><b>規劃原則：</b>真正大型超市優先排 Starfield 水原 B2；COEX 改排與商場連通的現代百貨 B1 Food Market；明洞排商圈內的小型超市。若領隊未明確給自由活動時間，不為了逛超市另外搭車。</div>
+
+  <div class="card">
+    <h2>Day 2｜Starfield 水原：本趟超市第一順位</h2>
+    <div class="marketcard">
+      <div class="markethead">
+        <div><h3>TRADERS Wholesale Club 水原店</h3><div class="small">트레이더스 홀세일 클럽｜Starfield Suwon B2</div></div>
+        <span class="marketpriority p1">★★★★★ 必排</span>
+      </div>
+      <div class="meta">
+        <div><b>位置</b><br>Starfield 水原 B2<br>175 Suseong-ro, Jangan-gu, Suwon</div>
+        <div><b>營業</b><br>10:00–23:00<br>電話 031-690-1888</div>
+        <div><b>適合買</b><br>海苔、餅乾、咖啡、飲料、泡麵、生活用品、烘焙</div>
+        <div><b>建議時間</b><br>25–35分鐘<br>90分鐘以上自由時間最舒服</div>
+      </div>
+      <div class="parallel"><b>最高效率：</b>若 Starfield 自由時間有 90 分鐘以上，而且兩位大人手機都能聯絡，可採「老婆 B2 Traders 30分鐘；你帶兩個小孩在 5F Toy Kingdom／星空圖書館」，約定固定時間與地點會合。若不想分開，全家一起逛 Traders 25分鐘即可。</div>
+      <div class="marketroute">
+        <div class="marketstep"><b>60分鐘模式：</b>星空圖書館 10 → Toy Kingdom 15 → Traders 20 → 回集合點 15。</div>
+        <div class="marketstep"><b>90分鐘模式：</b>星空圖書館 15 → Toy Kingdom／ABC 20 → Traders 30–35 → 回集合點 20。</div>
+        <div class="marketstep"><b>必買策略：</b>韓國品牌多入組、海苔／餅乾／咖啡、台灣少見口味；含肉加工食品不要買回台灣。</div>
+      </div>
+      <div class="marketlinks">
+        <a class="site" target="_blank" href="https://www.starfield.co.kr/suwon/anchorTenant/emartTraders.do">官方網站</a>
+        <a target="_blank" href="https://map.naver.com/p/search/%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%8D%94%EC%8A%A4%20%EC%88%98%EC%9B%90">NAVER MAP</a>
+        <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=TRADERS+Wholesale+Club+175+Suseong-ro+Suwon">Google Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Day 3｜COEX：不離開主要動線的「食品超市型」選擇</h2>
+    <div class="marketcard">
+      <div class="markethead">
+        <div><h3>Hyundai Department Store Trade Center｜B1 Food Market</h3><div class="small">현대백화점 무역센터점｜地下1樓食品館</div></div>
+        <span class="marketpriority p2">★★★★☆ 有90分鐘再排</span>
+      </div>
+      <div class="meta">
+        <div><b>位置</b><br>517 Teheran-ro, Gangnam-gu, Seoul<br>B1 Food Market</div>
+        <div><b>營業</b><br>9/7為週一：一般營業約10:30–20:00<br>當日仍以官網為準</div>
+        <div><b>特色</b><br>蔬果、進口食品、起司、健康食品、韓國食品、熟食／甜點</div>
+        <div><b>與COEX關係</b><br>官方／首爾旅遊資料確認與COEX區域連通；館內移動保守抓5–10分鐘以上</div>
+      </div>
+      <div class="parallel"><b>建議：</b>它比一般超商更符合「逛超市」的感覺，但屬百貨食品館，價格通常不是量販店最低價。若 COEX 自由活動 ≤60分鐘，直接跳過，把時間留給水族館＋COEX；≥90分鐘再安排 25–35分鐘。</div>
+      <div class="marketlinks">
+        <a class="site" target="_blank" href="https://www.ehyundai.com/DP/lang/en/DEP000002.do?branchCd=B00122000">官方樓層／Food Market</a>
+        <a target="_blank" href="https://map.naver.com/p/search/%ED%98%84%EB%8C%80%EB%B0%B1%ED%99%94%EC%A0%90%20%EB%AC%B4%EC%97%AD%EC%84%BC%ED%84%B0%EC%A0%90">NAVER MAP</a>
+        <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hyundai+Department+Store+Trade+Center+517+Teheran-ro+Seoul">Google Maps</a>
+      </div>
+    </div>
+
+    <div class="marketcard">
+      <div class="markethead">
+        <div><h3>7-ELEVEN COEX Mall B2</h3><div class="small">세븐일레븐｜B2</div></div>
+        <span class="marketpriority p2">★★★☆☆ 快速補貨</span>
+      </div>
+      <div class="meta"><div><b>位置</b><br>COEX Mall B2</div><div><b>營業</b><br>10:30–22:00</div></div>
+      <div class="small">不是大型超市，但只有30分鐘自由時間時，比離開COEX找超市安全得多。</div>
+      <div class="marketlinks">
+        <a class="site" target="_blank" href="https://www.starfield.co.kr/coexmall/tenant/tenantDetail/TN201708291105570521.do">COEX官方店舖頁</a>
+        <a target="_blank" href="https://map.naver.com/p/search/%EC%BD%94%EC%97%91%EC%8A%A4%EB%AA%B0%20%EC%84%B8%EB%B8%90%EC%9D%BC%EB%A0%88%EB%B8%90">NAVER MAP</a>
+        <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=7-Eleven+COEX+Mall+Seoul">Google Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Day 4｜明洞：老婆想逛超市就排這裡</h2>
+
+    <div class="marketcard">
+      <div class="markethead">
+        <div><h3>Myeongdong Mart｜明洞超市</h3><div class="small">명동마트｜明洞商圈內</div></div>
+        <span class="marketpriority p1">★★★★☆ 順路優先</span>
+      </div>
+      <div class="meta">
+        <div><b>位置</b><br>58 Myeongdong 10-gil, Jung-gu, Seoul</div>
+        <div><b>營業參考</b><br>08:00–24:00<br>出發前／現場再核對</div>
+        <div><b>適合買</b><br>韓國零食、海苔、飲料、泡麵、調味料、伴手禮</div>
+        <div><b>建議時間</b><br>20–30分鐘</div>
+      </div>
+      <div class="warnline"><b>價格提醒：</b>它位在觀光商圈，不預設一定比量販店便宜。看到多入組、海苔、零食時，可用網頁比價或先看單位價格。</div>
+      <div class="marketlinks">
+        <a class="site" target="_blank" href="https://map.naver.com/p/search/%EB%AA%85%EB%8F%99%EB%A7%88%ED%8A%B8%2058%20Myeongdong%2010-gil">店家位置頁</a>
+        <a target="_blank" href="https://map.naver.com/p/search/%EB%AA%85%EB%8F%99%EB%A7%88%ED%8A%B8">NAVER MAP</a>
+        <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=58+Myeongdong+10-gil+Seoul+supermarket">Google Maps</a>
+      </div>
+      <div class="small" style="margin-top:8px">目前未找到足以確認為店家官方網站的獨立官網，因此以地圖店家頁作為連結，避免放錯網站。</div>
+    </div>
+
+    <div class="marketcard">
+      <div class="markethead">
+        <div><h3>Lemon Mart｜레몬마트</h3><div class="small">明洞商圈內另一個超市備案</div></div>
+        <span class="marketpriority p2">★★★☆☆ 看集合點決定</span>
+      </div>
+      <div class="meta">
+        <div><b>位置</b><br>45 Myeongdong 9-gil, Jung-gu, Seoul</div>
+        <div><b>營業參考</b><br>08:00–23:30<br>出發前／現場再核對</div>
+      </div>
+      <div class="parallel"><b>選店規則：</b>Myeongdong Mart 與 Lemon Mart 不需要兩家都逛。領隊公布集合點後，直接選「離集合點較近的一家」，最多25–30分鐘。</div>
+      <div class="marketlinks">
+        <a class="site" target="_blank" href="https://map.naver.com/p/search/%EB%A0%88%EB%AA%AC%EB%A7%88%ED%8A%B8%20%EB%AA%85%EB%8F%99">店家位置頁</a>
+        <a target="_blank" href="https://map.naver.com/p/search/%EB%A0%88%EB%AA%AC%EB%A7%88%ED%8A%B8%20%EB%AA%85%EB%8F%99">NAVER MAP</a>
+        <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=Lemon+Mart+45+Myeongdong+9-gil+Seoul">Google Maps</a>
+      </div>
+      <div class="small" style="margin-top:8px">目前未找到可信的獨立官方網站，故以地圖位置連結為主。</div>
+    </div>
+
+    <div class="notice"><b>不建議：</b>為了逛大型量販店，從明洞另外跑去首爾站／其他區域。你們是旅行團，不值得用交通與集合風險換超市時間。</div>
+  </div>
+
+  <div class="card">
+    <h2>超市採買快速清單</h2>
+    <span class="marketbadge">海苔</span><span class="marketbadge">餅乾</span><span class="marketbadge">咖啡</span>
+    <span class="marketbadge">韓國限定口味</span><span class="marketbadge">調味料</span><span class="marketbadge">文具／生活用品</span>
+    <span class="marketbadge">泡麵先看肉類成分</span>
+    <p class="small">返台時，肉乾、肉鬆、香腸、火腿、含肉加工品與新鮮水果等不要攜帶；成分不確定就不要買回台灣。</p>
+  </div>
+</section>
+
+<section id="shopping" class="section">
+  <div class="card">
+    <h2>🛍 購物清單</h2>
+    <div id="shoppingList"></div>
+    <button class="bigbtn" style="width:100%;margin-top:12px" onclick="addItem()">＋新增項目</button>
+  </div>
+  <div class="card">
+    <h2>戰利品統計</h2>
+    <div class="total"><span id="totalKRW">₩0</span></div>
+    <div class="total" style="font-size:20px"><span id="totalTWD">約 NT$0</span></div>
+  </div>
+</section>
+
+<section id="fav" class="section">
+  <div class="card"><h2>⭐ 我的最愛</h2><div id="favList" class="small">尚未加入收藏。</div></div>
+</section>
+
+<section id="tools" class="section">
+  <div class="card">
+    <h2>🍴 小孩飲食韓文</h2>
+    <div class="poi"><div class="korean">안 맵게 해 주세요.</div><div>請不要辣。</div></div>
+    <div class="poi"><div class="korean">소고기 빼 주세요.</div><div>請不要放牛肉。</div></div>
+    <div class="poi"><div class="korean">날것은 못 먹어요.</div><div>不吃生食。</div></div>
+    <div class="poi"><div class="korean">육수에 소고기가 들어가나요?</div><div>湯底裡有牛肉嗎？</div></div>
+  </div>
+
+  <div class="card">
+    <h2>🚫 返台禁帶／高風險</h2>
+    <span class="badge bad">肉乾／肉鬆／香腸／火腿</span>
+    <span class="badge bad">含肉加工食品</span>
+    <span class="badge bad">新鮮水果</span>
+    <span class="badge warn">泡麵與零食先看成分</span>
+    <p class="small">最省事的伴手禮：海苔、餅乾、糖果、巧克力、文具、美妝。動植物成分不確定時，返台前再查台灣最新檢疫規定。</p>
+  </div>
+
+  <div class="card">
+    <h2>🏨 飯店資訊</h2>
+    <b>Day 1–2 暫定：月尾島 Diamond Hotel</b>
+    <div class="small">월미도 다이아몬드호텔<br>229 Wolmi-ro, Incheon<br>032-777-9909</div>
+    <div class="navs">
+      <a href="https://map.naver.com/p/search/%EC%9B%94%EB%AF%B8%EB%8F%84%20%EB%8B%A4%EC%9D%B4%EC%95%84%EB%AA%AC%EB%93%9C%ED%98%B8%ED%85%94" target="_blank">NAVER</a>
+      <a href="https://map.kakao.com/?q=%EC%9B%94%EB%AF%B8%EB%8F%84%20%EB%8B%A4%EC%9D%B4%EC%95%84%EB%AA%AC%EB%93%9C%ED%98%B8%ED%85%94" target="_blank">KAKAO</a>
+      <a href="https://www.google.com/maps/search/?api=1&query=229+Wolmi-ro+Incheon" target="_blank">Google</a>
+    </div>
+    <hr style="border:none;border-top:1px solid var(--line);margin:14px 0">
+    <b>Day 3–4：Benikea The BLISS</b>
+    <div class="small">住宿名稱依旅行社文件；實際地址以入住憑證／領隊公告為準。</div>
+  </div>
+
+  <div class="card">
+    <h2>✈️ 航班</h2>
+    <div><b>9/5 TW670</b>｜台中 RMQ 17:00 → 仁川 ICN 20:45</div>
+    <div><b>9/9 TW669</b>｜仁川 ICN 13:55 → 台中 RMQ 16:00</div>
+    <div class="small">回程目前以仁川機場 T1 規劃；出發前再次確認航空公司／機場公告。</div>
+  </div>
+
+  <div class="card">
+    <h2>🚨 緊急資訊</h2>
+    <div>韓國警察：112</div><div>消防／救護：119</div><div>韓國觀光諮詢：1330</div>
+  </div>
+
+  <div class="card">
+    <h2>📋 行前檢查</h2>
+    <div class="checkline"><input type="checkbox" data-check="passport"> 護照</div>
+    <div class="checkline"><input type="checkbox" data-check="earrival"> 韓國電子入境卡</div>
+    <div class="checkline"><input type="checkbox" data-check="power"> 行動電源個別包裝／端口絕緣</div>
+    <div class="checkline"><input type="checkbox" data-check="adapter"> 220V 圓形兩孔轉接頭</div>
+    <div class="checkline"><input type="checkbox" data-check="hotel"> 確認 Diamond Hotel 最終地址</div>
+    <div class="checkline"><input type="checkbox" data-check="insurance"> 旅平險／不便險資料</div>
+  </div>
+
+  <div class="card">
+    <h2>💾 備份／還原</h2>
+    <button class="bigbtn" onclick="exportData()">匯出我的旅行資料</button>
+    <button class="bigbtn" onclick="document.getElementById('importFile').click()">匯入備份</button>
+    <input id="importFile" type="file" accept=".json" style="display:none" onchange="importData(event)">
+  </div>
+</section>
+</div>
+
+<nav class="bottomnav">
+  <button onclick="showSection('home')"><span class="ico">🏠</span>首頁</button>
+  <button onclick="showSection('trip')"><span class="ico">📅</span>行程</button>
+  <button onclick="showSection('shopping')"><span class="ico">🛍</span>購物</button>
+  <button onclick="showSection('fav')"><span class="ico">⭐</span>收藏</button>
+  <button onclick="showSection('tools')"><span class="ico">🧰</span>工具</button>
+</nav>
+
+<script>
+
+const buyGuides = {
+  suwon:{
+    tiers:{
+      must:[
+        ["TRADERS 韓國零食／海苔多入組","看到韓國品牌多入組、單位價格明顯低於台灣時再下手；含肉產品不要買回台灣。"],
+        ["Toy Kingdom／LEGO 的韓國限定或館內限定款","只有「限定、孩子真的喜歡」才列必買；一般國際玩具先比台灣。"],
+        ["韓國品牌／韓國限定配色","MLB／MLB Kids 若是韓國特別款、現場特價，優先於國際基本款。"]
+      ],
+      time:[
+        ["ABC-Mart Grand Stage／New Balance","先比價。530 目前有同款案例顯示台灣官方特價反而明顯較便宜。"],
+        ["Olive Young／CHICOR","Day 4 還會去明洞；除非看到限定組合或明顯特價，不必在水原大量採購。"],
+        ["MLB／MLB Kids 一般款","有折扣或喜歡版型再買，不以『韓國一定便宜』為前提。"]
+      ],
+      skip:[
+        ["H&M／COS 一般原價款","台灣與海外都容易買，跟團時間成本高。"],
+        ["Electromart 的國際 3C","價格之外還要考慮台灣保固、插頭與退換貨。"],
+        ["沒有韓國限定、沒有折扣的國際品牌","旅行時間比小幅價差更重要。"]
+      ]
+    },
+    compares:["nb530","roundlab","torriden","manual"]
+  },
+  coex:{
+    tiers:{
+      must:[
+        ["thisisneverthat 等韓國本土潮牌","若本來就喜歡品牌，韓國現場款式完整度通常比台灣轉售通路有優勢；先看限定／新品。"],
+        ["GUNDAM BASE 限定商品","只有店內標示限定、台灣不易取得的款式才列必買；一般鋼普拉不要因為在韓國就直接買。"],
+        ["JAJU 韓國生活雜貨","小型、好帶、具韓國生活感的商品，適合伴手禮。"]
+      ],
+      time:[
+        ["ABC Grand Stage／New Balance","以現場實付價比台灣官方價；530 目前基準不利於韓國購買。"],
+        ["CHICOR","若明洞 Olive Young 尚未買齊，或有獨家品牌／組合再買。"],
+        ["VANS","國際品牌，以限定款、特價款為主。"]
+      ],
+      skip:[
+        ["H&M／ZARA 一般原價款","台灣容易買；COEX 時間應留給韓國品牌與親子店。"],
+        ["非限定的一般 Gundam","先查台灣售價，價差小就不必扛回台灣。"],
+        ["需要跨出 COEX 才能買的商品","旅行團不值得為小價差承擔交通與集合風險。"]
+      ]
+    },
+    compares:["nb530","manual"]
+  },
+  myeongdong:{
+    tiers:{
+      must:[
+        ["Torriden DIVE-IN Serum 50ml","目前韓國 Olive Young 價與台灣官方價差很大；若現場仍接近目前基準，值得優先買。"],
+        ["ROUND LAB 白樺樹防曬組","目前韓國組合價比台灣官方 50ml 特價仍低，且韓國組合多附贈品；注意兩邊並非完全相同組合。"],
+        ["MEDIHEAL 10+1 面膜組","目前韓國 10+1 活動價約 ₩10,000；若你本來就會用，可優先看。台灣同組合參考價需現場自行補。"],
+        ["Daiso 韓國限定／旅行／文具小物","單價低、適合孩子與伴手禮；只挑『台灣不常見、真的會用』。"]
+      ],
+      time:[
+        ["MUSINSA STANDARD","9/8 是明洞 Central 開幕日，人潮風險高；有 90 分鐘以上再排。"],
+        ["Olive Young 零食與非核心美妝","先完成指定必買，再逛其他品項。"],
+        ["鞋類／國際運動品牌","先用比價器；台灣促銷有時更便宜。"]
+      ],
+      skip:[
+        ["New Balance 530 無折扣價","目前同款 MR530CC：韓國官方 ₩139,000，而台灣官方同款正在 NT$2,156 特價，台灣便宜很多。"],
+        ["全球品牌原價服飾","時間有限，優先韓國品牌與韓妝。"],
+        ["標價不清、無明細、退稅規則說不清的觀光客型店家","不要為了小折扣增加退換貨與價格爭議。"]
+      ]
+    },
+    compares:["torriden","roundlab","mediheal","nb530","musinsa","manual"]
+  }
+};
+
+const compareProducts = {
+  torriden:{
+    name:"Torriden DIVE-IN 低分子玻尿酸精華 50ml",
+    tw:799, krw:15680, discount:0,
+    match:"同容量主商品可直接比較",
+    note:"台灣官方價 NT$799；韓國 Olive Young 2026/8/31 顯示 ₩15,680。門市 9/8 價格可能變動，請把現場標價改進欄位。",
+    twSource:"https://torriden.tw/collections/torriden-dive-in",
+    krSource:"https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000258298"
+  },
+  roundlab:{
+    name:"ROUND LAB 白樺樹防曬 50ml",
+    tw:469, krw:16630, discount:0,
+    match:"⚠️ 非完全同組合：韓國為 50ml＋乳霜20ml企劃組；台灣參考為單支50ml特價",
+    note:"台灣官方目前 50ml 特價 NT$469；韓國 Olive Young 企劃組 ₩16,630，且多附20ml乳霜。比價結果會低估韓國贈品價值。",
+    twSource:"https://www.roundlab.com.tw/categories/birch-juice-moisturizing-series",
+    krSource:"https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000149135"
+  },
+  mediheal:{
+    name:"MEDIHEAL Essential Mask 10+1",
+    tw:0, krw:10000, discount:0,
+    match:"韓國 10+1 組合；台灣同組合可靠即時價目前未鎖定",
+    note:"韓國 Olive Young 2026/8/31 約 ₩10,000（近期活動甚至 ₩9,900）。請在台灣參考價欄輸入你常買的平台同規格價格，再判斷。",
+    twSource:"",
+    krSource:"https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000209520"
+  },
+  nb530:{
+    name:"New Balance MR530CC（同款式碼）",
+    tw:2156, krw:139000, discount:0,
+    match:"✅ 同款式碼 MR530CC，可直接比較",
+    note:"台灣官方原價 NT$3,080，目前特價 NT$2,156；韓國官方同款 MR530CC 為 ₩139,000。這個品項目前台灣明顯有利。",
+    twSource:"https://www.newbalance.com.tw/men/shoes/MR530-42233.html",
+    krSource:"https://pay.nbkorea.com/product/productDetail.action?colCode=19&styleCode=NBPDGS117B"
+  },
+  musinsa:{
+    name:"MUSINSA STANDARD 基本／Relaxed T-shirt",
+    tw:0, krw:19900, discount:0,
+    match:"台灣沒有適合的官方同款固定基準",
+    note:"韓國官網多款基本T定價約 ₩19,900，活動價可能更低；9/8明洞新店開幕可能另有現場活動。若你在台灣有常買的替代品牌，可自行填台灣參考價。",
+    twSource:"",
+    krSource:"https://www.musinsa.com/products/2402852"
+  },
+  manual:{
+    name:"自訂商品比價",
+    tw:0, krw:0, discount:0,
+    match:"現場看到任何商品都可直接輸入",
+    note:"請把『台灣目前真的買得到的含運／實付價』填入台灣欄；韓國欄填店內標價，折扣／退稅不要預設10%，以店家實際規則輸入。",
+    twSource:"",
+    krSource:""
+  }
+};
+
+function escHtml(s){
+  return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));
+}
+
+function renderTier(title, cls, items){
+  return `<div class="tierbox ${cls}"><h3>${title}</h3>`+
+    items.map(x=>`<div class="tieritem"><b>${x[0]}</b><div class="small">${x[1]}</div></div>`).join("")+
+    `</div>`;
+}
+
+function compareCard(id){
+  const p=compareProducts[id], key=`cmp_${id}`;
+  const rate=Number(localStorage.getItem('korea_rate')||0.023);
+  return `<div class="comparecard" data-compare="${id}">
+    <h4>${escHtml(p.name)}</h4>
+    <span class="badge ${id==='manual'?'blue':id==='nb530'?'bad':'ok'}">${escHtml(p.match)}</span>
+    <div class="compareinputs">
+      <div><label>台灣參考價 TWD</label><input id="${key}_tw" type="number" min="0" value="${p.tw||''}" oninput="calcCompare('${id}')"></div>
+      <div><label>韓國現場標價 KRW</label><input id="${key}_krw" type="number" min="0" value="${p.krw||''}" oninput="calcCompare('${id}')"></div>
+      <div><label>現場折扣／退稅 %</label><input id="${key}_disc" type="number" min="0" max="50" step="0.1" value="${p.discount||0}" oninput="calcCompare('${id}')"></div>
+    </div>
+    <div id="${key}_verdict" class="verdict">輸入價格後自動判斷</div>
+    <div id="${key}_threshold" class="thresholds"></div>
+    <div class="compare-note">${escHtml(p.note)}</div>
+    <div class="source-links">
+      ${p.twSource?`<a target="_blank" href="${p.twSource}">台灣價格來源</a>`:""}
+      ${p.krSource?`<a target="_blank" href="${p.krSource}">韓國價格來源</a>`:""}
+    </div>
+  </div>`;
+}
+
+function renderBuyGuide(z){
+  const g=buyGuides[z];
+  if(!g)return "";
+  return `<div class="rulebox"><b>現場判斷規則</b><br>
+    韓國估計實付價 ≤ 台灣參考價的 <b>85%</b> → 🟢 必買<br>
+    85%～95% → 🟡 有價差，可買<br>
+    95%～100% → 🟡 價差太小，看限定／喜好<br>
+    &gt;100% → 🔴 台灣較便宜，跳過<br>
+    <span class="tiny" style="color:#d1d5db">※ 限定款、贈品、退稅、保固與行李空間需另外考慮。</span>
+  </div>
+  <div class="tierwrap">
+    ${renderTier("🟢 必買／優先下手", "tier-must", g.tiers.must)}
+    ${renderTier("🟡 有時間再買", "tier-time", g.tiers.time)}
+    ${renderTier("🔴 可以跳過", "tier-skip", g.tiers.skip)}
+  </div>
+  <h3 style="margin-top:16px">台灣參考價 vs 韓國現場價</h3>
+  <div class="small">價格基準查證日期：2026/08/31。到韓國時請把「韓國現場標價」改成你眼前看到的數字；全球價格與促銷會變動。</div>
+  <div class="comparegrid">${g.compares.map(compareCard).join("")}</div>`;
+}
+
+function calcCompare(id){
+  const key=`cmp_${id}`;
+  const tw=Number(document.getElementById(`${key}_tw`)?.value||0);
+  const krw=Number(document.getElementById(`${key}_krw`)?.value||0);
+  const disc=Math.min(50,Math.max(0,Number(document.getElementById(`${key}_disc`)?.value||0)));
+  const rate=Number(document.getElementById('rate')?.value||localStorage.getItem('korea_rate')||0.023);
+  const v=document.getElementById(`${key}_verdict`);
+  const th=document.getElementById(`${key}_threshold`);
+  if(!v||!th)return;
+  if(tw<=0 || krw<=0 || rate<=0){
+    v.className="verdict verdict-good";
+    v.textContent="請輸入台灣參考價與韓國現場價。";
+    th.textContent="";
+    return;
+  }
+  const netKrw=krw*(1-disc/100);
+  const koreaTwd=netKrw*rate;
+  const ratio=koreaTwd/tw;
+  const save=(1-ratio)*100;
+  let cls="verdict-good", txt="";
+  if(ratio<=0.85){cls="verdict-must";txt=`🟢 必買：韓國估計實付約 NT$${Math.round(koreaTwd).toLocaleString()}，比台灣便宜約 ${save.toFixed(1)}%`;}
+  else if(ratio<=0.95){cls="verdict-good";txt=`🟡 值得買：韓國約 NT$${Math.round(koreaTwd).toLocaleString()}，比台灣便宜約 ${save.toFixed(1)}%`;}
+  else if(ratio<=1){cls="verdict-good";txt=`🟡 價差小：韓國約 NT$${Math.round(koreaTwd).toLocaleString()}，只便宜約 ${save.toFixed(1)}%；限定款再考慮`;}
+  else{cls="verdict-skip";txt=`🔴 跳過：韓國約 NT$${Math.round(koreaTwd).toLocaleString()}，比台灣貴約 ${((ratio-1)*100).toFixed(1)}%`;}
+  v.className=`verdict ${cls}`; v.textContent=txt;
+  const must=Math.floor(tw*0.85/rate), good=Math.floor(tw*0.95/rate), equal=Math.floor(tw/rate);
+  th.innerHTML=`以目前匯率 ${rate} 計：<b>≤ ₩${must.toLocaleString()}</b> 可列必買；≤ ₩${good.toLocaleString()} 值得買；₩${good.toLocaleString()}～₩${equal.toLocaleString()} 價差小；高於 ₩${equal.toLocaleString()} 台灣較便宜。`;
+}
+
+function recalcAllComparisons(){
+  document.querySelectorAll("[data-compare]").forEach(el=>calcCompare(el.dataset.compare));
+}
+
+
+const day2RideInfo = {
+  monimo:{
+    name:"monimo-RUSH（原 T Express）", ko:"모니모RUSH", zone:"European Adventure",
+    thrill:"刺激 ★★★★★", kid135:"🟢 135cm：近期資料顯示可", kid150:"🟢 150cm：可",
+    height:"近期2026資料：130–195cm；最終以當日 Everland App／現場標示為準。",
+    why:"全園代表性木製雲霄飛車。若孩子敢玩，這是最值得優先處理的高需求設施。",
+    maxwait:"時間管理門檻：若無 Smart Queue／Plan-it 且現場等待 > 60 分鐘，跟團模式建議先跳下一站。",
+    official:"https://rnc.samsungcnt.com/eng/business/everland/attraction/index.html",
+    watch:"https://www.youtube.com/results?search_query=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C+%EB%AA%A8%EB%8B%88%EB%AA%A8RUSH+POV",
+    map:"https://map.naver.com/p/search/%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C%20%EB%AA%A8%EB%8B%88%EB%AA%A8RUSH"
+  },
+  thunder:{
+    name:"Thunder Falls 雷霆瀑布", ko:"썬더폴스", zone:"Magic Land",
+    thrill:"刺激 ★★★★☆", kid135:"🟢 135cm：可列入", kid150:"🟢 150cm：可列入",
+    height:"近期2026資料多列約110cm以上；舊官方資料曾記載100cm起。為避免誤判，當日以 App／現場限制為準。",
+    why:"家庭型水上刺激設施，從 European Adventure 往 Magic Land／Zootopia 動線可順接。",
+    maxwait:"時間管理門檻：等待 > 40 分鐘時，先看 Amazon Express／動物區是否更省時。",
+    official:"https://rnc.samsungcnt.com/eng/business/everland/attraction/index.html",
+    watch:"https://www.youtube.com/results?search_query=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C+%EC%8D%AC%EB%8D%94%ED%8F%B4%EC%8A%A4",
+    map:"https://map.naver.com/p/search/%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C%20%EC%8D%AC%EB%8D%94%ED%8F%B4%EC%8A%A4"
+  },
+  amazon:{
+    name:"Amazon Express 亞馬遜激流", ko:"아마존 익스프레스", zone:"Zootopia",
+    thrill:"刺激 ★★★☆☆", kid135:"🟢 135cm：可列入", kid150:"🟢 150cm：可列入",
+    height:"近期資料：110cm左右可獨立搭乘；低於門檻可能需成人陪同。當日以 App／現場標示為準。",
+    why:"580公尺激流，兩個小孩都很適合；而且可與 Lost Valley／Safari／Panda World 集中在 Zootopia 處理。",
+    maxwait:"時間管理門檻：等待 > 35–40 分鐘且動物區已有預約時，先去動物區，之後再回來。",
+    official:"https://rnc.samsungcnt.com/eng/business/everland/attraction/index.html",
+    watch:"https://www.youtube.com/results?search_query=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C+%EC%95%84%EB%A7%88%EC%A1%B4+%EC%9D%B5%EC%8A%A4%ED%94%84%EB%A0%88%EC%8A%A4",
+    map:"https://map.naver.com/p/search/%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C%20%EC%95%84%EB%A7%88%EC%A1%B4%20%EC%9D%B5%EC%8A%A4%ED%94%84%EB%A0%88%EC%8A%A4"
+  },
+  lost:{
+    name:"Lost Valley 遺失峽谷", ko:"로스트밸리", zone:"Zootopia",
+    thrill:"親子 ★★★★★", kid135:"🟢 135cm：適合", kid150:"🟢 150cm：適合",
+    height:"動物生態型 Safari；身高通常不是主要問題，但入場方式／等待規則以當日 App 為準。",
+    why:"看長頸鹿、犀牛等動物的生態型 Safari，親子價值高。與 Safari World 二選一可大幅節省時間。",
+    maxwait:"時間管理門檻：若 Lost Valley 與 Safari World 都很長，選等待較短的一個，不要兩個都硬排。",
+    official:"https://rnc.samsungcnt.com/eng/business/everland/zoo/index.html",
+    watch:"https://www.youtube.com/results?search_query=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C+%EB%A1%9C%EC%8A%A4%ED%8A%B8%EB%B0%B8%EB%A6%AC",
+    map:"https://map.naver.com/p/search/%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C%20%EB%A1%9C%EC%8A%A4%ED%8A%B8%EB%B0%B8%EB%A6%AC"
+  },
+  safari:{
+    name:"Safari World 野生動物世界", ko:"사파리월드", zone:"Zootopia",
+    thrill:"親子 ★★★★★", kid135:"🟢 135cm：適合", kid150:"🟢 150cm：適合",
+    height:"巴士／Safari 型體驗；入場規則及 Smart Queue 狀態以當日 App 為準。",
+    why:"獅子、老虎、熊等掠食動物體驗。跟 Lost Valley 類型不同，但跟團時間短時仍建議二選一。",
+    maxwait:"時間管理門檻：若已玩 Lost Valley，Safari 等待 > 35–40 分鐘就跳過，保留時間給 Amazon／Panda。",
+    official:"https://rnc.samsungcnt.com/eng/business/everland/zoo/index.html",
+    watch:"https://www.youtube.com/results?search_query=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C+%EC%82%AC%ED%8C%8C%EB%A6%AC%EC%9B%94%EB%93%9C",
+    map:"https://map.naver.com/p/search/%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C%20%EC%82%AC%ED%8C%8C%EB%A6%AC%EC%9B%94%EB%93%9C"
+  },
+  panda:{
+    name:"Panda World 熊貓世界", ko:"판다월드", zone:"Zootopia",
+    thrill:"親子 ★★★★☆", kid135:"🟢 135cm：適合", kid150:"🟢 150cm：適合",
+    height:"觀賞型設施。2026夏季部分熊貓相關預約政策有變動，9/6請以 App 當日狀態為準。",
+    why:"若孩子喜歡熊貓值得排；若不特別喜歡，跟團短時間可排在動物 Safari 後面。",
+    maxwait:"時間管理門檻：現場等待 > 30 分鐘且已玩一個 Safari 時，可直接跳過。",
+    official:"https://www.youtube.com/results?search_query=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C+%ED%8C%90%EB%8B%A4%EC%9B%94%EB%93%9C+%EA%B3%B5%EC%8B%9D",
+    watch:"https://www.youtube.com/results?search_query=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C+%ED%8C%90%EB%8B%A4%EC%9B%94%EB%93%9C",
+    map:"https://map.naver.com/p/search/%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C%20%ED%8C%90%EB%8B%A4%EC%9B%94%EB%93%9C"
+  },
+  hurricane:{
+    name:"Hurricane 龍捲風", ko:"허리케인", zone:"American Adventure",
+    thrill:"刺激 ★★★★★", kid135:"🟢 135cm：近期資料顯示可", kid150:"🟢 150cm：可",
+    height:"近期2026資料多列130cm以上；最終以當日 App／現場標示為準。",
+    why:"刺激度高，但位置會讓家庭主線繞路；只有刺激派＋有4小時以上才建議。",
+    maxwait:"時間管理門檻：等待 > 25–30 分鐘直接跳過，因為它不是本次親子主線核心。",
+    official:"https://www.youtube.com/results?search_query=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C+%ED%97%88%EB%A6%AC%EC%BC%80%EC%9D%B8+%EA%B3%B5%EC%8B%9D",
+    watch:"https://www.youtube.com/results?search_query=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C+%ED%97%88%EB%A6%AC%EC%BC%80%EC%9D%B8",
+    map:"https://map.naver.com/p/search/%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C%20%ED%97%88%EB%A6%AC%EC%BC%80%EC%9D%B8"
+  },
+  rolling:{
+    name:"Rolling X-Train", ko:"롤링엑스트레인", zone:"American Adventure",
+    thrill:"刺激 ★★★★☆", kid135:"🟢 135cm：近期資料顯示可", kid150:"🟢 150cm：可",
+    height:"近期資料約120cm以上；最終以當日 App／現場標示為準。",
+    why:"如果孩子不敢 monimo-RUSH，但又想玩雲霄飛車，可作替代。",
+    maxwait:"時間管理門檻：等待 > 30 分鐘時，不值得為它偏離主線。",
+    official:"https://www.youtube.com/results?search_query=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C+%EB%A1%A4%EB%A7%81%EC%97%91%EC%8A%A4%ED%8A%B8%EB%A0%88%EC%9D%B8+%EA%B3%B5%EC%8B%9D",
+    watch:"https://www.youtube.com/results?search_query=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C+Rolling+X-Train",
+    map:"https://map.naver.com/p/search/%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C%20Rolling%20X-Train"
+  }
+};
+
+const everlandRoutes = {
+  balanced:{
+    "150":["thunder","amazon","lost","panda"],
+    "210":["monimo","thunder","amazon","lost","panda"],
+    "270":["monimo","thunder","amazon","lost","panda","safari"],
+    "330":["monimo","thunder","amazon","lost","panda","safari","hurricane"]
+  },
+  thrill:{
+    "150":["monimo","thunder","amazon","rolling"],
+    "210":["monimo","thunder","amazon","lost","hurricane"],
+    "270":["monimo","thunder","amazon","lost","hurricane","rolling"],
+    "330":["monimo","thunder","amazon","lost","safari","hurricane","rolling"]
+  },
+  animals:{
+    "150":["amazon","lost","panda"],
+    "210":["amazon","lost","safari","panda"],
+    "270":["thunder","amazon","lost","safari","panda"],
+    "330":["thunder","amazon","lost","safari","panda","monimo"]
+  }
+};
+
+function rideCard(id){
+  const r=day2RideInfo[id];
+  return `<div class="ridecard">
+    <div class="ridehead"><div><h4>${r.name}</h4><div class="small">${r.ko}｜${r.zone}</div></div><div class="intensity">${r.thrill}</div></div>
+    <div class="kidrow"><span class="badge ok">${r.kid135}</span><span class="badge ok">${r.kid150}</span></div>
+    <div class="small"><b>身高：</b>${r.height}</div>
+    <p>${r.why}</p>
+    <div class="skiprule">⏱ ${r.maxwait}</div>
+    <div class="linkrow">
+      <a class="official" target="_blank" href="${r.official}">官方／資訊</a>
+      <a class="watch" target="_blank" href="${r.watch}">▶ 小孩先看影片</a>
+      <a target="_blank" href="${r.map}">NAVER定位</a>
+    </div>
+  </div>`;
+}
+
+function renderDay2Planner(){
+  return `<div class="card day2planner">
+    <h2>🎢 Day 2 水原＋愛寶樂園「不浪費時間」作戰</h2>
+    <div class="strategybox"><b>先記住：</b>你們不是自由行，9/6 上午還有 Starfield 水原＋水原華城。愛寶樂園真正可用時間目前不知道，因此我不寫死幾點幾分。進園第一件事是開 <b>Everland App</b> 看當日設施營運、等待／Smart Queue 狀態，再用下面路線微調。官方也明確要求以 App 確認營運與身高限制。</div>
+
+    <h3>① Starfield 水原：親子「快速不拖延」順序</h3>
+    <div class="parallel"><b>老婆喜歡超市：</b>Day 2 最值得安排的是 Starfield B2 的 TRADERS。若自由時間有90分鐘，可把 Traders 固定保留30–35分鐘；若只有60分鐘，則縮短 Toy Kingdom／拍照時間，不要整段取消超市。<br><button class="bigbtn" style="margin-top:8px" onclick="showSection('supermarket')">🛒 打開超市模式</button></div>
+    <div class="suwonflow">
+      <div class="suwonstep"><b>第1站｜星空圖書館 별마당 도서관</b><br><span class="small">核心空間 4–5F｜先拍家庭照＋小孩快速看環境｜建議10–15分鐘。</span>
+        <div class="quicklinks"><a target="_blank" href="https://www.starfield.co.kr/suwon/starfieldLibrary/library.do">官方頁</a><a target="_blank" href="https://www.youtube.com/results?search_query=%EC%8A%A4%ED%83%80%ED%95%84%EB%93%9C+%EC%88%98%EC%9B%90+%EB%B3%84%EB%A7%88%EB%8B%B9%EB%8F%84%EC%84%9C%EA%B4%80">小孩先看影片</a></div>
+      </div>
+      <div class="suwonstep"><b>第2站｜Toy Kingdom 토이킹덤</b><br><span class="small">5F｜從圖書館順樓層接，不繞路｜建議15–25分鐘。8歲優先，11歲視興趣。</span>
+        <div class="quicklinks"><a target="_blank" href="https://www.starfield.co.kr/suwon/anchorTenant/toyKingdom.do">官方頁</a><a target="_blank" href="https://www.youtube.com/results?search_query=%EC%8A%A4%ED%83%80%ED%95%84%EB%93%9C+%EC%88%98%EC%9B%90+%ED%86%A0%EC%9D%B4%ED%82%B9%EB%8D%A4">小孩先看影片</a></div>
+      </div>
+      <div class="suwonstep"><b>第3站｜5F 同層補買</b><br><span class="small">ABC-Mart／MLB／Electromart 只挑事先鎖定商品。不要從5F再跑B2 Traders，除非領隊明確給90分鐘以上。</span></div>
+      <div class="suwonstep"><b>跳過｜Smob</b><br><span class="small">官方一次約2小時、需付費；你們後面還有水原華城＋愛寶樂園，不適合這個旅行團動線。</span>
+        <div class="quicklinks"><a target="_blank" href="https://www.starfield.co.kr/suwon/entertainment/smob.do">Smob 官方介紹</a></div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:18px">② 愛寶樂園：依你們「剩餘時間＋刺激程度」自動排順序</h3>
+    <div class="plan-controls">
+      <div><label>樂園真正可用時間</label>
+        <select id="everTime" onchange="updateEverlandPlan()">
+          <option value="150">約2.5小時</option>
+          <option value="210" selected>約3.5小時</option>
+          <option value="270">約4.5小時</option>
+          <option value="330">5.5小時以上</option>
+        </select>
+      </div>
+      <div><label>孩子玩法</label>
+        <select id="everStyle" onchange="updateEverlandPlan()">
+          <option value="balanced" selected>全家平衡：刺激＋動物</option>
+          <option value="thrill">刺激優先</option>
+          <option value="animals">動物優先</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="strategybox">
+      <b>預設最有效率主線：</b>European Adventure → Magic Land → Zootopia → 由 Zootopia 的 Human Sky／園內交通回 Global Fair（若當日營運）。核心概念是「一路往前，不在三大區域來回折返」。Smart Queue／Plan-it 的實際時段若與此衝突，<b>預約時段優先</b>。
+    </div>
+
+    <div id="everRoute" class="routeflow"></div>
+
+    <details open>
+      <summary>📱 進園前 60 秒 SOP</summary>
+      <ol>
+        <li>四人的票／QR Code 先準備好。</li>
+        <li>進園後立刻開 Everland App，先確認「今日營運／休止設施／等待或預約狀態」。</li>
+        <li>若可以搶 Smart Queue，先搶你們最重視的 <b>monimo-RUSH、Lost Valley、Safari World、Panda World</b> 之一；不要四個都假設能排到。</li>
+        <li>如果拿到指定時段，就以該時段當錨點，前後只排鄰近區域設施。</li>
+        <li>任何設施超過本網頁設定的「等待門檻」，直接換下一站，避免一項吃掉整段自由時間。</li>
+      </ol>
+      <div class="quicklinks">
+        <a target="_blank" href="https://reservation.everland.com/web/el.do?method=calendar">Everland 官方預約／營運</a>
+        <a target="_blank" href="https://grp.everland.com/files/en_everland.pdf">Everland 官方 Guide Map</a>
+        <a target="_blank" href="https://web.everland.com/pick/2026/summer-party/index.html">9/6 Sanrio 活動官方頁</a>
+      </div>
+    </details>
+
+    <details>
+      <summary>🎀 9/6 當天限定加分：Hello Summer Party with Sanrio Characters</summary>
+      <p>官方活動期間是 <b>2026/6/12～9/6</b>，你們 9/6 剛好是最後一天。若孩子喜歡 Sanrio，可以把它列為「看到就拍／有表演就順看」的加分項，但不要為了追活動時間跨區折返。</p>
+      <div class="quicklinks"><a target="_blank" href="https://web.everland.com/pick/2026/summer-party/index.html">官方活動頁</a><a target="_blank" href="https://www.youtube.com/results?search_query=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C+2026+%EC%82%B0%EB%A6%AC%EC%98%A4+Hello+Summer+Party">先看影片</a></div>
+    </details>
+
+    <h3 style="margin-top:18px">③ 設施看片區｜出發前讓兩個小孩先決定「敢不敢玩」</h3>
+    <div class="ridegrid">
+      ${["monimo","thunder","amazon","lost","safari","panda","hurricane","rolling"].map(rideCard).join("")}
+    </div>
+
+    <div class="notice"><b>Double Rock Spin 暫不列入主路線。</b>2026近期外部資料對最低身高出現 130cm／140cm 不一致；8歲孩子135cm可能有資格爭議。除非當日 Everland App 明確顯示135cm可搭，否則不要浪費時間走過去排隊。</div>
+  </div>`;
+}
+
+function updateEverlandPlan(){
+  const time=document.getElementById("everTime")?.value||"210";
+  const style=document.getElementById("everStyle")?.value||"balanced";
+  const holder=document.getElementById("everRoute");
+  if(!holder)return;
+  const ids=everlandRoutes[style][time];
+  let note = style==="balanced" ? "全家平衡版" : style==="thrill" ? "刺激優先版" : "動物優先版";
+  holder.innerHTML=`<div class="small"><b>${note}</b>｜以下是「順序」，不是固定時刻；當日 App 的預約時段優先。</div>`+
+    ids.map((id,i)=>{
+      const r=day2RideInfo[id];
+      return `<div class="route-step"><div class="stepno">${i+1}</div><div><h4>${r.name}</h4><div class="small">${r.zone}｜${r.thrill}</div><div>${r.why}</div><div class="skiprule">${r.maxwait}</div>
+        <div class="quicklinks"><a target="_blank" href="${r.watch}">▶ 小孩先看</a><a target="_blank" href="${r.official}">官方／資訊</a></div></div></div>`;
+    }).join("")+
+    `<div class="strategybox"><b>最後 30–40 分鐘規則：</b>停止排新熱門設施，只玩10–20分鐘可完成的鄰近項目／拍照／買紀念品，並開始往領隊集合點移動。</div>`;
+}
+
+const OY_PRODUCTS = `
+<div class="pricebox">
+  <b>2026/8/31 官方線上價參考</b>
+  <div class="priceitem"><span>MEDIHEAL Essential Mask 單片</span><span>約 ₩1,000（活動價；原價約₩2,000）</span></div>
+  <div class="priceitem"><span>MEDIHEAL Madecassoside 10+1</span><span>約 ₩10,000</span></div>
+  <div class="priceitem"><span>ROUND LAB 樺樹汁防曬 50ml＋20ml</span><span>約 ₩16,630</span></div>
+  <div class="priceitem"><span>ROUND LAB 樺樹汁防曬雙入組</span><span>約 ₩24,500</span></div>
+  <div class="tiny">※ 官方線上活動價不保證與門市當日完全相同；門市促銷、庫存、組合包會變動。</div>
+</div>`;
+
+const zones = {
+suwon:{
+ title:"Starfield 水原｜館內快速攻略",
+ intro:"官方目前主要商場 10:00–22:00；Traders B2 10:00–23:00。旅行團最值得做的是「同棟完成購物」，不要再走到商場外。",
+ source:"https://www.starfield.co.kr/suwon/tenant/categoryInfo",
+ blocks:[
+  ["購物","Olive Young｜올리브영","1F","美妝","從商場中庭／星空圖書館區換樓層，保守抓約5–10分鐘","10:00–22:00","適合大人快速補防曬、面膜；若明洞還會去，不必在這裡大採購。",OY_PRODUCTS],
+  ["購物","CHICOR｜시코르","1F","美妝","同棟1F","10:00–22:00","適合想一次比較多品牌者；價格／促銷以現場為準。",""],
+  ["購物","COS","2F","服飾","同棟，約3–8分鐘","10:00–22:00","大人服飾；若自由時間少可略過。",""],
+  ["購物","H&M","2F","服飾","同棟，約3–8分鐘","10:00–22:00","親子基本款。韓國價格不一定比台灣低，先看特價。",""],
+  ["購物","MLB KIDS｜MLB키즈","3F","童裝","同棟，約3–8分鐘","10:00–22:00","11歲／8歲可逛；韓國限定或特價款才值得優先。",""],
+  ["購物","ABC-Mart Grand Stage","5F","運動鞋","同棟，約3–8分鐘","10:00–22:00","Nike、adidas、New Balance 等可集中比價。國際品牌不要預設韓國一定便宜。",""],
+  ["購物","MLB","5F","潮流服飾","與ABC同層，適合連逛","10:00–22:00","帽子、服飾；若看到韓國限定配色再買。",""],
+  ["親子","Toy Kingdom｜토이킹덤","5F","玩具","與ABC／MLB同層，移動成本最低","10:00–22:00","非常適合8歲；11歲視興趣。官方另有LEGO專區。",""],
+  ["購物","Electromart｜일렉트로마트","5F","3C","與Toy Kingdom同層","10:00–22:00","3C／配件可看，但國際3C建議先比台灣保固與價格。",""],
+  ["伴手禮","TRADERS Wholesale Club","B2","大型超市","從5F下B2保守抓約6–12分鐘","10:00–23:00","海苔、餅乾、零食、飲料適合一次買齊；含肉食品不要買回台灣。",""]
+ ],
+ food:[
+  ["정성돈가스｜Jeongseong Tonkatsu","7F","豬排","小孩友善度：★★★★☆","非辣、非生食；點餐仍先確認醬料與湯品是否含牛肉。","目前官方店舖頁未提供可查證菜單價格"],
+  ["버니파스타｜Bunny Pasta","7F","義大利麵","小孩友善度：★★★★☆","可優先問奶油／番茄非辣口味；避開牛肉配料。","目前無法確認最新菜單價"],
+  ["서호김밥｜Seoho Gimbap","7F","紫菜飯捲","小孩友善度：★★★★☆","先問是否有牛肉；選蛋、蔬菜、鮪魚等較安全。","目前無法確認最新菜單價"],
+  ["카페 노티드｜Cafe Knotted","1F","甜甜圈／甜點","小孩友善度：★★★★★","適合短休息，不影響後面愛寶樂園。","價格依現場"],
+  ["삼진어묵｜Samjin Eomuk","1F","魚板","小孩友善度：★★★★☆","魚板本身不是生食；仍建議看配料與湯底。","價格依現場"]
+ ],
+ facility:`
+ <div class="warnline"><b>便利採買：</b>官方店舖目錄沒有把便利商店列為核心選項；最實用替代是 <b>B2 Traders</b>，或1F ORGA Whole Foods 買飲料／零食。</div>
+ <div><b>官方可確認設施：</b>顧客服務中心 1F；嬰兒休息室 3F、7F；置物櫃 B2 與 1F；醫務室 1F。</div>
+ <div class="small">一般洗手間的逐間位置，官方文字頁未完整列出；到館內請直接依樓層指標／商場地圖找最近洗手間。</div>`
+},
+coex:{
+ title:"COEX Mall｜B1/B2 快速攻略",
+ intro:"COEX 很大，但你們旅行社本來就安排水族館＋Mall。核心策略：B1完成大人購物，B2看Gundam，不跨出COEX。",
+ source:"https://www.starfield.co.kr/coexmall/tenant/categoryInfo",
+ blocks:[
+  ["購物","ABC Grand Stage｜ABC 그랜드스테이지","B1","運動鞋","同館B1，從水族館區保守抓約5–12分鐘","10:30–22:00","鞋類比價重點站。看到同款先用手機查台灣售價再決定。",""],
+  ["購物","VANS","B1","鞋／潮流","與多數購物店同層","10:30–22:00","若不是限定款，可列第二順位。",""],
+  ["購物","thisisneverthat","B1","韓國潮牌","同館B1","10:30–22:00","韓國品牌，比國際品牌更值得優先看。",""],
+  ["購物","CHICOR｜시코르","B1","美妝","同館B1","10:30–22:00","若Day 4會去明洞Olive Young，這裡適合只看特殊品牌／補貨。",""],
+  ["生活","JAJU｜자주","B1","生活雜貨","同館B1","10:30–22:00","韓式生活小物、家居；適合想買非觀光型小物。",""],
+  ["服飾","H&M","B1","服飾","同館B1","10:30–22:00","一般國際品牌，非韓國限定可略過。",""],
+  ["服飾","ZARA","B1","服飾","同館B1","10:00–22:00","同上，以折扣或特殊款為優先。",""],
+  ["親子","THE GUNDAM BASE","B2","模型／玩具","B1下B2；保守抓約5–10分鐘","10:30–22:00","8歲／11歲若喜歡鋼彈可排第一順位；官方稱韓國大型官方直營Gundam店。",""]
+ ],
+ food:[
+  ["KFC","B1","炸雞","小孩友善度：★★★★☆","選原味／非辣雞肉，點餐時避開辣醬。","價格依當日菜單"],
+  ["강남교자｜Gangnam Gyoja","B1","餃子／麵","小孩友善度：★★★★☆","可問非辣麵食；確認餃子肉餡是否含牛。","價格依現場"],
+  ["남포동수제비｜Nampodong Sujebi","B1","麵疙瘩","小孩友善度：★★★★☆","可優先詢問清淡湯品，仍需問湯底是否含牛肉。","目前無法確認最新價"],
+  ["금복당｜GEUM BOK DANG","B1","韓食","小孩友善度：★★★☆☆","官方菜單含生食、牛肉相關品項，對你們限制較麻煩；不是第一順位。","官方菜單例：海帶湯₩16,000、炸魷魚₩11,000、辣炒年糕₩6,000（但需注意辣／肉類成分）"],
+  ["Starbucks COEX Mall","B1","咖啡／點心","小孩友善度：★★★★★","官方營業 07:00–22:00，可作快速休息點。","飲品價格依門市"]
+ ],
+ facility:`
+ <div class="warnline"><b>便利商店：</b>2026/8近期營運資訊顯示 COEX B1 A105 有 <b>Emart24 Starfield COEX Mall 2號店</b>；這筆不是Starfield官方商店目錄資料，現場請以館內指標為準。</div>
+ <div><b>廁所：</b>COEX官方說明，Starfield COEX Mall 的各洗手間都有無障礙隔間。</div>
+ <div><b>親子／休息：</b>嬰兒休息室位於電影院附近B1、Gourmet Street附近B1；顧客服務中心在Live Plaza B1。</div>
+ <div><b>置物櫃：</b>B1 McDonald's、ZARA、TOPTEN、電梯廳、Megabox等附近設有置物櫃。</div>`
+},
+myeongdong:{
+ title:"明洞｜跟團購物主戰場",
+ intro:"因領隊集合點未公布，不能把店與集合點距離寫死。以下先用明洞站／商圈核心作參考。9/8又碰到MUSINSA STANDARD明洞中央店開幕日，必須把人潮算進去。",
+ source:"https://myeongdongtown.oliveyoung.com/en/",
+ blocks:[
+  ["購物","OLIVE YOUNG Myeongdong Global","1F–2F","美妝","明洞站4號線 Exit 8 可步行前往；官方未提供精確分鐘數","10:00–22:30","1F：Skin／Sun／Mask；2F：Makeup／Hair／Men／Body／Food。符合條件可店內即時退稅；實體護照要帶。",OY_PRODUCTS],
+  ["購物","DAISO Myeongdong Station","B1–12F","生活雜貨","明洞站附近；非官方實測約1分鐘級距","10:00–22:00","官方確認B1–12F、有電梯、Tax Free。跟團不要逐層逛；到店先拍樓層導覽，只鎖定文具／旅行／小孩用品／零食。","<div class='pricebox'><b>Daiso價格策略</b><div>大多數商品為低價定額帶；實際各品項以店內標價為準。官方店舖頁未提供逐商品價目。</div></div>"],
+  ["購物","MUSINSA STANDARD Myeongdong Central","1F–4F","韓國服飾","40 Myeongdong 8-gil；明洞商圈核心","11:00–22:00","2026/9/8開幕，男裝、女裝、Home、Beauty。開幕日人潮風險高，至少90分鐘自由時間才排。","<div class='pricebox'><b>9/8開幕活動</b><div class='priceitem'><span>Super Bag（限量）</span><span>₩49,900</span></div><div class='tiny'>官方稱內含約₩300,000人氣商品；每日限量50份，9/8–9/9。另有部分商品最高50%單日特價、開幕期最高70%期間特價，實際品項／庫存現場為準。</div></div>"],
+  ["美食","Myeongdong Kyoja｜명동교자","—","刀削麵／餃子","明洞站Exit 8約183m（首爾官方旅遊資料）","10:30–21:00","注意：官方介紹為雞湯刀削麵，但現行餐點可能有肉末配料；因小孩不吃牛，現場仍要明確確認肉末種類。","<div class='pricebox'><b>2026菜單參考</b><div class='priceitem'><span>刀削麵 Kalguksu</span><span>約 ₩12,000</span></div><div class='priceitem'><span>豬肉餃子 Mandu</span><span>約 ₩13,000</span></div><div class='tiny'>價格來自2026菜單查驗資料；官方旅遊頁僅標示約₩10,000價位帶，實際以店內為準。</div></div>"],
+  ["便利","CU Myeongdong Station","1F","便利商店","127 Toegye-ro，明洞站附近","24小時（2026/8/30資料）","K-Food／泡麵特化；小孩可找較不辣泡麵與飲料。返台不要買含肉即食食品。",""]
+ ],
+ food:[
+  ["明洞餃子｜Myeongdong Kyoja","29 Myeongdong 10-gil","刀削麵／餃子","小孩友善度：★★★★☆","麵本身不辣，但先確認肉末種類；辣泡菜可不吃。","約₩12,000–13,000／主品"],
+  ["CU 明洞站店","127 Toegye-ro","便利店K-Food","小孩友善度：★★★★★","可找진라면 순한맛（Jin Ramen mild）等較不辣選項；成分仍要看。","便利商店價"],
+  ["Olive Young 2F Food & Drinks","53 Myeongdong-gil","零食／飲料","小孩友善度：★★★★★","Delight Project等零食可當伴手禮；含肉／動植物成分不明者不要帶回台灣。","依門市促銷"]
+ ],
+ facility:`
+ <div class="redline"><b>Olive Young Myeongdong Global 店內沒有廁所。</b>官方直接建議使用最近的地鐵站廁所。</div>
+ <div><b>Daiso：</b>韓國觀光公社資料標示有Restroom，但官方Daiso店舖頁未列出樓層位置；到店先看樓層導覽。</div>
+ <div><b>最穩廁所策略：</b>進明洞購物前，先在明洞站處理；不要等到進Olive Young才找。</div>
+ <div><b>便利店：</b>CU明洞站店（127 Toegye-ro）目前資料為24小時；明洞另有多家CU／GS25，但跟團以離集合點最近者為準。</div>`
+}
+};
+
+const trip = {
+1:{title:"DAY 1｜9/5 仁川抵達",base:"台中國際機場 → 仁川國際機場 → 飯店。TW670 17:00 / 20:45。第一晚不排跨區，只做飯店步行圈。",
+routes:{30:"便利商店補水／早餐 → 飯店附近拍照 → 回房。",60:"月尾文化街短走 → 海邊夜景 → 便利商店 → 回飯店。",90:"月尾文化街＋月尾主題樂園外圍拍照 → 便利商店 → 回飯店。",120:"仍不建議跨區。保留體力，月尾島範圍內散步即可。"},
+cards:[["月尾文化街／月尾島","월미도 문화의 거리","Wolmido Culture Street","★★★★★","🟢 非常適合順遊","若飯店確認為月尾島 Diamond Hotel，適合晚間短走；不需另外搭車。","20–60分鐘","Wolmido Culture Street, Incheon","散步、夜景、便利商店","不特別購物，以安全與休息為主"],["月尾主題樂園外圍","월미테마파크","Wolmi Theme Park","★★★★☆","🟢 非常適合順遊","第一晚只建議外圍拍照；不建議臨時投入大型遊樂時間。","15–30分鐘","Wolmi Theme Park, Incheon","親子拍照、夜景","不要影響休息"]]},
+2:{title:"DAY 2｜9/6 水原＋愛寶樂園",base:"Starfield 水原星空圖書館 2.0 → 水原華城 → 愛寶樂園。行程緊湊，不額外跨區。",zone:"suwon",
+routes:{30:"Starfield：星空圖書館拍照 → 指定1間店 → 集合。",60:"星空圖書館 → Olive Young／Toy Kingdom 二選一 → 集合。",90:"星空圖書館 → 大人美妝／鞋、小孩玩具分流 → 快速補零食。",120:"Starfield 商場內完整快速線；仍不離開商場。愛寶樂園則把時間優先留給設施、動物與表演。"},
+cards:[["愛寶樂園","에버랜드","Everland","★★★★★","🟢 非常適合順遊","已含門票與自由券。身高150cm與135cm可玩的設施相對多，但仍以當日各設施安全條件為準。","依旅行社停留","199 Everland-ro, Cheoin-gu, Yongin","遊樂設施、動物王國、花園、遊行","園內紀念品只買限定款；不要為購物犧牲遊玩時間。"]]},
+3:{title:"DAY 3｜9/7 南山＋廣藏＋COEX",base:"南山纜車／N首爾塔不上塔 → 廣藏市場 → COEX 水族館 → COEX Mall。",zone:"coex",
+routes:{30:"COEX：指定1店（Gundam／美妝／鞋）→ 集合。",60:"COEX：大人、小孩分流各1站 → 集合。",90:"COEX：Gundam Base＋鞋／美妝＋簡單伴手禮 → 集合。",120:"仍留在 COEX 內，不跨到江南其他商圈。"},
+cards:[["N首爾塔廣場＋愛情鎖牆","N서울타워","N Seoul Tower","★★★★☆","🟢 非常適合順遊","旅行社安排不上塔，因此以廣場、愛情鎖牆與拍照為主。","20–40分鐘","105 Namsangongwon-gil, Yongsan-gu, Seoul","拍照、散步","不要臨時加購觀景台。"],["廣藏市場","광장시장","Gwangjang Market","★★★★☆","🟢 非常適合順遊","小孩不吃辣、生食、牛肉：避開生章魚、牛肉拌飯、辣炒年糕；紫菜飯捲先確認無牛肉。","30–60分鐘","88 Changgyeonggung-ro, Jongno-gu, Seoul","糖餅、甜點、紫菜飯捲（確認餡料）","綠豆煎餅先問是否含肉；湯麵要問湯底。"]]},
+4:{title:"DAY 4｜9/8 恩平＋益善洞＋明洞",base:"恩平韓屋村 → 彩妝店 → 水果大福 DIY → 益善洞 → 明洞。晚餐自理。這是全程購物主戰場。",zone:"myeongdong",
+routes:{30:"明洞：Olive Young 或 Daiso，只選一家。",60:"Olive Young → 便利商店／伴手禮 → 集合。",90:"Olive Young → Daiso 指定樓層 → 視人潮決定 MUSINSA。",120:"Olive Young → Daiso → MUSINSA → 晚餐／伴手禮；至少預留15–20分鐘回集合點。"},
+cards:[["恩平韓屋村","은평한옥마을","Eunpyeong Hanok Village","★★★★☆","🟢 非常適合順遊","以拍照、茶飲、甜點為主，不自行走遠到山區。","30–60分鐘","127-27 Jingwan-dong, Eunpyeong-gu, Seoul","韓屋、茶點、拍照","不要延伸遠距離步行路線。"],["益善洞","익선동","Ikseon-dong","★★★★★","🟢 非常適合順遊","特色是韓屋咖啡、甜點、手作與設計小店。買特色，不追求最低價。","45–90分鐘","Ikseon-dong, Jongno-gu, Seoul","咖啡、甜點、設計小物","大量藥妝／鞋類採購留給明洞。"]]},
+5:{title:"DAY 5｜9/9 INSPIRE＋仁川機場",base:"Mohegan INSPIRE LED 數位大道 → 仁川機場 → 台中。TW669 13:55 / 16:00。不排任何離開原動線的活動。",
+routes:{30:"Aurora LED 拍照 → 集合。",60:"Aurora → 館內快速補貨 → 集合。",90:"只有領隊明確給足時間才執行；仍留在 INSPIRE 館內。",120:"🔴 不建議。回程日以團體集合、機場報到為優先。"},
+cards:[["INSPIRE Aurora","오로라","INSPIRE Aurora","★★★★★","🟢 非常適合順遊","150公尺大型LED數位空間。以拍照與短停留為主。","20–40分鐘","127 Gonghangmunhwa-ro, Jung-gu, Incheon","LED展演、拍照","不另外投入大型付費娛樂。"],["仁川國際機場 T1","인천국제공항 제1여객터미널","Incheon International Airport T1","★★★★☆","🟢 最後補貨","目前以T’way Air T1規劃；出發前再次核對。","依報到後剩餘時間","272 Gonghang-ro, Jung-gu, Incheon","Olive Young、便利商店、免稅補貨","機場適合漏買補貨，不保證比市區便宜。"]]}
+};
+
+let currentDay=1,currentMinutes=30,currentZone=null;
+
+function showSection(id){
+ document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ if(id==='shopping')renderShopping();
+ if(id==='fav')renderFavs();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function openDay(d){currentDay=d;currentZone=trip[d].zone||null;renderDay();showSection('trip');}
+function openDayZone(d,z){currentDay=d;currentZone=z;renderDay();showSection('trip');setTimeout(()=>document.getElementById('zoneAnchor')?.scrollIntoView({behavior:'smooth'}),150);}
+function setTime(m){
+ currentMinutes=m;document.querySelectorAll('.timebar button').forEach(b=>b.classList.remove('sel'));
+ [...document.querySelectorAll('.timebar button')].find(b=>b.textContent.startsWith(String(m)))?.classList.add('sel');renderRoute();
+}
+function renderRoute(){document.getElementById('routeText').innerHTML='<b>建議：</b>'+trip[currentDay].routes[currentMinutes];}
+function maps(q){const enc=encodeURIComponent(q);return `<div class="navs"><a target="_blank" href="https://map.naver.com/p/search/${enc}">NAVER</a><a target="_blank" href="https://map.kakao.com/?q=${enc}">KAKAO</a><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=${enc}">Google</a></div>`;}
+function renderZone(z){
+ const x=zones[z]; if(!x)return '';
+ let out=`<div id="zoneAnchor" class="card"><h2>${x.title}</h2><p>${x.intro}</p>
+ <div class="tabbar"><button class="sel" onclick="zoneTab(this,'${z}-guide')">三級清單／比價</button><button onclick="zoneTab(this,'${z}-shops')">商店</button><button onclick="zoneTab(this,'${z}-food')">餐廳</button><button onclick="zoneTab(this,'${z}-facility')">廁所／便利</button></div>
+ <div id="${z}-guide" class="zone show">${renderBuyGuide(z)}</div>
+ <div id="${z}-shops" class="zone">`;
+ x.blocks.forEach((b,i)=>{
+  out+=`<div class="shopcard"><div class="shophead"><div><span class="badge blue">${b[0]}</span><b>${b[1]}</b></div><span class="floor">${b[2]}</span></div>
+  <div class="meta"><div><b>類型</b><br>${b[3]}</div><div><b>距離／移動</b><br>${b[4]}</div><div><b>營業</b><br>${b[5]}</div><div><b>建議</b><br>${b[6]}</div></div>
+  ${b[7]||''}
+  ${maps(b[1])}
+  <button class="bigbtn" style="width:100%;margin-top:8px" onclick="toggleFav('zone-${z}-${i}','${b[1].replaceAll("'","")}')">♡ 加入／移除最愛</button>
+  </div>`;
+ });
+ out+=`<a class="sourcebtn" target="_blank" href="${x.source}">查看主要官方來源</a></div><div id="${z}-food" class="zone">`;
+ x.food.forEach(f=>{
+   out+=`<div class="shopcard"><div class="shophead"><div><span class="badge ok">餐廳</span><b>${f[0]}</b></div><span class="floor">${f[1]}</span></div>
+   <div class="meta"><div><b>類型</b><br>${f[2]}</div><div><b>${f[3]}</b></div></div><p>${f[4]}</p><div class="pricebox"><b>價格</b><br>${f[5]}</div>${maps(f[0])}</div>`;
+ });
+ out+=`</div><div id="${z}-facility" class="zone"><div class="shopcard">${x.facility}</div></div></div>`;
+ return out;
+}
+function zoneTab(btn,id){
+ const parent=btn.closest('.card');parent.querySelectorAll('.tabbar button').forEach(x=>x.classList.remove('sel'));btn.classList.add('sel');
+ parent.querySelectorAll('.zone').forEach(x=>x.classList.remove('show'));document.getElementById(id).classList.add('show');
+}
+function renderDay(){
+ const d=trip[currentDay];document.getElementById('dayTitle').textContent=d.title;document.getElementById('dayBase').textContent=d.base;
+ let out='';
+ if(currentDay===2)out+=renderDay2Planner();
+ if(d.zone)out+=renderZone(d.zone);
+ d.cards.forEach((c,i)=>{
+   const key=`${currentDay}-${i}`;
+   out+=`<div class="card"><h3>${c[0]}</h3><div class="small">${c[1]}｜${c[2]}</div><div class="star">${c[3]}</div>
+   <span class="badge ${c[4].startsWith('🟢')?'ok':c[4].startsWith('🟡')?'warn':'bad'}">${c[4]}</span><p>${c[5]}</p>
+   <div class="meta"><div><b>建議停留</b><br>${c[6]}</div><div><b>地址／定位</b><br>${c[7]}</div></div>
+   <details><summary>購物／體驗重點</summary><p>${c[8]}</p><p class="small">${c[9]}</p></details>${maps(c[7])}
+   <button class="bigbtn" style="width:100%;margin-top:10px" onclick="toggleFav('${key}','${c[0].replaceAll("'","")}')">♡ 加入／移除最愛</button></div>`;
+ });
+ document.getElementById('dayContent').innerHTML=out;setTime(currentMinutes);setTimeout(()=>{recalcAllComparisons();if(currentDay===2)updateEverlandPlan();},0);
+}
+function toggleFav(key,name){let favs=JSON.parse(localStorage.getItem('korea_favs')||'{}');if(favs[key])delete favs[key];else favs[key]=name;localStorage.setItem('korea_favs',JSON.stringify(favs));}
+function renderFavs(){const favs=JSON.parse(localStorage.getItem('korea_favs')||'{}'),vals=Object.values(favs);document.getElementById('favList').innerHTML=vals.length?vals.map(x=>`<div class="listrow">⭐ ${x}</div>`).join(''):'尚未加入收藏。';}
+let shopDefault=[
+ {name:'Olive Young｜MEDIHEAL／ROUND LAB',done:false,qty:1,price:0},
+ {name:'Daiso｜文具／小孩用品',done:false,qty:1,price:0},
+ {name:'Starfield｜ABC-Mart／MLB Kids',done:false,qty:1,price:0},
+ {name:'COEX｜Gundam／韓潮品牌',done:false,qty:1,price:0},
+ {name:'超市｜海苔／零食',done:false,qty:1,price:0},
+ {name:'愛寶樂園｜限定紀念品',done:false,qty:1,price:0}
+];
+function getShop(){return JSON.parse(localStorage.getItem('korea_shop')||JSON.stringify(shopDefault));}
+function saveShop(items){localStorage.setItem('korea_shop',JSON.stringify(items));}
+function renderShopping(){
+ const items=getShop();document.getElementById('shoppingList').innerHTML=items.map((x,i)=>`
+ <div class="listrow"><input type="checkbox" ${x.done?'checked':''} onchange="editShop(${i},'done',this.checked)">
+ <div style="flex:1"><input type="text" value="${x.name.replaceAll('"','&quot;')}" onchange="editShop(${i},'name',this.value)">
+ <div style="display:flex;gap:8px;margin-top:8px"><input class="qty" type="number" min="1" value="${x.qty}" onchange="editShop(${i},'qty',+this.value)">
+ <input class="price" type="number" min="0" value="${x.price}" onchange="editShop(${i},'price',+this.value)" placeholder="KRW">
+ <button onclick="delShop(${i})" style="border:0;border-radius:10px;padding:8px">刪除</button></div></div></div>`).join('');calcTotal();
+}
+function editShop(i,k,v){let a=getShop();a[i][k]=v;saveShop(a);calcTotal();}
+function delShop(i){let a=getShop();a.splice(i,1);saveShop(a);renderShopping();}
+function addItem(){let a=getShop();a.push({name:'新項目',done:false,qty:1,price:0});saveShop(a);renderShopping();}
+function calcTotal(){let sum=getShop().reduce((s,x)=>s+(Number(x.qty)||0)*(Number(x.price)||0),0);let rate=Number(localStorage.getItem('korea_rate')||document.getElementById('rate')?.value||0.023);document.getElementById('totalKRW').textContent='₩'+Math.round(sum).toLocaleString();document.getElementById('totalTWD').textContent='約 NT$'+Math.round(sum*rate).toLocaleString();}
+function convert(){let krw=Number(document.getElementById('krw').value||0),r=Number(document.getElementById('rate').value||0);document.getElementById('twdResult').textContent='約 NT$'+Math.round(krw*r).toLocaleString();}
+function saveRate(){localStorage.setItem('korea_rate',document.getElementById('rate').value);calcTotal();recalcAllComparisons();}
+function saveMeet(){localStorage.setItem('korea_meet_time',document.getElementById('meetTime').value);localStorage.setItem('korea_meet_place',document.getElementById('meetPlace').value);}
+function tick(){
+ const t=document.getElementById('meetTime').value;if(!t){document.getElementById('countdown').textContent='--:--:--';return}
+ const now=new Date(),[hh,mm]=t.split(':').map(Number),target=new Date();target.setHours(hh,mm,0,0);let diff=target-now;
+ if(diff<0){document.getElementById('countdown').textContent='已過集合時間';document.getElementById('timerMsg').textContent='請立即確認領隊／集合點。';return}
+ const h=Math.floor(diff/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+ document.getElementById('countdown').textContent=[h,m,s].map(x=>String(x).padStart(2,'0')).join(':');
+ document.getElementById('timerMsg').textContent=diff<=5*60000?'🔴 剩不到5分鐘，停止購物並前往集合點。':diff<=15*60000?'🟡 剩不到15分鐘，立即往集合點移動。':'🟢 仍有時間，但請預留回程緩衝。';
+}
+function exportData(){const data={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k?.startsWith('korea_')||k?.startsWith('check_'))data[k]=localStorage.getItem(k);}const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='korea_trip_2026_backup.json';a.click();URL.revokeObjectURL(a.href);}
+function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);Object.entries(d).forEach(([k,v])=>localStorage.setItem(k,v));alert('匯入完成，頁面將重新整理。');location.reload();}catch{alert('備份檔格式無法讀取。')}};r.readAsText(f);}
+(function init(){
+ const r=localStorage.getItem('korea_rate');if(r)document.getElementById('rate').value=r;
+ const mt=localStorage.getItem('korea_meet_time');if(mt)document.getElementById('meetTime').value=mt;
+ const mp=localStorage.getItem('korea_meet_place');if(mp)document.getElementById('meetPlace').value=mp;
+ document.querySelectorAll('[data-check]').forEach(el=>{el.checked=localStorage.getItem('check_'+el.dataset.check)==='1';el.addEventListener('change',()=>localStorage.setItem('check_'+el.dataset.check,el.checked?'1':'0'));});
+ convert();renderDay();setInterval(tick,1000);tick();
+})();
+</script>
+</body>
+</html>
