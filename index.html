@@ -149,8 +149,21 @@ label{font-weight:750;font-size:14px}.row{display:grid;grid-template-columns:1fr
 .mapbox img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line);display:block}
 .mapbox .small{margin-top:8px}
 .family-principle{background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46;border-radius:14px;padding:12px;margin:10px 0;font-weight:800}
+.fieldmode{background:#111827;color:#fff;border-radius:16px;padding:14px;margin:10px 0}
+.fieldmode h3{margin:0 0 8px;font-size:18px}
+.fieldmode .routecodes{background:#fff;color:#111827;margin:8px 0}
+.decisiongrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.decision{background:#fff;border:1px solid var(--line);border-radius:13px;padding:11px}
+.decision b{display:block;margin-bottom:4px}
+.decision.keep{border-color:#a7f3d0;background:#ecfdf5;color:#065f46}
+.decision.drop{border-color:#fed7aa;background:#fff7ed;color:#9a3412}
+.phrasegrid{display:grid;gap:8px;margin-top:8px}
+.phrase{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:10px}
+.phrase b{display:block;font-size:16px}
+.wetbox{background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a;border-radius:14px;padding:12px;margin:10px 0}
 @media(max-width:480px){
  .plan-controls{grid-template-columns:1fr}
+ .decisiongrid{grid-template-columns:1fr}
  .linkrow{grid-template-columns:1fr 1fr}
  .linkrow a:last-child{grid-column:1/-1}
 }
@@ -221,6 +234,13 @@ label{font-weight:750;font-size:14px}.row{display:grid;grid-template-columns:1fr
     <h2>🛒 老婆超市快速入口</h2>
     <button class="bigbtn" style="width:100%;margin:5px 0" onclick="showSection('supermarket')">打開超市攻略｜Starfield／COEX／明洞</button>
     <div class="small">第一順位：Starfield 水原 B2 Traders；第二順位：明洞商圈超市；COEX 則用連通的百貨 B1 Food Market。</div>
+  </div>
+
+  <div class="card">
+    <h2>9/6 愛寶樂園現場模式</h2>
+    <button class="bigbtn" style="width:100%;margin:5px 0" onclick="openEverlandPlan()">打開親子少走路動線</button>
+    <div class="routecodes">207 → 206 → 219 → 115 → 107可刪 → 132 → 集合</div>
+    <div class="small">現場不用重讀整份攻略，先照這串走；雷霆瀑布怕失重或排太久就刪。</div>
   </div>
 
   <div class="card">
@@ -787,9 +807,15 @@ function rideCard(id){
 }
 
 function renderDay2Planner(){
-  return `<div class="card day2planner">
+  return `<div id="everlandPlanner" class="card day2planner">
     <h2>Day 2 水原＋愛寶樂園「親子少走路」作戰</h2>
     <div class="family-principle">不坐雲霄飛車、不追刺激、盡量少走路。9/6 下午半日以動物王國一次完成，再用 Human Sky 與 Sky Cruise 省腳力回到出口方向。</div>
+    <div class="fieldmode">
+      <h3>現場只看這一段</h3>
+      <div class="routecodes">207 → 206 → 219 → 115 → 107可刪 → 132 → 集合</div>
+      <div>先去動物王國玩 <b>207 遺失的峽谷</b> 和 <b>206 亞馬遜激流</b>，再搭 <b>219 Human Sky</b> 回前區；最後用 <b>132 Sky Cruise</b> 往出口方向收尾。</div>
+    </div>
+    <div id="everDecision" class="decisiongrid"></div>
     <div class="strategybox"><b>先記住：</b>你們不是自由行，9/6 上午還有 Starfield 水原＋水原華城。愛寶樂園真正可用時間目前不知道，因此不寫死幾點幾分。進園第一件事是開 <b>Everland App</b> 看當日設施營運、等待／Smart Queue 狀態；若預約時段與主線衝突，<b>預約時段優先</b>，但大方向仍維持少折返。</div>
 
     <h3>① Starfield 水原：親子「快速不拖延」順序</h3>
@@ -829,6 +855,8 @@ function renderDay2Planner(){
       <b>動線邏輯：</b>先從正門直進 Zootopia，完成 Lost Valley 與 Amazon Express；接著用 <b>219 Human Sky</b> 從動物王國回前區，轉往 Magic Land 玩 <b>115 小飛象</b> 與可選的 <b>107 雷霆瀑布</b>；最後搭 <b>132 Sky Cruise</b> 往出口／集合點方向靠近。
     </div>
 
+    <div class="wetbox"><b>雨衣／濕身提醒：</b>206 亞馬遜激流探險、107 雷霆瀑布都可能濕。進園前先把輕便雨衣、防水袋準備好；如果不想濕，雷霆瀑布直接列為可刪項目。</div>
+
     <div id="everRoute" class="routeflow"></div>
 
     <div class="mapbox">
@@ -850,6 +878,27 @@ function renderDay2Planner(){
         <a target="_blank" href="https://reservation.everland.com/web/el.do?method=calendar">Everland 官方預約／營運</a>
         <a target="_blank" href="https://grp.everland.com/files/en_everland.pdf">Everland 官方 Guide Map</a>
         <a target="_blank" href="https://web.everland.com/pick/2026/summer-party/index.html">9/6 Sanrio 活動官方頁</a>
+      </div>
+    </details>
+
+    <details open>
+      <summary>現場刪除規則</summary>
+      <div class="decisiongrid">
+        <div class="decision keep"><b>一定先保留</b>207 遺失的峽谷、206 亞馬遜激流、219 Human Sky、132 Sky Cruise。</div>
+        <div class="decision drop"><b>第一個刪除</b>107 雷霆瀑布：怕失重、怕濕、等待超過35–40分鐘就刪。</div>
+        <div class="decision drop"><b>Human Sky 暫停</b>直接沿指標往 Global Fair／Magic Land，不為它原地等太久。</div>
+        <div class="decision drop"><b>剩最後40分鐘</b>停止排熱門設施，直接搭 Sky Cruise 或往集合點移動。</div>
+      </div>
+    </details>
+
+    <details open>
+      <summary>韓文給工作人員看</summary>
+      <div class="phrasegrid">
+        <div class="phrase"><b>로스트밸리 어디예요?</b><span class="small">Lost Valley 在哪裡？</span></div>
+        <div class="phrase"><b>아마존 익스프레스 어디예요?</b><span class="small">亞馬遜激流探險在哪裡？</span></div>
+        <div class="phrase"><b>휴먼 스카이 운영해요?</b><span class="small">Human Sky 今天有營運嗎？</span></div>
+        <div class="phrase"><b>스카이 크루즈 어디예요?</b><span class="small">Sky Cruise 在哪裡？</span></div>
+        <div class="phrase"><b>입구로 가려면 어떻게 가요?</b><span class="small">要回正門／入口怎麼走？</span></div>
       </div>
     </details>
 
@@ -882,6 +931,33 @@ function updateEverlandPlan(){
         <div class="quicklinks"><a target="_blank" href="${r.watch}">▶ 小孩先看</a><a target="_blank" href="${r.official}">官方／資訊</a></div></div></div>`;
     }).join("")+
     `<div class="strategybox"><b>最後 30–40 分鐘規則：</b>停止排新熱門設施，只做上廁所、買水、拍照或簡單紀念品，並開始往領隊集合點移動。</div>`;
+  updateEverlandDecision();
+}
+
+function updateEverlandDecision(){
+  const box=document.getElementById("everDecision");
+  if(!box)return;
+  const meet=document.getElementById("meetTime")?.value||localStorage.getItem("meetTime")||"";
+  let decision=`<div class="decision keep"><b>現在先做</b>進園後先看 Lost Valley。可排就先排，不要先逛入口商店。</div>
+  <div class="decision drop"><b>可刪項目</b>雷霆瀑布最刺激也最可能濕；孩子怕失重或排太久就刪。</div>`;
+  if(meet){
+    const [h,m]=meet.split(":").map(Number);
+    const now=new Date(), target=new Date();
+    target.setHours(h,m,0,0);
+    if(target<now)target.setDate(target.getDate()+1);
+    const mins=Math.round((target-now)/60000);
+    const cls=mins<=50?"drop":"keep";
+    const msg=mins<=50
+      ? `距離集合約 ${mins} 分鐘：不要再排新設施，直接往 Sky Cruise 或集合點移動。`
+      : mins<=90
+        ? `距離集合約 ${mins} 分鐘：雷霆瀑布只在等待很短時才玩，優先準備回程。`
+        : `距離集合約 ${mins} 分鐘：可照主線走，但仍保留最後30–40分鐘回集合點。`;
+    decision+=`<div class="decision ${cls}"><b>集合倒數判斷</b>${msg}</div>`;
+  }else{
+    decision+=`<div class="decision"><b>集合時間</b>首頁輸入集合時間後，這裡會自動提示何時該刪雷霆瀑布、何時該回程。</div>`;
+  }
+  decision+=`<div class="decision keep"><b>找編號</b>207、206 在動物王國；115、107 在 Magic Land；132 是回程纜車。</div>`;
+  box.innerHTML=decision;
 }
 
 const OY_PRODUCTS = `
@@ -1002,6 +1078,7 @@ function showSection(id){
  window.scrollTo({top:0,behavior:'smooth'});
 }
 function openDay(d){currentDay=d;currentZone=trip[d].zone||null;renderDay();showSection('trip');}
+function openEverlandPlan(){openDay(2);setTimeout(()=>document.getElementById('everlandPlanner')?.scrollIntoView({behavior:'smooth'}),150);}
 function openDayZone(d,z){currentDay=d;currentZone=z;renderDay();showSection('trip');setTimeout(()=>document.getElementById('zoneAnchor')?.scrollIntoView({behavior:'smooth'}),150);}
 function setTime(m){
  currentMinutes=m;document.querySelectorAll('.timebar button').forEach(b=>b.classList.remove('sel'));
@@ -1076,7 +1153,7 @@ function addItem(){let a=getShop();a.push({name:'新項目',done:false,qty:1,pri
 function calcTotal(){let sum=getShop().reduce((s,x)=>s+(Number(x.qty)||0)*(Number(x.price)||0),0);let rate=Number(localStorage.getItem('korea_rate')||document.getElementById('rate')?.value||0.023);document.getElementById('totalKRW').textContent='₩'+Math.round(sum).toLocaleString();document.getElementById('totalTWD').textContent='約 NT$'+Math.round(sum*rate).toLocaleString();}
 function convert(){let krw=Number(document.getElementById('krw').value||0),r=Number(document.getElementById('rate').value||0);document.getElementById('twdResult').textContent='約 NT$'+Math.round(krw*r).toLocaleString();}
 function saveRate(){localStorage.setItem('korea_rate',document.getElementById('rate').value);calcTotal();recalcAllComparisons();}
-function saveMeet(){localStorage.setItem('korea_meet_time',document.getElementById('meetTime').value);localStorage.setItem('korea_meet_place',document.getElementById('meetPlace').value);}
+function saveMeet(){localStorage.setItem('korea_meet_time',document.getElementById('meetTime').value);localStorage.setItem('korea_meet_place',document.getElementById('meetPlace').value);updateEverlandDecision();}
 function tick(){
  const t=document.getElementById('meetTime').value;if(!t){document.getElementById('countdown').textContent='--:--:--';return}
  const now=new Date(),[hh,mm]=t.split(':').map(Number),target=new Date();target.setHours(hh,mm,0,0);let diff=target-now;
@@ -1084,6 +1161,7 @@ function tick(){
  const h=Math.floor(diff/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
  document.getElementById('countdown').textContent=[h,m,s].map(x=>String(x).padStart(2,'0')).join(':');
  document.getElementById('timerMsg').textContent=diff<=5*60000?'🔴 剩不到5分鐘，停止購物並前往集合點。':diff<=15*60000?'🟡 剩不到15分鐘，立即往集合點移動。':'🟢 仍有時間，但請預留回程緩衝。';
+ if(currentDay===2)updateEverlandDecision();
 }
 function exportData(){const data={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k?.startsWith('korea_')||k?.startsWith('check_'))data[k]=localStorage.getItem(k);}const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='korea_trip_2026_backup.json';a.click();URL.revokeObjectURL(a.href);}
 function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);Object.entries(d).forEach(([k,v])=>localStorage.setItem(k,v));alert('匯入完成，頁面將重新整理。');location.reload();}catch{alert('備份檔格式無法讀取。')}};r.readAsText(f);}
