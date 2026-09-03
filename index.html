@@ -119,6 +119,41 @@ label{font-weight:750;font-size:14px}.row{display:grid;grid-template-columns:1fr
 .rulebox b{font-size:18px}
 @media(max-width:480px){.compareinputs{grid-template-columns:1fr 1fr}.compareinputs>div:last-child{grid-column:1/-1}}
 
+.decisionpanel{background:#f8fafc;border:1px solid #cbd5e1;border-radius:18px;padding:14px;margin:12px 0}
+.decisiontop{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+.decisionbig{font-size:28px;font-weight:900;line-height:1.2}
+.decisionhint{font-size:13px;color:#475569}
+.decisionform{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
+.decisionform label{font-size:12px;color:#475569}
+.decisionform input,.decisionform select{padding:10px;border:1px solid var(--line);border-radius:12px;background:#fff;width:100%}
+.thresholdrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.shoppingfilter{display:flex;gap:8px;overflow:auto;padding-bottom:4px;margin:8px 0;scrollbar-width:none}
+.shoppingfilter button{white-space:nowrap;border:0;background:#eef2f7;padding:10px 12px;border-radius:999px;font-weight:800}
+.shoppingfilter button.sel{background:#111827;color:#fff}
+.shopitem{border:1px solid var(--line);border-radius:16px;padding:12px;margin:10px 0;background:#fff}
+.shopitem.done{opacity:.72;background:#f8fafc}
+.shopgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.shopgrid label{font-size:12px;color:#475569}
+.statusline{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
+.mini-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.mini-actions button{border:0;border-radius:12px;padding:10px;font-weight:800}
+.luggagegrid,.budgetgrid{display:grid;grid-template-columns:1fr;gap:10px}
+.personbag,.budgetcard{border:1px solid var(--line);border-radius:16px;padding:12px;background:#fff}
+.personbag h3,.budgetcard h3{margin:0 0 8px}
+.meter{height:12px;border-radius:999px;background:#e5e7eb;overflow:hidden;margin:8px 0}
+.meter span{display:block;height:100%;width:0%;background:#0f766e}
+.meter.warn span{background:#b45309}.meter.bad span{background:#b91c1c}
+.receiptgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.receiptgrid label{font-size:12px;color:#475569}
+.supercat{border:1px solid var(--line);border-radius:16px;padding:12px;margin:10px 0;background:#fff}
+.supercat h3{margin:0 0 5px}
+.risk{font-weight:900}
+.risk.ok{color:#065f46;background:transparent}.risk.warn{color:#9a3412;background:transparent}.risk.bad{color:#991b1b;background:transparent}
+@media(max-width:480px){
+  .decisiontop,.decisionform,.shopgrid,.receiptgrid{grid-template-columns:1fr}
+  .thresholdrow{grid-template-columns:1fr 1fr 1fr}
+}
+
 
 .day2planner{background:linear-gradient(180deg,#fff,#f8fafc);border:2px solid #dbeafe}
 .plan-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
@@ -234,6 +269,17 @@ label{font-weight:750;font-size:14px}.row{display:grid;grid-template-columns:1fr
     <h2>🛒 老婆超市快速入口</h2>
     <button class="bigbtn" style="width:100%;margin:5px 0" onclick="showSection('supermarket')">打開超市攻略｜Starfield／COEX／明洞</button>
     <div class="small">第一順位：Starfield 水原 B2 Traders；第二順位：明洞商圈超市；COEX 則用連通的百貨 B1 Food Market。</div>
+  </div>
+
+  <div class="card">
+    <h2>現場買不買</h2>
+    <button class="bigbtn" style="width:100%;margin:5px 0" onclick="showSection('shopping');setTimeout(()=>document.getElementById('buyNowBox')?.scrollIntoView({behavior:'smooth'}),120)">打開台韓即時比價</button>
+    <div class="small">站在貨架前只輸入台灣價、韓國標價、折扣與退稅，立刻判斷：買／再想一下／不要買。</div>
+  </div>
+
+  <div class="grid">
+    <button class="bigbtn" onclick="showSection('shopping');setTimeout(()=>document.getElementById('luggageBox')?.scrollIntoView({behavior:'smooth'}),120)">行李重量<span class="small" style="display:block">爸爸／媽媽／兩位小孩分開算</span></button>
+    <button class="bigbtn" onclick="showSection('shopping');setTimeout(()=>document.getElementById('budgetBox')?.scrollIntoView({behavior:'smooth'}),120)">預算與收據<span class="small" style="display:block">退稅、收據、已放入行李</span></button>
   </div>
 
   <div class="card">
@@ -391,15 +437,99 @@ label{font-weight:750;font-size:14px}.row{display:grid;grid-template-columns:1fr
     <span class="marketbadge">韓國限定口味</span><span class="marketbadge">調味料</span><span class="marketbadge">文具／生活用品</span>
     <span class="marketbadge">泡麵先看肉類成分</span>
     <p class="small">返台時，肉乾、肉鬆、香腸、火腿、含肉加工品與新鮮水果等不要攜帶；成分不確定就不要買回台灣。</p>
+    <div id="supermarketRanks"></div>
   </div>
 </section>
 
 <section id="shopping" class="section">
+  <div class="hero">
+    <h1>購物決策中心</h1>
+    <div class="sub">現在買／下一站再買｜比價、清單、行李、預算一起算</div>
+  </div>
+
+  <div id="buyNowBox" class="card">
+    <h2>現在買不買</h2>
+    <div class="decisionpanel">
+      <div class="decisiontop">
+        <div>
+          <div id="quickVerdict" class="decisionbig">輸入價格後判斷</div>
+          <div id="quickReason" class="decisionhint">預設規則：韓國實付 ≤ 台灣價85% 必買；85%～95% 值得買；95%～100% 價差小；高於台灣價不要買。</div>
+        </div>
+        <button class="bigbtn" onclick="addDecisionToShop()">加入清單</button>
+      </div>
+      <div class="decisionform">
+        <div><label>商品</label><input id="quickName" type="text" value="New Balance MR530CC" oninput="calcQuickBuy()"></div>
+        <div><label>目前位置</label><select id="quickPlace" onchange="calcQuickBuy()"><option>Starfield 水原</option><option>COEX</option><option>明洞</option><option>仁川機場</option><option>飯店附近</option></select></div>
+        <div><label>台灣價格 NT$</label><input id="quickTw" type="number" value="2156" oninput="calcQuickBuy()"></div>
+        <div><label>韓國標價 ₩</label><input id="quickKrw" type="number" value="139000" oninput="calcQuickBuy()"></div>
+        <div><label>折扣 %</label><input id="quickDiscount" type="number" min="0" max="90" step="0.1" value="0" oninput="calcQuickBuy()"></div>
+        <div><label>實際退稅 ₩</label><input id="quickTax" type="number" min="0" value="0" oninput="calcQuickBuy()"></div>
+        <div><label>下一站</label><select id="quickNext" onchange="calcQuickBuy()"><option>Day 4 明洞 Olive Young</option><option>Day 3 COEX</option><option>仁川機場</option><option>台灣再買</option><option>目前無法確認</option></select></div>
+        <div><label>1 KRW = TWD</label><input id="quickRate" type="number" step="0.0001" value="0.023" oninput="calcQuickBuy()"></div>
+      </div>
+      <div class="thresholdrow">
+        <div><label>必買門檻 %</label><input id="mustPct" type="number" value="85" oninput="calcQuickBuy()"></div>
+        <div><label>值得買 %</label><input id="goodPct" type="number" value="95" oninput="calcQuickBuy()"></div>
+        <div><label>最高可接受 %</label><input id="okPct" type="number" value="100" oninput="calcQuickBuy()"></div>
+      </div>
+      <div id="quickMath" class="thresholds"></div>
+    </div>
+    <div class="source-links">
+      <a target="_blank" href="https://www.newbalance.com.tw/men/shoes/MR530-42233.html">NB 台灣官方</a>
+      <a target="_blank" href="https://m.nbkorea.com/product/productDetail.action?colCode=19&rccode=mo_main_p&styleCode=NBPDFF811B">NB 韓國官方</a>
+      <a target="_blank" href="https://myeongdongtown.oliveyoung.com/en/">Olive Young 退稅說明</a>
+      <a target="_blank" href="https://web.customs.gov.tw/taipei/singlehtml/3130?cntId=cus2_177199_3130">台灣海關食品限制</a>
+    </div>
+  </div>
+
   <div class="card">
     <h2>🛍 購物清單</h2>
+    <div class="shoppingfilter" id="ownerFilters"></div>
     <div id="shoppingList"></div>
     <button class="bigbtn" style="width:100%;margin-top:12px" onclick="addItem()">＋新增項目</button>
   </div>
+
+  <div id="luggageBox" class="card">
+    <h2>行李重量管理</h2>
+    <div class="small">托運每人 20kg，建議至少保留 1kg 安全空間。低於17kg安全；17～19kg開始控制；超過19kg高風險。</div>
+    <div id="luggageList" class="luggagegrid"></div>
+    <div class="decisionpanel">
+      <h3>商品重量快速加入</h3>
+      <div class="decisionform">
+        <div><label>商品名稱</label><input id="weightName" type="text" value="韓國海苔"></div>
+        <div><label>放入誰的行李</label><select id="weightOwner"><option>爸爸</option><option>媽媽</option><option>11歲</option><option>8歲</option></select></div>
+        <div><label>單件重量 g</label><input id="unitGram" type="number" value="250"></div>
+        <div><label>數量</label><input id="unitQty" type="number" value="4"></div>
+      </div>
+      <button class="bigbtn" style="width:100%;margin-top:10px" onclick="addWeightItem()">加入行李重量</button>
+      <div id="weightPreview" class="thresholds"></div>
+    </div>
+  </div>
+
+  <div id="budgetBox" class="card">
+    <h2>預算與收據</h2>
+    <div id="budgetList" class="budgetgrid"></div>
+    <div id="budgetTotal" class="decisionpanel"></div>
+    <div class="decisionpanel">
+      <h3>收據紀錄</h3>
+      <div class="receiptgrid">
+        <div><label>商品</label><input id="receiptName" type="text" value="New Balance MR530CC"></div>
+        <div><label>店家</label><input id="receiptStore" type="text" value="COEX"></div>
+        <div><label>日期</label><input id="receiptDate" type="text" value="9/7"></div>
+        <div><label>韓元價格</label><input id="receiptKrw" type="number" value="0"></div>
+        <div><label>數量</label><input id="receiptQty" type="number" value="1"></div>
+        <div><label>退稅 ₩</label><input id="receiptTax" type="number" value="0"></div>
+      </div>
+      <div class="statusline">
+        <label><input id="receiptPaper" type="checkbox"> 已取得收據</label>
+        <label><input id="receiptRefund" type="checkbox"> 已辦退稅</label>
+        <label><input id="receiptPacked" type="checkbox"> 已放入行李</label>
+      </div>
+      <button class="bigbtn" style="width:100%;margin-top:10px" onclick="addReceipt()">新增收據</button>
+      <div id="receiptList"></div>
+    </div>
+  </div>
+
   <div class="card">
     <h2>戰利品統計</h2>
     <div class="total"><span id="totalKRW">₩0</span></div>
@@ -599,6 +729,12 @@ const compareProducts = {
   }
 };
 
+const shoppingRoutes={
+  suwon:["4～5F 星空圖書館 10–15分","5F Toy Kingdom 15–20分","5F ABC-Mart／MLB 15–20分","B2 TRADERS 25–35分","預留15–20分回集合點"],
+  coex:["COEX 水族館出口確認集合點","B1 Olive Young／CHICOR 20–30分","B1 ABC Grand Stage 10–15分","B2 Gundam Base 15–25分","同層或原路回集合點"],
+  myeongdong:["Olive Young Global 25–35分","Daiso 只逛文具／旅行／小孩用品樓層 20–25分","MUSINSA 有90分以上再進 20–25分","明洞超市 15–25分","集合前15–20分停止購物"]
+};
+
 function escHtml(s){
   return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));
 }
@@ -612,13 +748,15 @@ function renderTier(title, cls, items){
 function compareCard(id){
   const p=compareProducts[id], key=`cmp_${id}`;
   const rate=Number(localStorage.getItem('korea_rate')||0.023);
+  const saved=JSON.parse(localStorage.getItem(key)||'{}');
   return `<div class="comparecard" data-compare="${id}">
     <h4>${escHtml(p.name)}</h4>
     <span class="badge ${id==='manual'?'blue':id==='nb530'?'bad':'ok'}">${escHtml(p.match)}</span>
     <div class="compareinputs">
-      <div><label>台灣參考價 TWD</label><input id="${key}_tw" type="number" min="0" value="${p.tw||''}" oninput="calcCompare('${id}')"></div>
-      <div><label>韓國現場標價 KRW</label><input id="${key}_krw" type="number" min="0" value="${p.krw||''}" oninput="calcCompare('${id}')"></div>
-      <div><label>現場折扣／退稅 %</label><input id="${key}_disc" type="number" min="0" max="50" step="0.1" value="${p.discount||0}" oninput="calcCompare('${id}')"></div>
+      <div><label>台灣參考價 TWD</label><input id="${key}_tw" type="number" min="0" value="${saved.tw??p.tw??''}" oninput="calcCompare('${id}')"></div>
+      <div><label>韓國現場標價 KRW</label><input id="${key}_krw" type="number" min="0" value="${saved.krw??p.krw??''}" oninput="calcCompare('${id}')"></div>
+      <div><label>折扣 %</label><input id="${key}_disc" type="number" min="0" max="90" step="0.1" value="${saved.disc??p.discount??0}" oninput="calcCompare('${id}')"></div>
+      <div><label>實際退稅 KRW</label><input id="${key}_tax" type="number" min="0" value="${saved.tax??0}" oninput="calcCompare('${id}')"></div>
     </div>
     <div id="${key}_verdict" class="verdict">輸入價格後自動判斷</div>
     <div id="${key}_threshold" class="thresholds"></div>
@@ -640,6 +778,7 @@ function renderBuyGuide(z){
     &gt;100% → 🔴 台灣較便宜，跳過<br>
     <span class="tiny" style="color:#d1d5db">※ 限定款、贈品、退稅、保固與行李空間需另外考慮。</span>
   </div>
+  <div class="decisionpanel"><h3>最短購物動線</h3><div class="suwonflow">${(shoppingRoutes[z]||[]).map((x,i)=>`<div class="marketstep"><b>${i+1}.</b> ${x}</div>`).join("")}</div><div class="small">原則：少換樓層、不跨出原景點、不為小價差追貨。</div></div>
   <div class="tierwrap">
     ${renderTier("🟢 必買／優先下手", "tier-must", g.tiers.must)}
     ${renderTier("🟡 有時間再買", "tier-time", g.tiers.time)}
@@ -654,18 +793,20 @@ function calcCompare(id){
   const key=`cmp_${id}`;
   const tw=Number(document.getElementById(`${key}_tw`)?.value||0);
   const krw=Number(document.getElementById(`${key}_krw`)?.value||0);
-  const disc=Math.min(50,Math.max(0,Number(document.getElementById(`${key}_disc`)?.value||0)));
+  const disc=Math.min(90,Math.max(0,Number(document.getElementById(`${key}_disc`)?.value||0)));
+  const tax=Math.max(0,Number(document.getElementById(`${key}_tax`)?.value||0));
   const rate=Number(document.getElementById('rate')?.value||localStorage.getItem('korea_rate')||0.023);
   const v=document.getElementById(`${key}_verdict`);
   const th=document.getElementById(`${key}_threshold`);
   if(!v||!th)return;
+  localStorage.setItem(key,JSON.stringify({tw,krw,disc,tax}));
   if(tw<=0 || krw<=0 || rate<=0){
     v.className="verdict verdict-good";
     v.textContent="請輸入台灣參考價與韓國現場價。";
     th.textContent="";
     return;
   }
-  const netKrw=krw*(1-disc/100);
+  const netKrw=Math.max(0,krw*(1-disc/100)-tax);
   const koreaTwd=netKrw*rate;
   const ratio=koreaTwd/tw;
   const save=(1-ratio)*100;
@@ -681,6 +822,83 @@ function calcCompare(id){
 
 function recalcAllComparisons(){
   document.querySelectorAll("[data-compare]").forEach(el=>calcCompare(el.dataset.compare));
+}
+
+const owners=["全部","老婆","我","11歲","8歲","伴手禮","家庭共用"];
+let ownerFilter="全部";
+const budgetCats=["老婆","我","11歲","8歲","伴手禮","超市","家庭共用"];
+const bagOwners=["爸爸","媽媽","11歲","8歲"];
+const supermarketRanks=[
+  {rank:"★★★★★ 必看", items:[
+    ["海苔","輕、好分送，先看每包重量與片數。","韓國價格：現場輸入；台灣價格：目前無法確認","低","🟢 一般可攜帶"],
+    ["韓國限定零食","台灣不一定買得到，適合小孩與伴手禮。","價格變動大，請用比價器","中","🟢 一般可攜帶"],
+    ["咖啡／即溶包","重量可控、好分送；大盒裝先算公斤。","目前無法確認單價","中","🟢 一般可攜帶"]
+  ]},
+  {rank:"★★★★☆ 值得比較", items:[
+    ["餅乾","品牌與口味多，優先買韓國限定口味。","目前無法確認單價","中","🟢 一般可攜帶"],
+    ["調味料","小罐可買，大罐醬料很吃重量。","目前無法確認單價","中到高","🟡 看成分"],
+    ["洗髮／沐浴用品","便宜也可能很重，買前先看容量。","目前無法確認單價","高","🟢 一般可攜帶"]
+  ]},
+  {rank:"★★★☆☆ 有時間再買", items:[
+    ["飲料","現場喝可以，扛回台灣不划算。","目前無法確認單價","高","🟢 一般可攜帶"],
+    ["生活用品","只買台灣少見、小件、確定會用的。","目前無法確認單價","中","🟢 一般可攜帶"],
+    ["文具","Daiso 更適合集中買，重量低。","目前無法確認單價","低","🟢 一般可攜帶"]
+  ]},
+  {rank:"🔴 不建議", items:[
+    ["含肉泡麵／含肉調理包","返台風險高，跟團不值得賭。","價格不重要","中","🔴 不建議攜帶"],
+    ["肉乾／肉鬆／香腸／火腿","台灣入境高風險品項。","不要買回台灣","中","🔴 不建議攜帶"],
+    ["新鮮水果","入境檢疫風險高。","不要買回台灣","高","🔴 不建議攜帶"]
+  ]}
+];
+
+function money(n,prefix="NT$"){return prefix+Math.round(Number(n)||0).toLocaleString();}
+function getRate(){return Number(document.getElementById('rate')?.value||localStorage.getItem('korea_rate')||0.023);}
+function calcDecision(tw,krw,discount,tax,rate,mustPct,goodPct,okPct){
+  const net=Math.max(0,(Number(krw)||0)*(1-(Number(discount)||0)/100)-(Number(tax)||0));
+  const twd=net*(Number(rate)||0);
+  const ratio=(Number(tw)||0)>0?twd/Number(tw):0;
+  let level="good", verdict="請輸入價格", label="輸入價格後判斷";
+  if(tw>0&&krw>0&&rate>0){
+    if(ratio<=mustPct/100){level="must";label="🟢 買";verdict=`韓國實付約 ${money(twd)}，比台灣便宜約 ${((1-ratio)*100).toFixed(1)}%。`;}
+    else if(ratio<=goodPct/100){level="good";label="🟡 可以買";verdict=`韓國實付約 ${money(twd)}，比台灣便宜約 ${((1-ratio)*100).toFixed(1)}%，值得買。`;}
+    else if(ratio<=okPct/100){level="good";label="🟡 再想一下";verdict=`價差很小，韓國約 ${money(twd)}；限定款、贈品或真的喜歡再買。`;}
+    else{level="skip";label="🔴 不要買";verdict=`韓國約 ${money(twd)}，台灣較便宜或價差不足。`;}
+  }
+  return {net,twd,ratio,level,label,verdict};
+}
+
+function calcQuickBuy(){
+  const tw=Number(document.getElementById("quickTw")?.value||0);
+  const krw=Number(document.getElementById("quickKrw")?.value||0);
+  const discount=Number(document.getElementById("quickDiscount")?.value||0);
+  const tax=Number(document.getElementById("quickTax")?.value||0);
+  const rate=Number(document.getElementById("quickRate")?.value||getRate());
+  const must=Number(document.getElementById("mustPct")?.value||85);
+  const good=Number(document.getElementById("goodPct")?.value||95);
+  const ok=Number(document.getElementById("okPct")?.value||100);
+  const d=calcDecision(tw,krw,discount,tax,rate,must,good,ok);
+  const next=document.getElementById("quickNext")?.value||"目前無法確認";
+  const place=document.getElementById("quickPlace")?.value||"目前位置";
+  const v=document.getElementById("quickVerdict"), r=document.getElementById("quickReason"), m=document.getElementById("quickMath");
+  if(v){v.textContent=d.label;v.className=`decisionbig ${d.level==="must"?"verdict-must":d.level==="skip"?"verdict-skip":"verdict-good"}`;}
+  if(r)r.textContent=`${d.verdict} 目前位置：${place}。下一個更適合購買地點：${next}。`;
+  if(m)m.innerHTML=`折扣後退稅後：₩${Math.round(d.net).toLocaleString()}，換算約 ${money(d.twd)}。你的門檻：≤${must}% 買、≤${good}% 值得買、≤${ok}% 看限定。`;
+  localStorage.setItem("korea_quick_buy",JSON.stringify({tw,krw,discount,tax,rate,must,good,ok,name:document.getElementById("quickName")?.value||"",place,next}));
+  return d;
+}
+
+function addDecisionToShop(){
+  const d=calcQuickBuy();
+  let a=getShop();
+  a.push({name:document.getElementById("quickName").value||"現場商品",owner:"家庭共用",place:document.getElementById("quickPlace").value,next:document.getElementById("quickNext").value,done:false,qty:1,price:Number(document.getElementById("quickKrw").value||0),tax:Number(document.getElementById("quickTax").value||0),weight:0,receipt:false,refunded:false,packed:false,note:d.label});
+  saveShop(a);renderShopping();
+}
+
+function renderSupermarketRanks(){
+  const box=document.getElementById("supermarketRanks"); if(!box)return;
+  box.innerHTML=supermarketRanks.map(group=>`<div class="supercat"><h3>${group.rank}</h3>`+
+    group.items.map(x=>`<div class="tieritem"><b>${x[0]}</b><div class="small">${x[1]}</div><div class="tiny">${x[2]}｜重量影響：${x[3]}｜<span class="risk ${x[4].startsWith("🟢")?"ok":x[4].startsWith("🟡")?"warn":"bad"}">${x[4]}</span></div></div>`).join("")+
+    `</div>`).join("");
 }
 
 
@@ -937,7 +1155,7 @@ function updateEverlandPlan(){
 function updateEverlandDecision(){
   const box=document.getElementById("everDecision");
   if(!box)return;
-  const meet=document.getElementById("meetTime")?.value||localStorage.getItem("meetTime")||"";
+  const meet=document.getElementById("meetTime")?.value||localStorage.getItem("korea_meet_time")||"";
   let decision=`<div class="decision keep"><b>現在先做</b>進園後先看 Lost Valley。可排就先排，不要先逛入口商店。</div>
   <div class="decision drop"><b>可刪項目</b>雷霆瀑布最刺激也最可能濕；孩子怕失重或排太久就刪。</div>`;
   if(meet){
@@ -1061,7 +1279,7 @@ cards:[["愛寶樂園","에버랜드","Everland","★★★★★","🟢 非常�
 routes:{30:"COEX：指定1店（Gundam／美妝／鞋）→ 集合。",60:"COEX：大人、小孩分流各1站 → 集合。",90:"COEX：Gundam Base＋鞋／美妝＋簡單伴手禮 → 集合。",120:"仍留在 COEX 內，不跨到江南其他商圈。"},
 cards:[["N首爾塔廣場＋愛情鎖牆","N서울타워","N Seoul Tower","★★★★☆","🟢 非常適合順遊","旅行社安排不上塔，因此以廣場、愛情鎖牆與拍照為主。","20–40分鐘","105 Namsangongwon-gil, Yongsan-gu, Seoul","拍照、散步","不要臨時加購觀景台。"],["廣藏市場","광장시장","Gwangjang Market","★★★★☆","🟢 非常適合順遊","小孩不吃辣、生食、牛肉：避開生章魚、牛肉拌飯、辣炒年糕；紫菜飯捲先確認無牛肉。","30–60分鐘","88 Changgyeonggung-ro, Jongno-gu, Seoul","糖餅、甜點、紫菜飯捲（確認餡料）","綠豆煎餅先問是否含肉；湯麵要問湯底。"]]},
 4:{title:"DAY 4｜9/8 恩平＋益善洞＋明洞",base:"恩平韓屋村 → 彩妝店 → 水果大福 DIY → 益善洞 → 明洞。晚餐自理。這是全程購物主戰場。",zone:"myeongdong",
-routes:{30:"明洞：Olive Young 或 Daiso，只選一家。",60:"Olive Young → 便利商店／伴手禮 → 集合。",90:"Olive Young → Daiso 指定樓層 → 視人潮決定 MUSINSA。",120:"Olive Young → Daiso → MUSINSA → 晚餐／伴手禮；至少預留15–20分鐘回集合點。"},
+routes:{30:"明洞購物作戰：Olive Young 或超市二選一；10分鐘前停止結帳，立刻回集合點。",60:"Olive Young 25分鐘 → 明洞超市15分鐘 → 回集合點；最後20分鐘不再進新店。",90:"Olive Young 30分鐘 → Daiso 只逛文具／旅行用品／小孩用品指定樓層25分鐘 → 超市15分鐘 → 回集合點。",120:"Olive Young 35分鐘 → Daiso指定樓層25分鐘 → MUSINSA 25分鐘 → 超市／晚餐30分鐘 → 集合；19:10停止購物、19:15開始移動。"},
 cards:[["恩平韓屋村","은평한옥마을","Eunpyeong Hanok Village","★★★★☆","🟢 非常適合順遊","以拍照、茶飲、甜點為主，不自行走遠到山區。","30–60分鐘","127-27 Jingwan-dong, Eunpyeong-gu, Seoul","韓屋、茶點、拍照","不要延伸遠距離步行路線。"],["益善洞","익선동","Ikseon-dong","★★★★★","🟢 非常適合順遊","特色是韓屋咖啡、甜點、手作與設計小店。買特色，不追求最低價。","45–90分鐘","Ikseon-dong, Jongno-gu, Seoul","咖啡、甜點、設計小物","大量藥妝／鞋類採購留給明洞。"]]},
 5:{title:"DAY 5｜9/9 INSPIRE＋仁川機場",base:"Mohegan INSPIRE LED 數位大道 → 仁川機場 → 台中。TW669 13:55 / 16:00。不排任何離開原動線的活動。",
 routes:{30:"Aurora LED 拍照 → 集合。",60:"Aurora → 館內快速補貨 → 集合。",90:"只有領隊明確給足時間才執行；仍留在 INSPIRE 館內。",120:"🔴 不建議。回程日以團體集合、機場報到為優先。"},
@@ -1130,29 +1348,121 @@ function renderDay(){
 function toggleFav(key,name){let favs=JSON.parse(localStorage.getItem('korea_favs')||'{}');if(favs[key])delete favs[key];else favs[key]=name;localStorage.setItem('korea_favs',JSON.stringify(favs));}
 function renderFavs(){const favs=JSON.parse(localStorage.getItem('korea_favs')||'{}'),vals=Object.values(favs);document.getElementById('favList').innerHTML=vals.length?vals.map(x=>`<div class="listrow">⭐ ${x}</div>`).join(''):'尚未加入收藏。';}
 let shopDefault=[
- {name:'Olive Young｜MEDIHEAL／ROUND LAB',done:false,qty:1,price:0},
- {name:'Daiso｜文具／小孩用品',done:false,qty:1,price:0},
- {name:'Starfield｜ABC-Mart／MLB Kids',done:false,qty:1,price:0},
- {name:'COEX｜Gundam／韓潮品牌',done:false,qty:1,price:0},
- {name:'超市｜海苔／零食',done:false,qty:1,price:0},
- {name:'愛寶樂園｜限定紀念品',done:false,qty:1,price:0}
+ {name:'Olive Young｜Torriden／ROUND LAB',owner:'老婆',place:'明洞',next:'明洞 Olive Young',done:false,qty:1,price:0,tax:0,weight:0,receipt:false,refunded:false,packed:false,note:'先看企劃組與即時退稅'},
+ {name:'Daiso｜文具／小孩用品',owner:'11歲',place:'明洞',next:'Daiso 指定樓層',done:false,qty:1,price:0,tax:0,weight:0,receipt:false,refunded:false,packed:false,note:'不要逛完整12層'},
+ {name:'Starfield｜ABC-Mart／MLB Kids',owner:'我',place:'Starfield 水原',next:'COEX／台灣再買',done:false,qty:1,price:0,tax:0,weight:0,receipt:false,refunded:false,packed:false,note:'國際品牌先比台灣官方價'},
+ {name:'超市｜海苔／零食／咖啡',owner:'家庭共用',place:'Starfield Traders',next:'明洞超市',done:false,qty:1,price:0,tax:0,weight:0,receipt:false,refunded:false,packed:false,note:'含肉不要買回台灣'},
+ {name:'伴手禮｜韓國限定零食',owner:'伴手禮',place:'TRADERS／明洞',next:'仁川機場',done:false,qty:1,price:0,tax:0,weight:0,receipt:false,refunded:false,packed:false,note:'先算重量與單位價格'}
 ];
 function getShop(){return JSON.parse(localStorage.getItem('korea_shop')||JSON.stringify(shopDefault));}
 function saveShop(items){localStorage.setItem('korea_shop',JSON.stringify(items));}
 function renderShopping(){
- const items=getShop();document.getElementById('shoppingList').innerHTML=items.map((x,i)=>`
- <div class="listrow"><input type="checkbox" ${x.done?'checked':''} onchange="editShop(${i},'done',this.checked)">
- <div style="flex:1"><input type="text" value="${x.name.replaceAll('"','&quot;')}" onchange="editShop(${i},'name',this.value)">
- <div style="display:flex;gap:8px;margin-top:8px"><input class="qty" type="number" min="1" value="${x.qty}" onchange="editShop(${i},'qty',+this.value)">
- <input class="price" type="number" min="0" value="${x.price}" onchange="editShop(${i},'price',+this.value)" placeholder="KRW">
- <button onclick="delShop(${i})" style="border:0;border-radius:10px;padding:8px">刪除</button></div></div></div>`).join('');calcTotal();
+ const all=getShop();
+ document.getElementById('ownerFilters').innerHTML=owners.map(o=>`<button class="${ownerFilter===o?'sel':''}" onclick="ownerFilter='${o}';renderShopping()">${o}</button>`).join("");
+ const items=all.map((x,i)=>({...x,_i:i})).filter(x=>ownerFilter==="全部"||x.owner===ownerFilter);
+ document.getElementById('shoppingList').innerHTML=items.map(x=>`
+ <div class="shopitem ${x.done?'done':''}">
+   <div class="listrow" style="border-bottom:0;padding:0"><input type="checkbox" ${x.done?'checked':''} onchange="editShop(${x._i},'done',this.checked)">
+     <div style="flex:1"><input type="text" value="${escHtml(x.name)}" onchange="editShop(${x._i},'name',this.value)">
+       <div class="statusline"><span class="badge blue">${x.owner||'家庭共用'}</span><span class="badge">${x.place||'目前無法確認'}</span><span class="badge warn">下一站：${x.next||'目前無法確認'}</span></div>
+     </div>
+   </div>
+   <div class="shopgrid">
+     <div><label>誰要買</label><select onchange="editShop(${x._i},'owner',this.value)">${owners.filter(o=>o!=='全部').map(o=>`<option ${x.owner===o?'selected':''}>${o}</option>`).join("")}</select></div>
+     <div><label>購買地</label><input type="text" value="${escHtml(x.place||'')}" onchange="editShop(${x._i},'place',this.value)"></div>
+     <div><label>數量</label><input type="number" min="1" value="${x.qty||1}" onchange="editShop(${x._i},'qty',+this.value)"></div>
+     <div><label>韓元單價</label><input type="number" min="0" value="${x.price||0}" onchange="editShop(${x._i},'price',+this.value)"></div>
+     <div><label>退稅 KRW</label><input type="number" min="0" value="${x.tax||0}" onchange="editShop(${x._i},'tax',+this.value)"></div>
+     <div><label>總重量 kg</label><input type="number" min="0" step="0.1" value="${x.weight||0}" onchange="editShop(${x._i},'weight',+this.value)"></div>
+   </div>
+   <div class="statusline">
+     <label><input type="checkbox" ${x.receipt?'checked':''} onchange="editShop(${x._i},'receipt',this.checked)"> 收據</label>
+     <label><input type="checkbox" ${x.refunded?'checked':''} onchange="editShop(${x._i},'refunded',this.checked)"> 退稅</label>
+     <label><input type="checkbox" ${x.packed?'checked':''} onchange="editShop(${x._i},'packed',this.checked)"> 已放行李</label>
+   </div>
+   <div class="small" style="margin-top:6px">${escHtml(x.note||'')}</div>
+   <div class="mini-actions"><button onclick="fillQuickFromShop(${x._i})">拿去比價</button><button onclick="delShop(${x._i})">刪除</button></div>
+ </div>`).join('')||'<div class="small">此人員目前沒有購物項目。</div>';
+ calcTotal();renderLuggage();renderBudget();renderReceipts();
 }
-function editShop(i,k,v){let a=getShop();a[i][k]=v;saveShop(a);calcTotal();}
+function editShop(i,k,v){let a=getShop();a[i][k]=v;saveShop(a);renderShopping();}
 function delShop(i){let a=getShop();a.splice(i,1);saveShop(a);renderShopping();}
-function addItem(){let a=getShop();a.push({name:'新項目',done:false,qty:1,price:0});saveShop(a);renderShopping();}
-function calcTotal(){let sum=getShop().reduce((s,x)=>s+(Number(x.qty)||0)*(Number(x.price)||0),0);let rate=Number(localStorage.getItem('korea_rate')||document.getElementById('rate')?.value||0.023);document.getElementById('totalKRW').textContent='₩'+Math.round(sum).toLocaleString();document.getElementById('totalTWD').textContent='約 NT$'+Math.round(sum*rate).toLocaleString();}
+function addItem(){let a=getShop();a.push({name:'新項目',owner:'家庭共用',place:'目前位置',next:'目前無法確認',done:false,qty:1,price:0,tax:0,weight:0,receipt:false,refunded:false,packed:false,note:''});saveShop(a);renderShopping();}
+function calcTotal(){let sum=getShop().reduce((s,x)=>s+(Number(x.qty)||0)*(Number(x.price)||0)-(Number(x.tax)||0),0);let rate=getRate();document.getElementById('totalKRW').textContent='₩'+Math.round(sum).toLocaleString();document.getElementById('totalTWD').textContent='約 NT$'+Math.round(sum*rate).toLocaleString();}
+function fillQuickFromShop(i){
+  const x=getShop()[i]; if(!x)return;
+  document.getElementById("quickName").value=x.name||"";
+  document.getElementById("quickKrw").value=x.price||0;
+  document.getElementById("quickTax").value=x.tax||0;
+  document.getElementById("quickPlace").value=x.place||"Starfield 水原";
+  showSection('shopping');document.getElementById('buyNowBox')?.scrollIntoView({behavior:'smooth'});calcQuickBuy();
+}
+function getBags(){
+  const base={爸爸:13.5,媽媽:13.5,"11歲":10,"8歲":10};
+  return JSON.parse(localStorage.getItem("korea_bags")||JSON.stringify(base));
+}
+function saveBag(k,v){const b=getBags();b[k]=Number(v)||0;localStorage.setItem("korea_bags",JSON.stringify(b));renderLuggage();}
+function bagStatus(kg){
+  if(kg>=19)return {cls:"bad",txt:"🔴 超過19kg，高風險，至少要減1kg以上"};
+  if(kg>=17)return {cls:"warn",txt:"🟡 17～19kg，開始控制採買"};
+  return {cls:"ok",txt:"🟢 低於17kg，安全"};
+}
+function renderLuggage(){
+  const box=document.getElementById("luggageList"); if(!box)return;
+  const bags=getBags(), items=getShop();
+  box.innerHTML=bagOwners.map(p=>{
+    const add=items.filter(x=>x.packed&&((p==="媽媽"&&x.owner==="老婆")||(p==="爸爸"&&x.owner==="我")||x.owner===p||x.owner==="家庭共用")).reduce((s,x)=>s+(Number(x.weight)||0),0);
+    const total=(Number(bags[p])||0)+add, st=bagStatus(total), pct=Math.min(100,total/20*100);
+    return `<div class="personbag"><h3>${p}行李</h3><label>出發重量 kg</label><input type="number" step="0.1" value="${bags[p]||0}" onchange="saveBag('${p}',this.value)">
+      <div class="small">已放入購物品：約 ${add.toFixed(1)}kg｜目前預估：<b>${total.toFixed(1)}kg</b></div>
+      <div class="meter ${st.cls}"><span style="width:${pct}%"></span></div><div class="small">${st.txt}</div></div>`;
+  }).join("");
+  const unit=Number(document.getElementById("unitGram")?.value||0), qty=Number(document.getElementById("unitQty")?.value||0);
+  const pv=document.getElementById("weightPreview"); if(pv)pv.textContent=`目前輸入商品重量：${(unit*qty/1000).toFixed(2)}kg`;
+}
+function addWeightItem(){
+  const kg=(Number(document.getElementById("unitGram").value||0)*Number(document.getElementById("unitQty").value||0))/1000;
+  const bagOwner=document.getElementById("weightOwner").value;
+  const shopOwner=bagOwner==="媽媽"?"老婆":bagOwner==="爸爸"?"我":bagOwner;
+  let a=getShop();a.push({name:document.getElementById("weightName").value||"重量項目",owner:shopOwner,place:"超市／現場",next:"已購買",done:true,qty:Number(document.getElementById("unitQty").value||1),price:0,tax:0,weight:Number(kg.toFixed(2)),receipt:false,refunded:false,packed:true,note:`由商品重量快速加入；放入${bagOwner}行李`});
+  saveShop(a);renderShopping();
+}
+function getBudget(){
+  const base={家庭總預算:30000,老婆:8000,我:6000,"11歲":3000,"8歲":3000,伴手禮:5000,超市:5000,"家庭共用":5000};
+  return JSON.parse(localStorage.getItem("korea_budget")||JSON.stringify(base));
+}
+function saveBudget(k,v){const b=getBudget();b[k]=Number(v)||0;localStorage.setItem("korea_budget",JSON.stringify(b));renderBudget();}
+function spentBy(cat){
+  const rate=getRate();
+  return getShop().filter(x=>x.done&&(cat==="家庭總預算"||x.owner===cat||(cat==="超市"&&String(x.name).includes("超市")))).reduce((s,x)=>s+(((Number(x.qty)||0)*(Number(x.price)||0)-(Number(x.tax)||0))*rate),0);
+}
+function renderBudget(){
+  const box=document.getElementById("budgetList"), totalBox=document.getElementById("budgetTotal"); if(!box||!totalBox)return;
+  const b=getBudget();
+  box.innerHTML=["家庭總預算",...budgetCats].map(cat=>{
+    const spent=spentBy(cat), limit=Number(b[cat]||0), pct=limit?spent/limit*100:0;
+    const cls=pct>=100?"bad":pct>=80?"warn":"";
+    const msg=pct>=100?"🔴 超出預算":pct>=80?"🟡 已使用80%以上":"🟢 預算正常";
+    return `<div class="budgetcard"><h3>${cat}</h3><label>預算 NT$</label><input type="number" value="${limit}" onchange="saveBudget('${cat}',this.value)">
+    <div class="small">已花 ${money(spent)}｜剩餘 ${money(limit-spent)}</div><div class="meter ${cls}"><span style="width:${Math.min(100,pct)}%"></span></div><div class="small">${msg}</div></div>`;
+  }).join("");
+  const total=spentBy("家庭總預算"), limit=Number(b["家庭總預算"]||0);
+  totalBox.innerHTML=`<b>家庭合計</b><div class="total">${money(total)}</div><div class="small">剩餘 ${money(limit-total)}。已勾選完成的購物項目會列入預算。</div>`;
+}
+function getReceipts(){return JSON.parse(localStorage.getItem("korea_receipts")||"[]");}
+function saveReceipts(x){localStorage.setItem("korea_receipts",JSON.stringify(x));}
+function addReceipt(){
+  const r=getReceipts();
+  r.push({name:receiptName.value,store:receiptStore.value,date:receiptDate.value,krw:Number(receiptKrw.value||0),qty:Number(receiptQty.value||1),tax:Number(receiptTax.value||0),paper:receiptPaper.checked,refund:receiptRefund.checked,packed:receiptPacked.checked});
+  saveReceipts(r);renderReceipts();
+}
+function renderReceipts(){
+  const box=document.getElementById("receiptList"); if(!box)return;
+  const rate=getRate();
+  box.innerHTML=getReceipts().map((r,i)=>`<div class="shopitem"><b>${escHtml(r.name)}</b><div class="small">${escHtml(r.date)}｜${escHtml(r.store)}｜₩${Math.round((r.krw*r.qty)-r.tax).toLocaleString()}｜約 ${money(((r.krw*r.qty)-r.tax)*rate)}</div><div class="tiny">${r.paper?"收據 ":""}${r.refund?"已退稅 ":""}${r.packed?"已放入行李":""}</div><button onclick="let x=getReceipts();x.splice(${i},1);saveReceipts(x);renderReceipts()" style="border:0;border-radius:10px;padding:8px;margin-top:6px">刪除</button></div>`).join("")||'<div class="small">尚未新增收據。</div>';
+}
 function convert(){let krw=Number(document.getElementById('krw').value||0),r=Number(document.getElementById('rate').value||0);document.getElementById('twdResult').textContent='約 NT$'+Math.round(krw*r).toLocaleString();}
-function saveRate(){localStorage.setItem('korea_rate',document.getElementById('rate').value);calcTotal();recalcAllComparisons();}
+function saveRate(){localStorage.setItem('korea_rate',document.getElementById('rate').value);const q=document.getElementById('quickRate');if(q)q.value=document.getElementById('rate').value;calcTotal();recalcAllComparisons();calcQuickBuy();renderBudget();}
 function saveMeet(){localStorage.setItem('korea_meet_time',document.getElementById('meetTime').value);localStorage.setItem('korea_meet_place',document.getElementById('meetPlace').value);updateEverlandDecision();}
 function tick(){
  const t=document.getElementById('meetTime').value;if(!t){document.getElementById('countdown').textContent='--:--:--';return}
@@ -1163,14 +1473,15 @@ function tick(){
  document.getElementById('timerMsg').textContent=diff<=5*60000?'🔴 剩不到5分鐘，停止購物並前往集合點。':diff<=15*60000?'🟡 剩不到15分鐘，立即往集合點移動。':'🟢 仍有時間，但請預留回程緩衝。';
  if(currentDay===2)updateEverlandDecision();
 }
-function exportData(){const data={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k?.startsWith('korea_')||k?.startsWith('check_'))data[k]=localStorage.getItem(k);}const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='korea_trip_2026_backup.json';a.click();URL.revokeObjectURL(a.href);}
+function exportData(){const data={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k?.startsWith('korea_')||k?.startsWith('check_')||k?.startsWith('cmp_'))data[k]=localStorage.getItem(k);}const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='korea_trip_2026_backup.json';a.click();URL.revokeObjectURL(a.href);}
 function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);Object.entries(d).forEach(([k,v])=>localStorage.setItem(k,v));alert('匯入完成，頁面將重新整理。');location.reload();}catch{alert('備份檔格式無法讀取。')}};r.readAsText(f);}
 (function init(){
  const r=localStorage.getItem('korea_rate');if(r)document.getElementById('rate').value=r;
+ const qr=localStorage.getItem('korea_quick_buy');if(qr){try{const q=JSON.parse(qr);if(q.name)quickName.value=q.name;if(q.tw)quickTw.value=q.tw;if(q.krw)quickKrw.value=q.krw;if(q.discount!==undefined)quickDiscount.value=q.discount;if(q.tax!==undefined)quickTax.value=q.tax;if(q.rate)quickRate.value=q.rate;if(q.must)mustPct.value=q.must;if(q.good)goodPct.value=q.good;if(q.ok)okPct.value=q.ok;}catch{}}
  const mt=localStorage.getItem('korea_meet_time');if(mt)document.getElementById('meetTime').value=mt;
  const mp=localStorage.getItem('korea_meet_place');if(mp)document.getElementById('meetPlace').value=mp;
  document.querySelectorAll('[data-check]').forEach(el=>{el.checked=localStorage.getItem('check_'+el.dataset.check)==='1';el.addEventListener('change',()=>localStorage.setItem('check_'+el.dataset.check,el.checked?'1':'0'));});
- convert();renderDay();setInterval(tick,1000);tick();
+ convert();renderDay();renderSupermarketRanks();calcQuickBuy();setInterval(tick,1000);tick();
 })();
 </script>
 </body>
