@@ -59,7 +59,7 @@ details{background:#f9fafb;border-radius:14px;padding:12px;margin:10px 0}
 summary{font-weight:750;cursor:pointer}
 .bottomnav{
   position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);
-  border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);z-index:10;
+  border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(6,1fr);z-index:10;
   padding-bottom:env(safe-area-inset-bottom)
 }
 .bottomnav button{border:0;background:transparent;padding:10px 2px;font-size:12px;color:#4b5563}.bottomnav .ico{display:block;font-size:20px}
@@ -218,6 +218,15 @@ label{font-weight:750;font-size:14px}.row{display:grid;grid-template-columns:1fr
 .marketbadge{display:inline-block;background:#f3f4f6;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:700;margin:2px}
 @media(max-width:480px){.marketlinks{grid-template-columns:1fr 1fr}.marketlinks a:last-child{grid-column:1/-1}}
 
+.noticegroup{border:1px solid var(--line);border-radius:16px;background:#fff;padding:14px;margin:12px 0}
+.noticegroup h3{margin:0 0 8px;font-size:19px}
+.noticelist{margin:0;padding:0;list-style:none}
+.noticelist li{padding:9px 0;border-bottom:1px dashed #e5e7eb}
+.noticelist li:last-child{border-bottom:0}
+.importantbox{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:16px;padding:14px;margin:12px 0;font-weight:800}
+.taxflow{display:grid;gap:8px;margin-top:10px}
+.taxstep{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:10px}
+
 </style>
 </head>
 <body>
@@ -280,6 +289,12 @@ label{font-weight:750;font-size:14px}.row{display:grid;grid-template-columns:1fr
   <div class="grid">
     <button class="bigbtn" onclick="showSection('shopping');setTimeout(()=>document.getElementById('luggageBox')?.scrollIntoView({behavior:'smooth'}),120)">行李重量<span class="small" style="display:block">爸爸／媽媽／兩位小孩分開算</span></button>
     <button class="bigbtn" onclick="showSection('shopping');setTimeout(()=>document.getElementById('budgetBox')?.scrollIntoView({behavior:'smooth'}),120)">預算與收據<span class="small" style="display:block">退稅、收據、已放入行李</span></button>
+  </div>
+
+  <div class="card">
+    <h2>導遊注意事項</h2>
+    <button class="bigbtn" style="width:100%;margin:5px 0" onclick="showSection('notices')">打開注意事項</button>
+    <div class="small">水、盥洗用品、遊覽車、退稅、飯店、返台禁帶與韓國禮儀，集中放在這裡。</div>
   </div>
 
   <div class="card">
@@ -541,6 +556,87 @@ label{font-weight:750;font-size:14px}.row{display:grid;grid-template-columns:1fr
   <div class="card"><h2>⭐ 我的最愛</h2><div id="favList" class="small">尚未加入收藏。</div></div>
 </section>
 
+<section id="notices" class="section">
+  <div class="hero">
+    <h1>注意事項</h1>
+    <div class="sub">導遊提醒｜用水、購物退稅、飯店、遊覽車、返台限制</div>
+  </div>
+
+  <div class="importantbox">
+    結帳前先出示護照，才可開立退稅單。結帳後再出示護照，通常就無法補開退稅單。
+  </div>
+
+  <div class="noticegroup">
+    <h3>韓國旅遊注意事項</h3>
+    <ul class="noticelist">
+      <li>韓國車上沒有提供免費礦泉水，可用水杯在用餐餐廳接水飲用。</li>
+      <li>渡假村不會提供牙膏牙刷、洗髮精、沐浴乳。</li>
+      <li>冰品、冰淇淋、冰棒，以及味道重的食品，例如辣炒年糕，請勿帶上遊覽車。</li>
+      <li>韓國購物倡導自帶環保袋，有些地方購物袋需要付費。</li>
+      <li>韓國刷卡很方便，便利店大多可刷卡。</li>
+      <li>很多便利店可用 Taiwan Pay 刷卡，回饋大。</li>
+      <li>韓國天氣比台灣乾燥，請多補充水分與加強保濕。</li>
+      <li>韓國電壓 220V，插頭款式與台灣不同，使用前請確認自己帶的電器是否適用。</li>
+      <li>餐廳用餐皆採四人一桌。</li>
+      <li>韓國咖啡廳內用與外帶有區別：內用才可室內休息，外帶不可占用內用座位，餐具也不同。</li>
+      <li>咖啡拿鐵要自己加糖，糖漿通常在櫃台旁。</li>
+      <li>餐廳接飲用水時，請至飲水機接；桌上的水是給用餐客人用的。</li>
+      <li>韓國沒有剩菜打包文化。</li>
+      <li>行走逛街、過馬路，一定要走斑馬線。</li>
+      <li>坐遊覽車一定要繫安全帶。</li>
+      <li>韓國人非常重視肖像權，請不要隨意偷拍。</li>
+    </ul>
+  </div>
+
+  <div class="noticegroup">
+    <h3>逛街購物須知</h3>
+    <ul class="noticelist">
+      <li>有店面的商家大多有刷卡與退稅機制。</li>
+      <li>購物滿 15,000 韓元以上可退稅。</li>
+      <li>可先問店家是否 Tax Free。</li>
+      <li>如可退稅，需出示護照。</li>
+      <li>退稅可能分兩種：有的店家是當場退稅，不會有退稅單；有的店家是開立退稅單，到機場退稅。</li>
+      <li>農產品不在退稅範圍內。</li>
+    </ul>
+    <div class="taxflow">
+      <div class="taxstep"><b>退稅要確認帶回來：</b>護照、退稅單、刷卡的信用卡、買的東西。</div>
+      <div class="taxstep"><b>結帳前：</b>先出示護照，才可開立退稅單。</div>
+      <div class="taxstep"><b>結帳後：</b>再出示護照，通常就無法開立退稅單。</div>
+    </div>
+  </div>
+
+  <div class="noticegroup">
+    <h3>返台禁止／高風險</h3>
+    <ul class="noticelist">
+      <li>有肉類的食品或泡麵不可帶回台灣。</li>
+      <li>電子煙、泡麵、隨身小電扇，請不要帶回台灣。</li>
+      <li>千萬不要購買電子煙回台灣。</li>
+    </ul>
+  </div>
+
+  <div class="noticegroup">
+    <h3>飯店續住注意事項</h3>
+    <ul class="noticelist">
+      <li>房間有要丟棄的垃圾，請放在垃圾桶或垃圾袋中；若體積大放不下，可放在垃圾桶旁。</li>
+      <li>有用的東西請收好，不要放在垃圾桶旁，以免整理房間時造成誤會或錯丟。</li>
+      <li>因應韓國環保，續住房間整理房務時，只提供更換毛巾、補礦泉水、清理垃圾。</li>
+      <li>續住整理不會更換床單、被單和枕套。</li>
+    </ul>
+  </div>
+
+  <div class="noticegroup">
+    <h3>韓國飯店注意事項</h3>
+    <ul class="noticelist">
+      <li>韓國全國飯店皆全面禁菸，飯店內及房間全部禁止吸菸。</li>
+      <li>如果進房間有地板設施，請先脫鞋再上地板。</li>
+      <li>室內拖鞋請勿穿到室外。</li>
+      <li>韓國飯店房間玄關或浴室電燈，普遍設置感應式節能燈泡，時間到會自動關燈，再重新開一次即可。</li>
+      <li>夏季尚未來臨時，飯店可能尚未全面開放冷氣，可將窗戶開啟通風。</li>
+      <li>飯店早餐使用後，餐具皆需自行回收至回收台。</li>
+    </ul>
+  </div>
+</section>
+
 <section id="tools" class="section">
   <div class="card">
     <h2>🍴 小孩飲食韓文</h2>
@@ -609,6 +705,7 @@ label{font-weight:750;font-size:14px}.row{display:grid;grid-template-columns:1fr
   <button onclick="showSection('trip')"><span class="ico">📅</span>行程</button>
   <button onclick="showSection('shopping')"><span class="ico">🛍</span>購物</button>
   <button onclick="showSection('fav')"><span class="ico">⭐</span>收藏</button>
+  <button onclick="showSection('notices')"><span class="ico">⚠️</span>注意</button>
   <button onclick="showSection('tools')"><span class="ico">🧰</span>工具</button>
 </nav>
 
